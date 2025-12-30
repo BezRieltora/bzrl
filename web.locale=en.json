@@ -1,5 +1,13 @@
 {
 	"$bog_bzrl_app_Welcome_title": "Welcome to Bzrl!",
+	"$bog_bzrl_app_profile_Menu_gists_label": "Gists",
+	"$bog_bzrl_app_profile_Menu_profile_label": "Profile",
+	"$bog_bzrl_app_profile_Menu_repos_label": "Repositories",
+	"$bog_bzrl_app_profile_Menu_settings_label": "Settings",
+	"$bog_bzrl_app_profile_Menu_stars_label": "Stars",
+	"$bog_bzrl_app_profile_bio": "Sometimes use gitlab ;)",
+	"$bog_bzrl_app_profile_email": "Kirill Novgorodtsev",
+	"$bog_bzrl_app_profile_name": "Dev-cmyser",
 	"$bog_bzrl_app_title": "Bzrl App",
 	"$bog_theme_picker_Search_hint": "Just start typing",
 	"$bog_theme_toggle_Anchor_hint": "Cycle through themes"

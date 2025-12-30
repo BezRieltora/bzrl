@@ -37,5 +37,4 @@
 	include \/mol/view/tree/test
 \/bog/bzrl/app
 	include \/mol/offline/install
-	include \/mol/test
 	deploy \/bog/bzrl/assets
