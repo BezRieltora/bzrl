@@ -7984,6 +7984,11 @@ var $;
 			(obj.theme_auto) = () => ((this.theme_auto()));
 			return obj;
 		}
+		Header_top(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Avatar_large()), (this.Theme_toggle())]);
+			return obj;
+		}
 		name(){
 			return (this.$.$mol_locale.text("$bog_bzrl_app_profile_name"));
 		}
@@ -8003,8 +8008,7 @@ var $;
 		Header(){
 			const obj = new this.$.$mol_view();
 			(obj.sub) = () => ([
-				(this.Avatar_large()), 
-				(this.Theme_toggle()), 
+				(this.Header_top()), 
 				(this.Name()), 
 				(this.Email())
 			]);
@@ -8148,6 +8152,7 @@ var $;
 	($mol_mem(($.$bog_bzrl_app_profile.prototype), "Button"));
 	($mol_mem(($.$bog_bzrl_app_profile.prototype), "Avatar_large"));
 	($mol_mem(($.$bog_bzrl_app_profile.prototype), "Theme_toggle"));
+	($mol_mem(($.$bog_bzrl_app_profile.prototype), "Header_top"));
 	($mol_mem(($.$bog_bzrl_app_profile.prototype), "Name"));
 	($mol_mem(($.$bog_bzrl_app_profile.prototype), "Email"));
 	($mol_mem(($.$bog_bzrl_app_profile.prototype), "Header"));
@@ -8232,6 +8237,13 @@ var $;
                 flexDirection: 'column',
                 gap: $mol_gap.text,
                 padding: $mol_gap.block,
+            },
+            Header_top: {
+                display: 'flex',
+                flexDirection: 'row',
+                gap: $mol_gap.text,
+                alignItems: 'flex-start',
+                justifyContent: 'space-between',
             },
             Avatar_large: {
                 width: '4rem',

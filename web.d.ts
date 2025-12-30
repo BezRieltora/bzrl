@@ -2572,30 +2572,30 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_dimmer__haystack_bog_bzrl_app_profile_7 = $mol_type_enforce<
+	type $mol_view__sub_bog_bzrl_app_profile_7 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_dimmer__haystack_bog_bzrl_app_profile_8 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_profile['email'] >
 		,
 		ReturnType< $mol_dimmer['haystack'] >
 	>
-	type $mol_view__sub_bog_bzrl_app_profile_8 = $mol_type_enforce<
+	type $mol_view__sub_bog_bzrl_app_profile_9 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_dimmer__haystack_bog_bzrl_app_profile_9 = $mol_type_enforce<
+	type $mol_dimmer__haystack_bog_bzrl_app_profile_10 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_profile['bio'] >
 		,
 		ReturnType< $mol_dimmer['haystack'] >
 	>
-	type $mol_view__sub_bog_bzrl_app_profile_10 = $mol_type_enforce<
+	type $mol_view__sub_bog_bzrl_app_profile_11 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_button_minor__sub_bog_bzrl_app_profile_11 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_button_minor['sub'] >
 	>
 	type $mol_button_minor__sub_bog_bzrl_app_profile_12 = $mol_type_enforce<
 		readonly(any)[]
@@ -2617,32 +2617,37 @@ declare namespace $ {
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_list__rows_bog_bzrl_app_profile_16 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_bzrl_app_profile_16 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
+	>
+	type $mol_list__rows_bog_bzrl_app_profile_17 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_list['rows'] >
 	>
-	type $mol_card__Content_bog_bzrl_app_profile_17 = $mol_type_enforce<
+	type $mol_card__Content_bog_bzrl_app_profile_18 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_profile['Menu'] >
 		,
 		ReturnType< $mol_card['Content'] >
 	>
-	type $mol_pop__showed_bog_bzrl_app_profile_18 = $mol_type_enforce<
+	type $mol_pop__showed_bog_bzrl_app_profile_19 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_profile['opened'] >
 		,
 		ReturnType< $mol_pop['showed'] >
 	>
-	type $mol_pop__Anchor_bog_bzrl_app_profile_19 = $mol_type_enforce<
+	type $mol_pop__Anchor_bog_bzrl_app_profile_20 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_profile['Button'] >
 		,
 		ReturnType< $mol_pop['Anchor'] >
 	>
-	type $mol_pop__align_bog_bzrl_app_profile_20 = $mol_type_enforce<
+	type $mol_pop__align_bog_bzrl_app_profile_21 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_pop['align'] >
 	>
-	type $mol_pop__bubble_content_bog_bzrl_app_profile_21 = $mol_type_enforce<
+	type $mol_pop__bubble_content_bog_bzrl_app_profile_22 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_pop['bubble_content'] >
@@ -2653,6 +2658,7 @@ declare namespace $ {
 		Button( ): $mol_button_minor
 		Avatar_large( ): $mol_avatar
 		Theme_toggle( ): $bog_theme_toggle
+		Header_top( ): $mol_view
 		name( ): string
 		Name( ): $mol_view
 		email( ): string
