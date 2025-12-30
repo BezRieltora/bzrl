@@ -1,13 +1,15 @@
 $bog_bzrl_app_profile $mol_view
+	opened? false
+	toggle? null
 	sub /
 		<= Panel $mol_pop
 			showed? <=> opened?
 			Anchor <= Button $mol_button_minor
-				click? <=> opened? false
+				click? <=> toggle?
 				sub /
 					<= Avatar $mol_avatar
 						id <= avatar_id \
-			align \bottom_right
+			align \bottom_left
 			bubble_content /
 				<= Card $mol_card
 					Content <= Menu $mol_list

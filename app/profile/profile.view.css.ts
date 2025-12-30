@@ -15,11 +15,13 @@ namespace $.$$ {
 
 		Panel: {
 			zIndex: 1000,
+			maxWidth: '100vw',
 		},
 
 		Card: {
 			minWidth: '20rem',
 			maxWidth: '24rem',
+			boxSizing: 'border-box',
 		},
 
 		Header: {
