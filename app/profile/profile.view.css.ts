@@ -55,6 +55,27 @@ namespace $.$$ {
 			flexShrink: '0',
 		},
 
+		Divider_1: {
+			height: '1px',
+			background: {
+				color: $mol_theme.line,
+			},
+		},
+
+		Divider_2: {
+			height: '1px',
+			background: {
+				color: $mol_theme.line,
+			},
+		},
+
+		Divider_3: {
+			height: '1px',
+			background: {
+				color: $mol_theme.line,
+			},
+		},
+
 		Menu_profile: {
 			justifyContent: 'flex-start',
 		},
