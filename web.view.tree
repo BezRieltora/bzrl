@@ -109,19 +109,44 @@ $mol_button_typed $mol_button
 
 $mol_button_minor $mol_button_typed
 
+$mol_ghost $mol_view
+	Sub $mol_view
+
+$mol_follower $mol_ghost
+	Anchor $mol_view
+	align /number
+		-.5
+		-.5
+	offset /number
+		0
+		0
+	style *
+		^
+		transform <= transform \
+
 $mol_pop $mol_view
 	showed? false
 	align_vert \
 	align_hor \
+	align \bottom_center
 	prefer \vert
+	auto /
+		<= bubble null
 	sub /
 		<= Anchor null
 	sub_visible /
 		<= Anchor
-		<= Bubble $mol_pop_bubble
-			align <= align \bottom_center
-			content <= bubble_content /$mol_view_content
-			height_max <= height_max 9999
+		<= Follower $mol_follower
+			offset <= bubble_offset /number
+				0
+				1
+			align <= bubble_align /number
+				0
+				0
+			Anchor <= Anchor
+			Sub <= Bubble $mol_pop_bubble
+				content <= bubble_content /$mol_view_content
+				height_max <= height_max 9999
 
 $mol_pop_bubble $mol_view
 	sub <= content /$mol_view_content
@@ -130,8 +155,8 @@ $mol_pop_bubble $mol_view
 		maxHeight <= height_max 9999
 	attr *
 		^
-		mol_pop_align <= align \
 		tabindex 0
+		popover \manual
 
 $mol_icon_brightness_4 $mol_icon path \M12,18C11.11,18 10.26,17.8 9.5,17.45C11.56,16.5 13,14.42 13,12C13,9.58 11.56,7.5 9.5,6.55C10.26,6.2 11.11,6 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z
 
@@ -302,7 +327,6 @@ $bog_bzrl_app_profile $mol_view
 				sub /
 					<= Avatar $mol_avatar
 						id <= avatar_id \
-			align \bottom_left
 			bubble_content /
 				<= Card $mol_card
 					Content <= Menu $mol_list
