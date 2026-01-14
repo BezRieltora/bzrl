@@ -1,0 +1,19 @@
+$bog_bzrl_app_card $mol_view
+	attr *
+		^
+		bog_bzrl_app_card_district <= district \
+	sub /
+		<= Badge $mol_view
+			sub /
+				<= district_title \
+		<= Photo $mol_image
+			uri <= photo \
+		<= Info $mol_view
+			sub /
+				<= Details $mol_view
+					sub /
+						<= area \
+						<= floor \
+				<= Price $mol_view
+					sub /
+						<= price \

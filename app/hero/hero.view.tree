@@ -1,0 +1,37 @@
+$bog_bzrl_app_hero $mol_view
+	attr *
+		^
+		bog_bzrl_app_hero_variant <= variant \default
+	sub /
+		<= Content $mol_view
+			sub /
+				<= Title $mol_paragraph
+					title <= title \
+				<= Description $mol_paragraph
+					title <= description \
+				<= Action $mol_button_minor
+					click? <=> action? null
+					sub /
+						<= action_label \
+
+$bog_bzrl_app_hero_promo $bog_bzrl_app_hero
+	variant \promo
+	title @ \квартиры без риелторов в Казани
+	description @ \Только квартиры от собственников, согласованные напрямую. Проверяем вручную и бережно относимся к данным.
+	action_label @ \Смотреть квартиры
+
+$bog_bzrl_app_hero_privacy $bog_bzrl_app_hero
+	variant \privacy
+	title @ \ценим ваши персональные данные
+	description @ \Вся ваша личная информация надежно зашифрована на вашем устройстве. Мы не храним её на наших серверах и обращаемся к ней только через ваше устройство.
+
+$bog_bzrl_app_hero_team $mol_view
+	sub /
+		<= Photo $mol_image
+			uri <= photo \
+		<= Content $mol_view
+			sub /
+				<= Title $mol_paragraph
+					title @ \мы—команда энтузиастов из разных городов России
+				<= Description $mol_paragraph
+					title @ \Делаем сервис, который помогает снимать жильё в Казани напрямую у собственников, без лишних посредников, с ручной проверкой квартир и уважением к приватности.

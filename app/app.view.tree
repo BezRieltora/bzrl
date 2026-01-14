@@ -1,14 +1,60 @@
 $bog_bzrl_app $mol_page
-	title @ \Bzrl App
+	title @ \HomeRent
 	plugins /
 		<= Theme $bog_theme_auto
 			theme_light \$mol_theme_light
 			theme_dark \$mol_theme_dark
-	tools /
+	head /
+		<= Logo $mol_view
+			sub /
+				<= logo_text \HomeRent
+		<= Tabs $mol_switch
+			value? <=> tab? \rent
+			options *
+				rent @ \Снять
+				let @ \Сдать
 		<= Profile $bog_bzrl_app_profile
 			theme_auto <= Theme
 	body /
-		<= Content $mol_view
+		<= Title_section $mol_paragraph
+			title @ \аренда в Казани напрямую от собственника
+		<= Filter $bog_bzrl_app_filter
+			district? <=> filter_district? \all
+			rooms? <=> filter_rooms? \studio
+			price_from? <=> filter_price? \
+			search? <=> apartments_search? null
+		<= Apartments $mol_view
+			sub <= apartment_rows /
+				<= Apartment*0 $bog_bzrl_app_card
+					district \vahitovsky
+					photo \https://picsum.photos/400/300?random=1
+					area \квартира 35,1 м², 20/29 эт.
+					floor \
+					price \36 000 ₽/мес
+		<= Promo $bog_bzrl_app_hero_promo
+			action? <=> promo_action? null
+		<= How_it_works $mol_view
 			sub /
-				<= Welcome $mol_paragraph
-					title @ \Welcome to Bzrl!
+				<= How_title $mol_paragraph
+					title @ \как это работает
+				<= Steps $mol_view
+					sub /
+						<= Step_match $bog_bzrl_app_step_match
+						<= Step_request $bog_bzrl_app_step_request
+						<= Step_pay $bog_bzrl_app_step_pay
+		<= Privacy $mol_view
+			sub /
+				<= Privacy_slider $bog_bzrl_app_slider
+				<= Privacy_content $bog_bzrl_app_hero_privacy
+		<= Benefits $mol_view
+			sub /
+				<= Benefits_title $mol_paragraph
+					title @ \преимущества
+				<= Benefits_list $mol_view
+					sub /
+						<= Benefit_owners $bog_bzrl_app_benefit_owners
+						<= Benefit_verified $bog_bzrl_app_benefit_verified
+						<= Benefit_secure $bog_bzrl_app_benefit_secure
+		<= Team $bog_bzrl_app_hero_team
+			photo \https://picsum.photos/600/400?random=10
+		<= Footer $bog_bzrl_app_footer

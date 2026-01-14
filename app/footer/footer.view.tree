@@ -1,0 +1,66 @@
+$bog_bzrl_app_footer $mol_view
+	sub /
+		<= Top $mol_view
+			sub /
+				<= Contact $mol_view
+					sub /
+						<= Email $mol_link
+							uri \mailto:example@example.com
+							sub /
+								\example@example.com
+						<= Email_hint $mol_paragraph
+							title @ \Почта для обратной связи
+						<= Phone $mol_link
+							uri \tel:+79876543211
+							sub /
+								\+7 987 654 32 11
+						<= Phone_hint $mol_paragraph
+							title @ \По вопросам аренды жилья
+				<= Social $mol_view
+					sub /
+						<= Vk $mol_link
+							uri \https://vk.com
+							sub / <= Vk_icon $mol_icon_alpha_v_circle
+						<= Tg $mol_link
+							uri \https://t.me
+							sub / <= Tg_icon $mol_icon_telegram
+						<= Youtube $mol_link
+							uri \https://youtube.com
+							sub / <= Youtube_icon $mol_icon_youtube
+		<= Nav $mol_view
+			sub /
+				<= Nav_main $mol_view
+					sub /
+						<= nav_main_title @ \Навигация
+						<= Nav_main_links $mol_list
+							rows /
+								<= nav_home @ \Главная
+								<= nav_profile @ \Профиль
+								<= nav_all @ \Все квартиры
+								<= nav_rent @ \Сдать квартиру
+								<= nav_get @ \Снять квартиру
+				<= Nav_catalog $mol_view
+					sub /
+						<= nav_catalog_title @ \Каталог
+						<= Nav_catalog_links $mol_list
+							rows /
+								<= nav_districts @ \Районы
+								<= nav_new @ \Новые
+								<= nav_furnished @ \С мебелью
+								<= nav_pets @ \Можно с животными
+								<= nav_studio @ \Студии
+				<= Nav_docs $mol_view
+					sub /
+						<= nav_docs_title @ \Документы
+						<= Nav_docs_links $mol_list
+							rows /
+								<= nav_privacy @ \Политика конфиденциальности
+								<= nav_terms @ \Пользовательское соглашение / оферта
+								<= nav_consent @ \Согласие на обработку персональных данных
+								<= nav_cookies @ \Политика cookies
+		<= Bottom $mol_view
+			sub /
+				<= Copyright $mol_paragraph
+					title <= copyright \© HomeRent, 2024
+				<= Address $mol_paragraph
+					title @ \123456, г. Москва, ул. Тверская, д. 10, оф. 125

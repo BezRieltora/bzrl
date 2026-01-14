@@ -1,0 +1,30 @@
+$bog_bzrl_app_step $mol_view
+	sub /
+		<= Number $mol_view
+			sub /
+				<= number 0
+		<= Icon $mol_view
+			sub /
+				<= icon null
+		<= Title $mol_paragraph
+			title <= title \
+		<= Description $mol_paragraph
+			title <= description \
+
+$bog_bzrl_app_step_match $bog_bzrl_app_step
+	number 1
+	icon <= Icon_match $mol_icon_magnify
+	title @ \система матчей
+	description @ \Все квартиры посмотрели — найдите это «Интересно». Ваш профиль (вместе с арендатором) появится у собственника в списке кандидатов.
+
+$bog_bzrl_app_step_request $bog_bzrl_app_step
+	number 2
+	icon <= Icon_request $mol_icon_email_outline
+	title @ \оставьте заявку
+	description @ \Мы передадим ваши данные собственнику и устроим бесплатную вашу связь. Мы берём минимальную комиссию на рынке — 20% от стоимости месячной аренды.
+
+$bog_bzrl_app_step_pay $bog_bzrl_app_step
+	number 3
+	icon <= Icon_pay $mol_icon_currency_rub
+	title @ \оплата квартиры
+	description @ \После оплаты мы передадим ваши данные арендодателю и поможем оформить договор.
