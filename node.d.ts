@@ -4449,7 +4449,7 @@ declare namespace $.$$ {
     }
     export class $bog_bzrl_app extends $.$bog_bzrl_app {
         apartments_data(): ApartmentData[];
-        apartment_rows(): string[];
+        apartment_rows(): $.$bog_bzrl_app_card[];
         apartment_data(id: string): ApartmentData;
         apartment_district(id: string): string;
         apartment_photo(id: string): string;

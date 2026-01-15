@@ -11577,7 +11577,7 @@ var $;
                 ];
             }
             apartment_rows() {
-                return this.apartments_data().map(apt => apt.id);
+                return this.apartments_data().map(apt => this.Apartment(apt.id));
             }
             apartment_data(id) {
                 return this.apartments_data().find(a => a.id === id);
