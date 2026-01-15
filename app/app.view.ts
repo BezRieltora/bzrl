@@ -89,7 +89,7 @@ namespace $.$$ {
 
 		@$mol_mem
 		apartment_rows() {
-			return this.apartments_data().map(apt => apt.id)
+			return this.apartments_data().map(apt => this.Apartment(apt.id))
 		}
 
 		@$mol_mem_key
