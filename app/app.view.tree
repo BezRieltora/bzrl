@@ -25,12 +25,12 @@ $bog_bzrl_app $mol_page
 			search? <=> apartments_search? null
 		<= Apartments $mol_view
 			sub <= apartment_rows /
-				<= Apartment*0 $bog_bzrl_app_card
-					district \vahitovsky
-					photo \https://picsum.photos/400/300?random=1
-					area \квартира 35,1 м², 20/29 эт.
-					floor \
-					price \36 000 ₽/мес
+				<= Apartment* $bog_bzrl_app_card
+					district <= apartment_district* \
+					photo <= apartment_photo* \
+					area <= apartment_area* \
+					floor <= apartment_floor* \
+					price <= apartment_price* \
 		<= Promo $bog_bzrl_app_hero_promo
 			action? <=> promo_action? null
 		<= How_it_works $mol_view

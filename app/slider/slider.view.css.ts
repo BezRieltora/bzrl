@@ -13,9 +13,7 @@ namespace $.$$ {
 		Slide: {
 			width: '100%',
 			height: '400px',
-			object: {
-				fit: 'cover',
-			},
+			objectFit: 'cover',
 		},
 
 		Prev: {
@@ -24,7 +22,7 @@ namespace $.$$ {
 			top: '50%',
 			transform: 'translateY(-50%)',
 			background: {
-				color: 'rgba(255,255,255,0.9)',
+				color: '#ffffffe6' as any,
 			},
 			border: {
 				radius: '50%',
@@ -40,7 +38,7 @@ namespace $.$$ {
 			top: '50%',
 			transform: 'translateY(-50%)',
 			background: {
-				color: 'rgba(255,255,255,0.9)',
+				color: '#ffffffe6' as any,
 			},
 			border: {
 				radius: '50%',
@@ -66,7 +64,7 @@ namespace $.$$ {
 				radius: '50%',
 			},
 			background: {
-				color: 'rgba(255,255,255,0.5)',
+				color: '#ffffff80' as any,
 			},
 			cursor: 'pointer',
 		},

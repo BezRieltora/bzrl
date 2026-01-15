@@ -1,8 +1,6 @@
 namespace $.$$ {
 	$mol_style_define($bog_bzrl_app, {
-		max: {
-			width: '1200px',
-		},
+		maxWidth: '1200px',
 		margin: 'auto',
 
 		Head: {
@@ -18,7 +16,7 @@ namespace $.$$ {
 		Logo: {
 			font: {
 				size: '1.5rem',
-				weight: '700',
+				weight: 700,
 			},
 		},
 
@@ -43,18 +41,14 @@ namespace $.$$ {
 		Title_section: {
 			font: {
 				size: '2rem',
-				weight: '600',
+				weight: 600,
 			},
-			text: {
-				align: 'center',
-			},
+			textAlign: 'center',
 		},
 
 		Apartments: {
 			display: 'grid',
-			grid: {
-				templateColumns: 'repeat(3, 1fr)',
-			},
+			gridTemplateColumns: 'repeat(3, 1fr)',
 			gap: '1.5rem',
 		},
 
@@ -68,15 +62,13 @@ namespace $.$$ {
 		How_title: {
 			font: {
 				size: '1.75rem',
-				weight: '600',
+				weight: 600,
 			},
 		},
 
 		Steps: {
 			display: 'grid',
-			grid: {
-				templateColumns: 'repeat(3, 1fr)',
-			},
+			gridTemplateColumns: 'repeat(3, 1fr)',
 			gap: '1.5rem',
 		},
 
@@ -95,7 +87,7 @@ namespace $.$$ {
 			right: 0,
 			padding: '2rem',
 			background: {
-				image: 'linear-gradient(transparent, rgba(0,0,0,0.8))',
+				image: 'linear-gradient(transparent, #000000cc)' as any,
 			},
 		},
 
@@ -109,41 +101,31 @@ namespace $.$$ {
 		Benefits_title: {
 			font: {
 				size: '1.75rem',
-				weight: '600',
+				weight: 600,
 			},
 		},
 
 		Benefits_list: {
 			display: 'grid',
-			grid: {
-				templateColumns: 'repeat(3, 1fr)',
-			},
+			gridTemplateColumns: 'repeat(3, 1fr)',
 			gap: '1.5rem',
 		},
 
 		'@media': {
 			'screen and (max-width: 900px)': {
 				Apartments: {
-					grid: {
-						templateColumns: 'repeat(2, 1fr)',
-					},
+					gridTemplateColumns: 'repeat(2, 1fr)',
 				},
 				Steps: {
-					grid: {
-						templateColumns: '1fr',
-					},
+					gridTemplateColumns: '1fr',
 				},
 				Benefits_list: {
-					grid: {
-						templateColumns: '1fr',
-					},
+					gridTemplateColumns: '1fr',
 				},
 			},
 			'screen and (max-width: 600px)': {
 				Apartments: {
-					grid: {
-						templateColumns: '1fr',
-					},
+					gridTemplateColumns: '1fr',
 				},
 			},
 		},

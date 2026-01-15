@@ -6,9 +6,7 @@ namespace $.$$ {
 		align: {
 			items: 'center',
 		},
-		text: {
-			align: 'center',
-		},
+		textAlign: 'center',
 		padding: '2rem',
 		background: {
 			color: $mol_theme.card,
@@ -40,7 +38,7 @@ namespace $.$$ {
 		Title: {
 			font: {
 				size: '1rem',
-				weight: '600',
+				weight: 600,
 			},
 		},
 

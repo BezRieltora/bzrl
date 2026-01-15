@@ -33,7 +33,7 @@ namespace $.$$ {
 		Email: {
 			font: {
 				size: '1.25rem',
-				weight: '500',
+				weight: 500,
 			},
 		},
 
@@ -47,7 +47,7 @@ namespace $.$$ {
 		Phone: {
 			font: {
 				size: '1.25rem',
-				weight: '500',
+				weight: 500,
 			},
 		},
 
@@ -65,9 +65,7 @@ namespace $.$$ {
 
 		Nav: {
 			display: 'grid',
-			grid: {
-				templateColumns: 'repeat(3, 1fr)',
-			},
+			gridTemplateColumns: 'repeat(3, 1fr)',
 			gap: '2rem',
 		},
 

@@ -22,7 +22,7 @@ namespace $.$$ {
 			},
 			font: {
 				size: '.75rem',
-				weight: '500',
+				weight: 500,
 			},
 			zIndex: 1,
 		},
@@ -30,9 +30,7 @@ namespace $.$$ {
 		Photo: {
 			width: '100%',
 			height: '180px',
-			object: {
-				fit: 'cover',
-			},
+			objectFit: 'cover',
 		},
 
 		Info: {
@@ -52,7 +50,7 @@ namespace $.$$ {
 
 		Price: {
 			font: {
-				weight: '600',
+				weight: 600,
 			},
 		},
 

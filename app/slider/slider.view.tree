@@ -14,5 +14,4 @@ $bog_bzrl_app_slider $mol_view
 			sub <= dots /
 				<= Dot* $mol_view
 					attr *
-						^
 						bog_bzrl_app_slider_dot_active <= dot_active* false

@@ -13,19 +13,15 @@ namespace $.$$ {
 				direction: 'column',
 			},
 			gap: $mol_gap.block,
-			max: {
-				width: '500px',
-			},
+			maxWidth: '500px',
 		},
 
 		Title: {
 			font: {
 				size: '2rem',
-				weight: '600',
+				weight: 600,
 			},
-			line: {
-				height: '1.2',
-			},
+			lineHeight: '1.2',
 		},
 
 		Description: {
@@ -49,8 +45,8 @@ namespace $.$$ {
 			bog_bzrl_app_hero_variant: {
 				promo: {
 					background: {
-						image: 'url(/bog/bzrl/app/hero/promo-bg.jpg)',
-						size: 'cover',
+						image: 'url(/bog/bzrl/app/hero/promo-bg.jpg)' as any,
+						size: ['cover'] as any,
 						position: 'center',
 					},
 				},
@@ -59,13 +55,9 @@ namespace $.$$ {
 						color: '#1a1a2e',
 					},
 					color: '#fff',
-					text: {
-						align: 'center',
-					},
+					textAlign: 'center',
 					Content: {
-						max: {
-							width: '600px',
-						},
+						maxWidth: '600px',
 						margin: 'auto',
 					},
 				},
@@ -75,18 +67,14 @@ namespace $.$$ {
 
 	$mol_style_define($bog_bzrl_app_hero_team, {
 		display: 'grid',
-		grid: {
-			templateColumns: '1fr 1fr',
-		},
+		gridTemplateColumns: '1fr 1fr',
 		gap: '2rem',
 		padding: '2rem',
 
 		Photo: {
 			width: '100%',
 			height: '400px',
-			object: {
-				fit: 'cover',
-			},
+			objectFit: 'cover',
 			border: {
 				radius: $mol_gap.round,
 			},
@@ -105,7 +93,7 @@ namespace $.$$ {
 		Title: {
 			font: {
 				size: '2rem',
-				weight: '600',
+				weight: 600,
 			},
 		},
 
