@@ -1,5 +1,4 @@
 {
-	"$bog_bzrl_app_Welcome_title": "Добро пожаловать в Bzrl!",
 	"$bog_bzrl_app_profile_Menu_gists_label": "Gists",
 	"$bog_bzrl_app_profile_Menu_profile_label": "Профиль",
 	"$bog_bzrl_app_profile_Menu_repos_label": "Репозитории",
@@ -10,5 +9,10 @@
 	"$bog_bzrl_app_profile_name": "Dev-cmyser",
 	"$bog_bzrl_app_title": "Bzrl App",
 	"$bog_theme_picker_Search_hint": "Начните вводить для поиска",
-	"$bog_theme_toggle_Anchor_hint": "Переключить тему"
+	"$bog_theme_toggle_Anchor_hint": "Переключить тему",
+	"$mol_search_Clear_hint": "Очистить",
+	"$mol_search_hint": "Поиск..",
+	"$mol_select_filter_hint": "Фильтр..",
+	"$mol_select_hint": "Выбрать..",
+	"$mol_select_no_options_message": "Нет вариантов"
 }
