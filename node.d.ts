@@ -3602,6 +3602,12 @@ declare namespace $ {
 		description( ): string
 	}
 	
+	export class $bog_bzrl_app_hero_let extends $bog_bzrl_app_hero {
+		title( ): string
+		description( ): string
+		action_label( ): string
+	}
+	
 	type $mol_image__uri_bog_bzrl_app_hero_team_1 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_hero_team['photo'] >
 		,
@@ -3788,6 +3794,13 @@ declare namespace $ {
 //# sourceMappingURL=right.view.tree.d.ts.map
 declare namespace $ {
 
+	export class $bog_bzrl_app_slider_dot extends $mol_button_minor {
+		active( ): boolean
+		attr( ): ({ 
+			'bog_bzrl_app_slider_dot_active': ReturnType< $bog_bzrl_app_slider_dot['active'] >,
+		})  & ReturnType< $mol_button_minor['attr'] >
+	}
+	
 	type $mol_button_minor__click_bog_bzrl_app_slider_1 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_slider['prev'] >
 		,
@@ -3799,7 +3812,7 @@ declare namespace $ {
 		ReturnType< $mol_button_minor['sub'] >
 	>
 	type $mol_image__uri_bog_bzrl_app_slider_3 = $mol_type_enforce<
-		ReturnType< $bog_bzrl_app_slider['slide_uri'] >
+		ReturnType< $bog_bzrl_app_slider['current_slide_uri'] >
 		,
 		ReturnType< $mol_image['uri'] >
 	>
@@ -3818,14 +3831,17 @@ declare namespace $ {
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_view__attr_bog_bzrl_app_slider_7 = $mol_type_enforce<
-		({ 
-			'bog_bzrl_app_slider_dot_active': ReturnType< $bog_bzrl_app_slider['dot_active'] >,
-		}) 
+	type $bog_bzrl_app_slider_dot__active_bog_bzrl_app_slider_7 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app_slider['dot_active'] >
 		,
-		ReturnType< $mol_view['attr'] >
+		ReturnType< $bog_bzrl_app_slider_dot['active'] >
 	>
-	type $mol_view__sub_bog_bzrl_app_slider_8 = $mol_type_enforce<
+	type $bog_bzrl_app_slider_dot__click_bog_bzrl_app_slider_8 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app_slider['dot_select'] >
+		,
+		ReturnType< $bog_bzrl_app_slider_dot['click'] >
+	>
+	type $mol_view__sub_bog_bzrl_app_slider_9 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_slider['dots'] >
 		,
 		ReturnType< $mol_view['sub'] >
@@ -3834,14 +3850,15 @@ declare namespace $ {
 		prev( next?: any ): any
 		Prev_icon( ): $mol_icon_chevron_left
 		Prev( ): $mol_button_minor
-		slide_uri( id: any): string
-		Slide( id: any): $mol_image
+		current_slide_uri( ): string
+		Slide( ): $mol_image
 		Slides( ): $mol_view
 		next( next?: any ): any
 		Next_icon( ): $mol_icon_chevron_right
 		Next( ): $mol_button_minor
 		dot_active( id: any): boolean
-		Dot( id: any): $mol_view
+		dot_select( id: any, next?: any ): any
+		Dot( id: any): $bog_bzrl_app_slider_dot
 		dots( ): readonly(any)[]
 		Dots( ): $mol_view
 		sub( ): readonly(any)[]
@@ -3856,9 +3873,12 @@ declare namespace $.$$ {
         current_index(next?: number): number;
         prev(): void;
         next(): void;
-        slide_uri(index: number): string;
-        dots(): $mol_view[];
+        current_slide_uri(): string;
+        autoplay_task(): $mol_after_timeout | null;
+        autoplay_delay(): number;
+        dots(): $bog_bzrl_app_slider_dot[];
         dot_active(index: number): boolean;
+        dot_select(index: number): void;
     }
 }
 
@@ -4141,52 +4161,192 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_list__rows_bog_bzrl_app_footer_16 = $mol_type_enforce<
+	type $mol_link__uri_bog_bzrl_app_footer_16 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app_footer['nav_home_link'] >
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__sub_bog_bzrl_app_footer_17 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_link__uri_bog_bzrl_app_footer_18 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app_footer['nav_profile_link'] >
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__sub_bog_bzrl_app_footer_19 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_link__uri_bog_bzrl_app_footer_20 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app_footer['nav_all_link'] >
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__sub_bog_bzrl_app_footer_21 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_link__uri_bog_bzrl_app_footer_22 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app_footer['nav_rent_link'] >
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__sub_bog_bzrl_app_footer_23 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_link__uri_bog_bzrl_app_footer_24 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app_footer['nav_get_link'] >
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__sub_bog_bzrl_app_footer_25 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_list__rows_bog_bzrl_app_footer_26 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_list['rows'] >
 	>
-	type $mol_view__sub_bog_bzrl_app_footer_17 = $mol_type_enforce<
+	type $mol_view__sub_bog_bzrl_app_footer_27 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_list__rows_bog_bzrl_app_footer_18 = $mol_type_enforce<
+	type $mol_link__uri_bog_bzrl_app_footer_28 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app_footer['nav_districts_link'] >
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__sub_bog_bzrl_app_footer_29 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_link__uri_bog_bzrl_app_footer_30 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app_footer['nav_new_link'] >
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__sub_bog_bzrl_app_footer_31 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_link__uri_bog_bzrl_app_footer_32 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app_footer['nav_furnished_link'] >
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__sub_bog_bzrl_app_footer_33 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_link__uri_bog_bzrl_app_footer_34 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app_footer['nav_pets_link'] >
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__sub_bog_bzrl_app_footer_35 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_link__uri_bog_bzrl_app_footer_36 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app_footer['nav_studio_link'] >
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__sub_bog_bzrl_app_footer_37 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_list__rows_bog_bzrl_app_footer_38 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_list['rows'] >
 	>
-	type $mol_view__sub_bog_bzrl_app_footer_19 = $mol_type_enforce<
+	type $mol_view__sub_bog_bzrl_app_footer_39 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_list__rows_bog_bzrl_app_footer_20 = $mol_type_enforce<
+	type $mol_link__uri_bog_bzrl_app_footer_40 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app_footer['nav_privacy_link'] >
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__sub_bog_bzrl_app_footer_41 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_link__uri_bog_bzrl_app_footer_42 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app_footer['nav_terms_link'] >
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__sub_bog_bzrl_app_footer_43 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_link__uri_bog_bzrl_app_footer_44 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app_footer['nav_consent_link'] >
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__sub_bog_bzrl_app_footer_45 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_link__uri_bog_bzrl_app_footer_46 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app_footer['nav_cookies_link'] >
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__sub_bog_bzrl_app_footer_47 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_list__rows_bog_bzrl_app_footer_48 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_list['rows'] >
 	>
-	type $mol_view__sub_bog_bzrl_app_footer_21 = $mol_type_enforce<
+	type $mol_view__sub_bog_bzrl_app_footer_49 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_bzrl_app_footer_22 = $mol_type_enforce<
+	type $mol_view__sub_bog_bzrl_app_footer_50 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_paragraph__title_bog_bzrl_app_footer_23 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_bzrl_app_footer_51 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['copyright'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_paragraph__title_bog_bzrl_app_footer_24 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_bzrl_app_footer_52 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_view__sub_bog_bzrl_app_footer_25 = $mol_type_enforce<
+	type $mol_view__sub_bog_bzrl_app_footer_53 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
@@ -4206,26 +4366,40 @@ declare namespace $ {
 		Social( ): $mol_view
 		Top( ): $mol_view
 		nav_main_title( ): string
-		nav_home( ): string
-		nav_profile( ): string
-		nav_all( ): string
-		nav_rent( ): string
-		nav_get( ): string
+		nav_home_link( ): string
+		nav_home( ): $mol_link
+		nav_profile_link( ): string
+		nav_profile( ): $mol_link
+		nav_all_link( ): string
+		nav_all( ): $mol_link
+		nav_rent_link( ): string
+		nav_rent( ): $mol_link
+		nav_get_link( ): string
+		nav_get( ): $mol_link
 		Nav_main_links( ): $mol_list
 		Nav_main( ): $mol_view
 		nav_catalog_title( ): string
-		nav_districts( ): string
-		nav_new( ): string
-		nav_furnished( ): string
-		nav_pets( ): string
-		nav_studio( ): string
+		nav_districts_link( ): string
+		nav_districts( ): $mol_link
+		nav_new_link( ): string
+		nav_new( ): $mol_link
+		nav_furnished_link( ): string
+		nav_furnished( ): $mol_link
+		nav_pets_link( ): string
+		nav_pets( ): $mol_link
+		nav_studio_link( ): string
+		nav_studio( ): $mol_link
 		Nav_catalog_links( ): $mol_list
 		Nav_catalog( ): $mol_view
 		nav_docs_title( ): string
-		nav_privacy( ): string
-		nav_terms( ): string
-		nav_consent( ): string
-		nav_cookies( ): string
+		nav_privacy_link( ): string
+		nav_privacy( ): $mol_link
+		nav_terms_link( ): string
+		nav_terms( ): $mol_link
+		nav_consent_link( ): string
+		nav_consent( ): $mol_link
+		nav_cookies_link( ): string
+		nav_cookies( ): $mol_link
 		Nav_docs_links( ): $mol_list
 		Nav_docs( ): $mol_view
 		Nav( ): $mol_view
@@ -4241,6 +4415,21 @@ declare namespace $ {
 //# sourceMappingURL=footer.view.tree.d.ts.map
 declare namespace $.$$ {
     class $bog_bzrl_app_footer extends $.$bog_bzrl_app_footer {
+        section_link(section: string | null): string;
+        nav_home_link(): string;
+        nav_profile_link(): string;
+        nav_all_link(): string;
+        nav_rent_link(): string;
+        nav_get_link(): string;
+        nav_districts_link(): string;
+        nav_new_link(): string;
+        nav_furnished_link(): string;
+        nav_pets_link(): string;
+        nav_studio_link(): string;
+        nav_privacy_link(): string;
+        nav_terms_link(): string;
+        nav_consent_link(): string;
+        nav_cookies_link(): string;
     }
 }
 
@@ -4339,55 +4528,119 @@ declare namespace $ {
 		,
 		ReturnType< $bog_bzrl_app_card['price'] >
 	>
-	type $mol_view__sub_bog_bzrl_app_17 = $mol_type_enforce<
+	type $mol_view__attr_bog_bzrl_app_17 = $mol_type_enforce<
+		({ 
+			'id': string,
+		}) 
+		,
+		ReturnType< $mol_view['attr'] >
+	>
+	type $mol_view__sub_bog_bzrl_app_18 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app['apartment_rows'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $bog_bzrl_app_hero_promo__action_bog_bzrl_app_18 = $mol_type_enforce<
+	type $bog_bzrl_app_hero_promo__action_bog_bzrl_app_19 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app['promo_action'] >
 		,
 		ReturnType< $bog_bzrl_app_hero_promo['action'] >
 	>
-	type $mol_paragraph__title_bog_bzrl_app_19 = $mol_type_enforce<
-		string
+	type $mol_view__attr_bog_bzrl_app_20 = $mol_type_enforce<
+		({ 
+			'id': string,
+		}) 
 		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_view__sub_bog_bzrl_app_20 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
+		ReturnType< $mol_view['attr'] >
 	>
 	type $mol_view__sub_bog_bzrl_app_21 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_bzrl_app_22 = $mol_type_enforce<
+	type $bog_bzrl_app_hero_let__action_bog_bzrl_app_22 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app['let_action'] >
+		,
+		ReturnType< $bog_bzrl_app_hero_let['action'] >
+	>
+	type $mol_view__sub_bog_bzrl_app_23 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_paragraph__title_bog_bzrl_app_23 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_bzrl_app_24 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_view__sub_bog_bzrl_app_24 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
 	>
 	type $mol_view__sub_bog_bzrl_app_25 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $bog_bzrl_app_hero_team__photo_bog_bzrl_app_26 = $mol_type_enforce<
+	type $mol_view__attr_bog_bzrl_app_26 = $mol_type_enforce<
+		({ 
+			'id': string,
+		}) 
+		,
+		ReturnType< $mol_view['attr'] >
+	>
+	type $mol_view__sub_bog_bzrl_app_27 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__attr_bog_bzrl_app_28 = $mol_type_enforce<
+		({ 
+			'id': string,
+		}) 
+		,
+		ReturnType< $mol_view['attr'] >
+	>
+	type $mol_view__sub_bog_bzrl_app_29 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_bzrl_app_30 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_view__sub_bog_bzrl_app_31 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__attr_bog_bzrl_app_32 = $mol_type_enforce<
+		({ 
+			'id': string,
+		}) 
+		,
+		ReturnType< $mol_view['attr'] >
+	>
+	type $mol_view__sub_bog_bzrl_app_33 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $bog_bzrl_app_hero_team__attr_bog_bzrl_app_34 = $mol_type_enforce<
+		({ 
+			'id': string,
+		}) 
+		,
+		ReturnType< $bog_bzrl_app_hero_team['attr'] >
+	>
+	type $bog_bzrl_app_hero_team__photo_bog_bzrl_app_35 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_bzrl_app_hero_team['photo'] >
+	>
+	type $bog_bzrl_app_footer__attr_bog_bzrl_app_36 = $mol_type_enforce<
+		({ 
+			'id': string,
+		}) 
+		,
+		ReturnType< $bog_bzrl_app_footer['attr'] >
 	>
 	export class $bog_bzrl_app extends $mol_page {
 		Theme( ): $bog_theme_auto
@@ -4412,23 +4665,27 @@ declare namespace $ {
 		Apartments( ): $mol_view
 		promo_action( next?: any ): any
 		Promo( ): $bog_bzrl_app_hero_promo
+		Rent_section( next?: $mol_view ): $mol_view
+		let_action( next?: any ): any
+		Let_hero( ): $bog_bzrl_app_hero_let
+		Let_section( next?: $mol_view ): $mol_view
 		How_title( ): $mol_paragraph
 		Step_match( ): $bog_bzrl_app_step_match
 		Step_request( ): $bog_bzrl_app_step_request
 		Step_pay( ): $bog_bzrl_app_step_pay
 		Steps( ): $mol_view
-		How_it_works( ): $mol_view
+		How_it_works( next?: $mol_view ): $mol_view
 		Privacy_slider( ): $bog_bzrl_app_slider
 		Privacy_content( ): $bog_bzrl_app_hero_privacy
-		Privacy( ): $mol_view
+		Privacy( next?: $mol_view ): $mol_view
 		Benefits_title( ): $mol_paragraph
 		Benefit_owners( ): $bog_bzrl_app_benefit_owners
 		Benefit_verified( ): $bog_bzrl_app_benefit_verified
 		Benefit_secure( ): $bog_bzrl_app_benefit_secure
 		Benefits_list( ): $mol_view
-		Benefits( ): $mol_view
-		Team( ): $bog_bzrl_app_hero_team
-		Footer( ): $bog_bzrl_app_footer
+		Benefits( next?: $mol_view ): $mol_view
+		Team( next?: $bog_bzrl_app_hero_team ): $bog_bzrl_app_hero_team
+		Footer( next?: $bog_bzrl_app_footer ): $bog_bzrl_app_footer
 		title( ): string
 		plugins( ): readonly(any)[]
 		head( ): readonly(any)[]
@@ -4442,12 +4699,21 @@ declare namespace $.$$ {
     interface ApartmentData {
         id: string;
         district: string;
+        rooms: string;
         photo: string;
         area: string;
         floor: string;
         price: string;
+        price_value: number;
     }
     export class $bog_bzrl_app extends $.$bog_bzrl_app {
+        tab(next?: string): string;
+        section(next?: string | null): string;
+        section_visible(section: string): boolean;
+        filter_district(next?: string): string;
+        filter_rooms(next?: string): string;
+        filter_price(next?: string): string;
+        filter_applied(next?: boolean): boolean;
         apartments_data(): ApartmentData[];
         apartment_rows(): $.$bog_bzrl_app_card[];
         apartment_data(id: string): ApartmentData;
@@ -4456,6 +4722,18 @@ declare namespace $.$$ {
         apartment_area(id: string): string;
         apartment_floor(id: string): string;
         apartment_price(id: string): string;
+        apartments_filtered(): ApartmentData[];
+        apartments_search(): void;
+        promo_action(): void;
+        let_action(): void;
+        Rent_section(): $mol_view;
+        Let_section(): $mol_view;
+        How_it_works(): $mol_view;
+        Privacy(): $mol_view;
+        Benefits(): $mol_view;
+        Team(): $.$bog_bzrl_app_hero_team;
+        Footer(): $.$bog_bzrl_app_footer;
+        private parse_price;
     }
     export {};
 }

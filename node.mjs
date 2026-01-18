@@ -113,6 +113,7 @@ var $;
             return handler();
         }
         catch (error) {
+            console.error(error);
             return error;
         }
     }
@@ -10039,6 +10040,17 @@ var $;
 			return (this.$.$mol_locale.text("$bog_bzrl_app_hero_privacy_description"));
 		}
 	};
+	($.$bog_bzrl_app_hero_let) = class $bog_bzrl_app_hero_let extends ($.$bog_bzrl_app_hero) {
+		title(){
+			return (this.$.$mol_locale.text("$bog_bzrl_app_hero_let_title"));
+		}
+		description(){
+			return (this.$.$mol_locale.text("$bog_bzrl_app_hero_let_description"));
+		}
+		action_label(){
+			return (this.$.$mol_locale.text("$bog_bzrl_app_hero_let_action_label"));
+		}
+	};
 	($.$bog_bzrl_app_hero_team) = class $bog_bzrl_app_hero_team extends ($.$mol_view) {
 		photo(){
 			return "";
@@ -10486,6 +10498,14 @@ var $;
 "use strict";
 
 ;
+	($.$bog_bzrl_app_slider_dot) = class $bog_bzrl_app_slider_dot extends ($.$mol_button_minor) {
+		active(){
+			return false;
+		}
+		attr(){
+			return {...(super.attr()), "bog_bzrl_app_slider_dot_active": (this.active())};
+		}
+	};
 	($.$bog_bzrl_app_slider) = class $bog_bzrl_app_slider extends ($.$mol_view) {
 		prev(next){
 			if(next !== undefined) return next;
@@ -10501,17 +10521,17 @@ var $;
 			(obj.sub) = () => ([(this.Prev_icon())]);
 			return obj;
 		}
-		slide_uri(id){
+		current_slide_uri(){
 			return "";
 		}
-		Slide(id){
+		Slide(){
 			const obj = new this.$.$mol_image();
-			(obj.uri) = () => ((this.slide_uri(id)));
+			(obj.uri) = () => ((this.current_slide_uri()));
 			return obj;
 		}
 		Slides(){
 			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Slide(id))]);
+			(obj.sub) = () => ([(this.Slide())]);
 			return obj;
 		}
 		next(next){
@@ -10531,9 +10551,14 @@ var $;
 		dot_active(id){
 			return false;
 		}
+		dot_select(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
 		Dot(id){
-			const obj = new this.$.$mol_view();
-			(obj.attr) = () => ({"bog_bzrl_app_slider_dot_active": (this.dot_active(id))});
+			const obj = new this.$.$bog_bzrl_app_slider_dot();
+			(obj.active) = () => ((this.dot_active(id)));
+			(obj.click) = (next) => ((this.dot_select(id, next)));
 			return obj;
 		}
 		dots(){
@@ -10556,11 +10581,12 @@ var $;
 	($mol_mem(($.$bog_bzrl_app_slider.prototype), "prev"));
 	($mol_mem(($.$bog_bzrl_app_slider.prototype), "Prev_icon"));
 	($mol_mem(($.$bog_bzrl_app_slider.prototype), "Prev"));
-	($mol_mem_key(($.$bog_bzrl_app_slider.prototype), "Slide"));
+	($mol_mem(($.$bog_bzrl_app_slider.prototype), "Slide"));
 	($mol_mem(($.$bog_bzrl_app_slider.prototype), "Slides"));
 	($mol_mem(($.$bog_bzrl_app_slider.prototype), "next"));
 	($mol_mem(($.$bog_bzrl_app_slider.prototype), "Next_icon"));
 	($mol_mem(($.$bog_bzrl_app_slider.prototype), "Next"));
+	($mol_mem_key(($.$bog_bzrl_app_slider.prototype), "dot_select"));
 	($mol_mem_key(($.$bog_bzrl_app_slider.prototype), "Dot"));
 	($mol_mem(($.$bog_bzrl_app_slider.prototype), "Dots"));
 
@@ -10598,14 +10624,27 @@ var $;
                 const total = this.slides_data().length;
                 this.current_index((current + 1) % total);
             }
-            slide_uri(index) {
-                return this.slides_data()[index] ?? '';
+            current_slide_uri() {
+                this.autoplay_task();
+                return this.slides_data()[this.current_index()] ?? '';
+            }
+            autoplay_task() {
+                if (this.slides_data().length < 2)
+                    return null;
+                this.current_index();
+                return new this.$.$mol_after_timeout(this.autoplay_delay(), () => this.next());
+            }
+            autoplay_delay() {
+                return 5000;
             }
             dots() {
                 return this.slides_data().map((_, i) => this.Dot(i));
             }
             dot_active(index) {
                 return index === this.current_index();
+            }
+            dot_select(index) {
+                this.current_index(index);
             }
         }
         __decorate([
@@ -10621,14 +10660,20 @@ var $;
             $mol_action
         ], $bog_bzrl_app_slider.prototype, "next", null);
         __decorate([
-            $mol_mem_key
-        ], $bog_bzrl_app_slider.prototype, "slide_uri", null);
+            $mol_mem
+        ], $bog_bzrl_app_slider.prototype, "current_slide_uri", null);
+        __decorate([
+            $mol_mem
+        ], $bog_bzrl_app_slider.prototype, "autoplay_task", null);
         __decorate([
             $mol_mem
         ], $bog_bzrl_app_slider.prototype, "dots", null);
         __decorate([
             $mol_mem_key
         ], $bog_bzrl_app_slider.prototype, "dot_active", null);
+        __decorate([
+            $mol_action
+        ], $bog_bzrl_app_slider.prototype, "dot_select", null);
         $$.$bog_bzrl_app_slider = $bog_bzrl_app_slider;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -10694,6 +10739,7 @@ var $;
             Dot: {
                 width: '.625rem',
                 height: '.625rem',
+                padding: 0,
                 border: {
                     radius: '50%',
                 },
@@ -11262,20 +11308,50 @@ var $;
 		nav_main_title(){
 			return (this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_main_title"));
 		}
+		nav_home_link(){
+			return "";
+		}
 		nav_home(){
-			return (this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_home"));
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ((this.nav_home_link()));
+			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_home_sub"))]);
+			return obj;
+		}
+		nav_profile_link(){
+			return "";
 		}
 		nav_profile(){
-			return (this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_profile"));
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ((this.nav_profile_link()));
+			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_profile_sub"))]);
+			return obj;
+		}
+		nav_all_link(){
+			return "";
 		}
 		nav_all(){
-			return (this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_all"));
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ((this.nav_all_link()));
+			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_all_sub"))]);
+			return obj;
+		}
+		nav_rent_link(){
+			return "";
 		}
 		nav_rent(){
-			return (this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_rent"));
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ((this.nav_rent_link()));
+			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_rent_sub"))]);
+			return obj;
+		}
+		nav_get_link(){
+			return "";
 		}
 		nav_get(){
-			return (this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_get"));
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ((this.nav_get_link()));
+			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_get_sub"))]);
+			return obj;
 		}
 		Nav_main_links(){
 			const obj = new this.$.$mol_list();
@@ -11296,20 +11372,50 @@ var $;
 		nav_catalog_title(){
 			return (this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_catalog_title"));
 		}
+		nav_districts_link(){
+			return "";
+		}
 		nav_districts(){
-			return (this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_districts"));
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ((this.nav_districts_link()));
+			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_districts_sub"))]);
+			return obj;
+		}
+		nav_new_link(){
+			return "";
 		}
 		nav_new(){
-			return (this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_new"));
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ((this.nav_new_link()));
+			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_new_sub"))]);
+			return obj;
+		}
+		nav_furnished_link(){
+			return "";
 		}
 		nav_furnished(){
-			return (this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_furnished"));
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ((this.nav_furnished_link()));
+			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_furnished_sub"))]);
+			return obj;
+		}
+		nav_pets_link(){
+			return "";
 		}
 		nav_pets(){
-			return (this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_pets"));
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ((this.nav_pets_link()));
+			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_pets_sub"))]);
+			return obj;
+		}
+		nav_studio_link(){
+			return "";
 		}
 		nav_studio(){
-			return (this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_studio"));
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ((this.nav_studio_link()));
+			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_studio_sub"))]);
+			return obj;
 		}
 		Nav_catalog_links(){
 			const obj = new this.$.$mol_list();
@@ -11330,17 +11436,41 @@ var $;
 		nav_docs_title(){
 			return (this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_docs_title"));
 		}
+		nav_privacy_link(){
+			return "";
+		}
 		nav_privacy(){
-			return (this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_privacy"));
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ((this.nav_privacy_link()));
+			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_privacy_sub"))]);
+			return obj;
+		}
+		nav_terms_link(){
+			return "";
 		}
 		nav_terms(){
-			return (this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_terms"));
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ((this.nav_terms_link()));
+			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_terms_sub"))]);
+			return obj;
+		}
+		nav_consent_link(){
+			return "";
 		}
 		nav_consent(){
-			return (this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_consent"));
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ((this.nav_consent_link()));
+			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_consent_sub"))]);
+			return obj;
+		}
+		nav_cookies_link(){
+			return "";
 		}
 		nav_cookies(){
-			return (this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_cookies"));
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ((this.nav_cookies_link()));
+			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_cookies_sub"))]);
+			return obj;
 		}
 		Nav_docs_links(){
 			const obj = new this.$.$mol_list();
@@ -11405,10 +11535,24 @@ var $;
 	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Youtube"));
 	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Social"));
 	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Top"));
+	($mol_mem(($.$bog_bzrl_app_footer.prototype), "nav_home"));
+	($mol_mem(($.$bog_bzrl_app_footer.prototype), "nav_profile"));
+	($mol_mem(($.$bog_bzrl_app_footer.prototype), "nav_all"));
+	($mol_mem(($.$bog_bzrl_app_footer.prototype), "nav_rent"));
+	($mol_mem(($.$bog_bzrl_app_footer.prototype), "nav_get"));
 	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Nav_main_links"));
 	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Nav_main"));
+	($mol_mem(($.$bog_bzrl_app_footer.prototype), "nav_districts"));
+	($mol_mem(($.$bog_bzrl_app_footer.prototype), "nav_new"));
+	($mol_mem(($.$bog_bzrl_app_footer.prototype), "nav_furnished"));
+	($mol_mem(($.$bog_bzrl_app_footer.prototype), "nav_pets"));
+	($mol_mem(($.$bog_bzrl_app_footer.prototype), "nav_studio"));
 	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Nav_catalog_links"));
 	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Nav_catalog"));
+	($mol_mem(($.$bog_bzrl_app_footer.prototype), "nav_privacy"));
+	($mol_mem(($.$bog_bzrl_app_footer.prototype), "nav_terms"));
+	($mol_mem(($.$bog_bzrl_app_footer.prototype), "nav_consent"));
+	($mol_mem(($.$bog_bzrl_app_footer.prototype), "nav_cookies"));
 	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Nav_docs_links"));
 	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Nav_docs"));
 	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Nav"));
@@ -11427,6 +11571,51 @@ var $;
     var $$;
     (function ($$) {
         class $bog_bzrl_app_footer extends $.$bog_bzrl_app_footer {
+            section_link(section) {
+                return this.$.$mol_state_arg.link({ section });
+            }
+            nav_home_link() {
+                return this.section_link(null);
+            }
+            nav_profile_link() {
+                return this.section_link('contact');
+            }
+            nav_all_link() {
+                return this.section_link('rent');
+            }
+            nav_rent_link() {
+                return this.section_link('let');
+            }
+            nav_get_link() {
+                return this.section_link('rent');
+            }
+            nav_districts_link() {
+                return this.section_link('rent');
+            }
+            nav_new_link() {
+                return this.section_link('rent');
+            }
+            nav_furnished_link() {
+                return this.section_link('rent');
+            }
+            nav_pets_link() {
+                return this.section_link('rent');
+            }
+            nav_studio_link() {
+                return this.section_link('rent');
+            }
+            nav_privacy_link() {
+                return this.section_link('privacy');
+            }
+            nav_terms_link() {
+                return this.section_link('privacy');
+            }
+            nav_consent_link() {
+                return this.section_link('privacy');
+            }
+            nav_cookies_link() {
+                return this.section_link('privacy');
+            }
         }
         $$.$bog_bzrl_app_footer = $bog_bzrl_app_footer;
     })($$ = $.$$ || ($.$$ = {}));
@@ -11630,6 +11819,7 @@ var $;
 		}
 		Apartments(){
 			const obj = new this.$.$mol_view();
+			(obj.attr) = () => ({"id": "apartments"});
 			(obj.sub) = () => ((this.apartment_rows()));
 			return obj;
 		}
@@ -11640,6 +11830,33 @@ var $;
 		Promo(){
 			const obj = new this.$.$bog_bzrl_app_hero_promo();
 			(obj.action) = (next) => ((this.promo_action(next)));
+			return obj;
+		}
+		Rent_section(next){
+			if(next !== undefined) return next;
+			const obj = new this.$.$mol_view();
+			(obj.attr) = () => ({"id": "top"});
+			(obj.sub) = () => ([
+				(this.Title_section()), 
+				(this.Filter()), 
+				(this.Apartments()), 
+				(this.Promo())
+			]);
+			return obj;
+		}
+		let_action(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Let_hero(){
+			const obj = new this.$.$bog_bzrl_app_hero_let();
+			(obj.action) = (next) => ((this.let_action(next)));
+			return obj;
+		}
+		Let_section(next){
+			if(next !== undefined) return next;
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Let_hero())]);
 			return obj;
 		}
 		How_title(){
@@ -11668,8 +11885,10 @@ var $;
 			]);
 			return obj;
 		}
-		How_it_works(){
+		How_it_works(next){
+			if(next !== undefined) return next;
 			const obj = new this.$.$mol_view();
+			(obj.attr) = () => ({"id": "how"});
 			(obj.sub) = () => ([(this.How_title()), (this.Steps())]);
 			return obj;
 		}
@@ -11681,8 +11900,10 @@ var $;
 			const obj = new this.$.$bog_bzrl_app_hero_privacy();
 			return obj;
 		}
-		Privacy(){
+		Privacy(next){
+			if(next !== undefined) return next;
 			const obj = new this.$.$mol_view();
+			(obj.attr) = () => ({"id": "privacy"});
 			(obj.sub) = () => ([(this.Privacy_slider()), (this.Privacy_content())]);
 			return obj;
 		}
@@ -11712,18 +11933,24 @@ var $;
 			]);
 			return obj;
 		}
-		Benefits(){
+		Benefits(next){
+			if(next !== undefined) return next;
 			const obj = new this.$.$mol_view();
+			(obj.attr) = () => ({"id": "benefits"});
 			(obj.sub) = () => ([(this.Benefits_title()), (this.Benefits_list())]);
 			return obj;
 		}
-		Team(){
+		Team(next){
+			if(next !== undefined) return next;
 			const obj = new this.$.$bog_bzrl_app_hero_team();
+			(obj.attr) = () => ({"id": "team"});
 			(obj.photo) = () => ("https://picsum.photos/600/400?random=10");
 			return obj;
 		}
-		Footer(){
+		Footer(next){
+			if(next !== undefined) return next;
 			const obj = new this.$.$bog_bzrl_app_footer();
+			(obj.attr) = () => ({"id": "contact"});
 			return obj;
 		}
 		title(){
@@ -11741,10 +11968,8 @@ var $;
 		}
 		body(){
 			return [
-				(this.Title_section()), 
-				(this.Filter()), 
-				(this.Apartments()), 
-				(this.Promo()), 
+				(this.Rent_section()), 
+				(this.Let_section()), 
 				(this.How_it_works()), 
 				(this.Privacy()), 
 				(this.Benefits()), 
@@ -11768,6 +11993,10 @@ var $;
 	($mol_mem(($.$bog_bzrl_app.prototype), "Apartments"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "promo_action"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "Promo"));
+	($mol_mem(($.$bog_bzrl_app.prototype), "Rent_section"));
+	($mol_mem(($.$bog_bzrl_app.prototype), "let_action"));
+	($mol_mem(($.$bog_bzrl_app.prototype), "Let_hero"));
+	($mol_mem(($.$bog_bzrl_app.prototype), "Let_section"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "How_title"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "Step_match"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "Step_request"));
@@ -11817,84 +12046,141 @@ var $;
     var $$;
     (function ($$) {
         class $bog_bzrl_app extends $.$bog_bzrl_app {
+            tab(next) {
+                if (next !== undefined) {
+                    $mol_state_session.value(`${this}.tab()`, next);
+                    if (this.section())
+                        this.section(next);
+                    return next;
+                }
+                const section = this.section();
+                if (section === 'let')
+                    return 'let';
+                if (section && section !== 'let')
+                    return 'rent';
+                return $mol_state_session.value(`${this}.tab()`) ?? 'rent';
+            }
+            section(next) {
+                return this.$.$mol_state_arg.value('section', next) ?? '';
+            }
+            section_visible(section) {
+                const current = this.section();
+                return !current || current === section;
+            }
+            filter_district(next) {
+                if (next !== undefined)
+                    this.filter_applied(false);
+                return $mol_state_session.value(`${this}.filter_district()`, next) || 'all';
+            }
+            filter_rooms(next) {
+                if (next !== undefined)
+                    this.filter_applied(false);
+                return $mol_state_session.value(`${this}.filter_rooms()`, next) || 'studio';
+            }
+            filter_price(next) {
+                if (next !== undefined)
+                    this.filter_applied(false);
+                return $mol_state_session.value(`${this}.filter_price()`, next) || '';
+            }
+            filter_applied(next) {
+                return $mol_state_session.value(`${this}.filter_applied()`, next) ?? false;
+            }
             apartments_data() {
                 return [
                     {
                         id: '1',
                         district: 'vahitovsky',
+                        rooms: 'studio',
                         photo: 'https://picsum.photos/400/300?random=1',
                         area: 'квартира 35,1 м²',
                         floor: '20/29 эт.',
                         price: '36 000 ₽/мес',
+                        price_value: 36000,
                     },
                     {
                         id: '2',
                         district: 'sovetsky',
+                        rooms: 'r2',
                         photo: 'https://picsum.photos/400/300?random=2',
                         area: 'квартира 42,8 м²',
                         floor: '3/5 эт.',
                         price: '42 000 ₽/мес',
+                        price_value: 42000,
                     },
                     {
                         id: '3',
                         district: 'novo_savinovsky',
+                        rooms: 'studio',
                         photo: 'https://picsum.photos/400/300?random=3',
                         area: 'квартира 35,1 м²',
                         floor: '20/29 эт.',
                         price: '36 000 ₽/мес',
+                        price_value: 36000,
                     },
                     {
                         id: '4',
                         district: 'vahitovsky',
+                        rooms: 'r1',
                         photo: 'https://picsum.photos/400/300?random=4',
                         area: 'квартира 35,1 м²',
                         floor: '20/29 эт.',
                         price: '36 000 ₽/мес',
+                        price_value: 36000,
                     },
                     {
                         id: '5',
                         district: 'sovetsky',
+                        rooms: 'r3',
                         photo: 'https://picsum.photos/400/300?random=5',
                         area: 'квартира 42,8 м²',
                         floor: '3/5 эт.',
                         price: '42 000 ₽/мес',
+                        price_value: 42000,
                     },
                     {
                         id: '6',
                         district: 'novo_savinovsky',
+                        rooms: 'r2',
                         photo: 'https://picsum.photos/400/300?random=6',
                         area: 'квартира 35,1 м²',
                         floor: '20/29 эт.',
                         price: '35 000 ₽/мес',
+                        price_value: 35000,
                     },
                     {
                         id: '7',
                         district: 'vahitovsky',
+                        rooms: 'r4',
                         photo: 'https://picsum.photos/400/300?random=7',
                         area: 'квартира 35,1 м²',
                         floor: '20/29 эт.',
                         price: '35 000 ₽/мес',
+                        price_value: 35000,
                     },
                     {
                         id: '8',
                         district: 'sovetsky',
+                        rooms: 'studio',
                         photo: 'https://picsum.photos/400/300?random=8',
                         area: 'квартира 42,8 м²',
                         floor: '3/5 эт.',
                         price: '42 000 ₽/мес',
+                        price_value: 42000,
                     },
                     {
                         id: '9',
                         district: 'novo_savinovsky',
+                        rooms: 'r1',
                         photo: 'https://picsum.photos/400/300?random=9',
                         area: 'квартира 35,1 м²',
                         floor: '20/29 эт.',
                         price: '36 000 ₽/мес',
+                        price_value: 36000,
                     },
                 ];
             }
             apartment_rows() {
-                return this.apartments_data().map(apt => this.Apartment(apt.id));
+                return this.apartments_filtered().map(apt => this.Apartment(apt.id));
             }
             apartment_data(id) {
                 return this.apartments_data().find(a => a.id === id);
@@ -11914,7 +12200,84 @@ var $;
             apartment_price(id) {
                 return this.apartment_data(id).price;
             }
+            apartments_filtered() {
+                const data = this.apartments_data();
+                if (!this.filter_applied())
+                    return data;
+                const district = this.filter_district();
+                const rooms = this.filter_rooms();
+                const price_from = this.parse_price(this.filter_price());
+                return data.filter(apt => {
+                    if (district !== 'all' && apt.district !== district)
+                        return false;
+                    if (rooms && apt.rooms !== rooms)
+                        return false;
+                    if (price_from !== null && apt.price_value < price_from)
+                        return false;
+                    return true;
+                });
+            }
+            apartments_search() {
+                this.filter_applied(true);
+            }
+            promo_action() {
+                this.tab('rent');
+                this.section('rent');
+                this.filter_applied(true);
+            }
+            let_action() {
+                this.section('let');
+            }
+            Rent_section() {
+                if (!this.section_visible('rent'))
+                    return null;
+                return this.tab() === 'rent' ? super.Rent_section() : null;
+            }
+            Let_section() {
+                if (!this.section_visible('let'))
+                    return null;
+                return this.tab() === 'let' ? super.Let_section() : null;
+            }
+            How_it_works() {
+                return this.section_visible('how') ? super.How_it_works() : null;
+            }
+            Privacy() {
+                return this.section_visible('privacy') ? super.Privacy() : null;
+            }
+            Benefits() {
+                return this.section_visible('benefits') ? super.Benefits() : null;
+            }
+            Team() {
+                return this.section_visible('team') ? super.Team() : null;
+            }
+            Footer() {
+                return this.section_visible('contact') ? super.Footer() : null;
+            }
+            parse_price(value) {
+                const normalized = value.replace(/[^\d]/g, '');
+                if (!normalized)
+                    return null;
+                return Number(normalized);
+            }
         }
+        __decorate([
+            $mol_mem
+        ], $bog_bzrl_app.prototype, "tab", null);
+        __decorate([
+            $mol_mem
+        ], $bog_bzrl_app.prototype, "section", null);
+        __decorate([
+            $mol_mem
+        ], $bog_bzrl_app.prototype, "filter_district", null);
+        __decorate([
+            $mol_mem
+        ], $bog_bzrl_app.prototype, "filter_rooms", null);
+        __decorate([
+            $mol_mem
+        ], $bog_bzrl_app.prototype, "filter_price", null);
+        __decorate([
+            $mol_mem
+        ], $bog_bzrl_app.prototype, "filter_applied", null);
         __decorate([
             $mol_mem
         ], $bog_bzrl_app.prototype, "apartments_data", null);
@@ -11939,6 +12302,18 @@ var $;
         __decorate([
             $mol_mem_key
         ], $bog_bzrl_app.prototype, "apartment_price", null);
+        __decorate([
+            $mol_mem
+        ], $bog_bzrl_app.prototype, "apartments_filtered", null);
+        __decorate([
+            $mol_action
+        ], $bog_bzrl_app.prototype, "apartments_search", null);
+        __decorate([
+            $mol_action
+        ], $bog_bzrl_app.prototype, "promo_action", null);
+        __decorate([
+            $mol_action
+        ], $bog_bzrl_app.prototype, "let_action", null);
         $$.$bog_bzrl_app = $bog_bzrl_app;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -11950,7 +12325,7 @@ var $;
     var $$;
     (function ($$) {
         $mol_style_define($bog_bzrl_app, {
-            maxWidth: '1200px',
+            maxWidth: 'none',
             margin: 'auto',
             Head: {
                 justify: {
@@ -11982,6 +12357,18 @@ var $;
                 },
                 gap: '3rem',
                 padding: '2rem',
+            },
+            Rent_section: {
+                flex: {
+                    direction: 'column',
+                },
+                gap: '2rem',
+            },
+            Let_section: {
+                flex: {
+                    direction: 'column',
+                },
+                gap: '2rem',
             },
             Title_section: {
                 font: {
