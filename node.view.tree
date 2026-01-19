@@ -855,7 +855,10 @@ $bog_bzrl_app $mol_page
 	plugins /
 		<= Theme $bog_theme_auto
 			theme_light \$mol_theme_light
-			theme_dark \$mol_theme_dark
+			theme_dark \$mol_theme_ainews_dark
+			themes_default /string
+				\$mol_theme_light
+				\$mol_theme_ainews_dark
 	head /
 		<= Logo $mol_view
 			sub /
