@@ -4106,50 +4106,50 @@ declare namespace $ {
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__sub_bog_bzrl_app_footer_17 = $mol_type_enforce<
-		readonly(any)[]
+	type $mol_link__title_bog_bzrl_app_footer_17 = $mol_type_enforce<
+		string
 		,
-		ReturnType< $mol_link['sub'] >
+		ReturnType< $mol_link['title'] >
 	>
 	type $mol_link__uri_bog_bzrl_app_footer_18 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_profile_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__sub_bog_bzrl_app_footer_19 = $mol_type_enforce<
-		readonly(any)[]
+	type $mol_link__title_bog_bzrl_app_footer_19 = $mol_type_enforce<
+		string
 		,
-		ReturnType< $mol_link['sub'] >
+		ReturnType< $mol_link['title'] >
 	>
 	type $mol_link__uri_bog_bzrl_app_footer_20 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_all_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__sub_bog_bzrl_app_footer_21 = $mol_type_enforce<
-		readonly(any)[]
+	type $mol_link__title_bog_bzrl_app_footer_21 = $mol_type_enforce<
+		string
 		,
-		ReturnType< $mol_link['sub'] >
+		ReturnType< $mol_link['title'] >
 	>
 	type $mol_link__uri_bog_bzrl_app_footer_22 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_rent_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__sub_bog_bzrl_app_footer_23 = $mol_type_enforce<
-		readonly(any)[]
+	type $mol_link__title_bog_bzrl_app_footer_23 = $mol_type_enforce<
+		string
 		,
-		ReturnType< $mol_link['sub'] >
+		ReturnType< $mol_link['title'] >
 	>
 	type $mol_link__uri_bog_bzrl_app_footer_24 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_get_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__sub_bog_bzrl_app_footer_25 = $mol_type_enforce<
-		readonly(any)[]
+	type $mol_link__title_bog_bzrl_app_footer_25 = $mol_type_enforce<
+		string
 		,
-		ReturnType< $mol_link['sub'] >
+		ReturnType< $mol_link['title'] >
 	>
 	type $mol_list__rows_bog_bzrl_app_footer_26 = $mol_type_enforce<
 		readonly(any)[]
@@ -4166,50 +4166,50 @@ declare namespace $ {
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__sub_bog_bzrl_app_footer_29 = $mol_type_enforce<
-		readonly(any)[]
+	type $mol_link__title_bog_bzrl_app_footer_29 = $mol_type_enforce<
+		string
 		,
-		ReturnType< $mol_link['sub'] >
+		ReturnType< $mol_link['title'] >
 	>
 	type $mol_link__uri_bog_bzrl_app_footer_30 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_new_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__sub_bog_bzrl_app_footer_31 = $mol_type_enforce<
-		readonly(any)[]
+	type $mol_link__title_bog_bzrl_app_footer_31 = $mol_type_enforce<
+		string
 		,
-		ReturnType< $mol_link['sub'] >
+		ReturnType< $mol_link['title'] >
 	>
 	type $mol_link__uri_bog_bzrl_app_footer_32 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_furnished_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__sub_bog_bzrl_app_footer_33 = $mol_type_enforce<
-		readonly(any)[]
+	type $mol_link__title_bog_bzrl_app_footer_33 = $mol_type_enforce<
+		string
 		,
-		ReturnType< $mol_link['sub'] >
+		ReturnType< $mol_link['title'] >
 	>
 	type $mol_link__uri_bog_bzrl_app_footer_34 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_pets_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__sub_bog_bzrl_app_footer_35 = $mol_type_enforce<
-		readonly(any)[]
+	type $mol_link__title_bog_bzrl_app_footer_35 = $mol_type_enforce<
+		string
 		,
-		ReturnType< $mol_link['sub'] >
+		ReturnType< $mol_link['title'] >
 	>
 	type $mol_link__uri_bog_bzrl_app_footer_36 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_studio_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__sub_bog_bzrl_app_footer_37 = $mol_type_enforce<
-		readonly(any)[]
+	type $mol_link__title_bog_bzrl_app_footer_37 = $mol_type_enforce<
+		string
 		,
-		ReturnType< $mol_link['sub'] >
+		ReturnType< $mol_link['title'] >
 	>
 	type $mol_list__rows_bog_bzrl_app_footer_38 = $mol_type_enforce<
 		readonly(any)[]
@@ -4226,40 +4226,40 @@ declare namespace $ {
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__sub_bog_bzrl_app_footer_41 = $mol_type_enforce<
-		readonly(any)[]
+	type $mol_link__title_bog_bzrl_app_footer_41 = $mol_type_enforce<
+		string
 		,
-		ReturnType< $mol_link['sub'] >
+		ReturnType< $mol_link['title'] >
 	>
 	type $mol_link__uri_bog_bzrl_app_footer_42 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_terms_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__sub_bog_bzrl_app_footer_43 = $mol_type_enforce<
-		readonly(any)[]
+	type $mol_link__title_bog_bzrl_app_footer_43 = $mol_type_enforce<
+		string
 		,
-		ReturnType< $mol_link['sub'] >
+		ReturnType< $mol_link['title'] >
 	>
 	type $mol_link__uri_bog_bzrl_app_footer_44 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_consent_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__sub_bog_bzrl_app_footer_45 = $mol_type_enforce<
-		readonly(any)[]
+	type $mol_link__title_bog_bzrl_app_footer_45 = $mol_type_enforce<
+		string
 		,
-		ReturnType< $mol_link['sub'] >
+		ReturnType< $mol_link['title'] >
 	>
 	type $mol_link__uri_bog_bzrl_app_footer_46 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_cookies_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__sub_bog_bzrl_app_footer_47 = $mol_type_enforce<
-		readonly(any)[]
+	type $mol_link__title_bog_bzrl_app_footer_47 = $mol_type_enforce<
+		string
 		,
-		ReturnType< $mol_link['sub'] >
+		ReturnType< $mol_link['title'] >
 	>
 	type $mol_list__rows_bog_bzrl_app_footer_48 = $mol_type_enforce<
 		readonly(any)[]

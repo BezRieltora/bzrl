@@ -11314,7 +11314,7 @@ var $;
 		nav_home(){
 			const obj = new this.$.$mol_link();
 			(obj.uri) = () => ((this.nav_home_link()));
-			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_home_sub"))]);
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_home_title")));
 			return obj;
 		}
 		nav_profile_link(){
@@ -11323,7 +11323,7 @@ var $;
 		nav_profile(){
 			const obj = new this.$.$mol_link();
 			(obj.uri) = () => ((this.nav_profile_link()));
-			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_profile_sub"))]);
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_profile_title")));
 			return obj;
 		}
 		nav_all_link(){
@@ -11332,7 +11332,7 @@ var $;
 		nav_all(){
 			const obj = new this.$.$mol_link();
 			(obj.uri) = () => ((this.nav_all_link()));
-			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_all_sub"))]);
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_all_title")));
 			return obj;
 		}
 		nav_rent_link(){
@@ -11341,7 +11341,7 @@ var $;
 		nav_rent(){
 			const obj = new this.$.$mol_link();
 			(obj.uri) = () => ((this.nav_rent_link()));
-			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_rent_sub"))]);
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_rent_title")));
 			return obj;
 		}
 		nav_get_link(){
@@ -11350,7 +11350,7 @@ var $;
 		nav_get(){
 			const obj = new this.$.$mol_link();
 			(obj.uri) = () => ((this.nav_get_link()));
-			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_get_sub"))]);
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_get_title")));
 			return obj;
 		}
 		Nav_main_links(){
@@ -11378,7 +11378,7 @@ var $;
 		nav_districts(){
 			const obj = new this.$.$mol_link();
 			(obj.uri) = () => ((this.nav_districts_link()));
-			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_districts_sub"))]);
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_districts_title")));
 			return obj;
 		}
 		nav_new_link(){
@@ -11387,7 +11387,7 @@ var $;
 		nav_new(){
 			const obj = new this.$.$mol_link();
 			(obj.uri) = () => ((this.nav_new_link()));
-			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_new_sub"))]);
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_new_title")));
 			return obj;
 		}
 		nav_furnished_link(){
@@ -11396,7 +11396,7 @@ var $;
 		nav_furnished(){
 			const obj = new this.$.$mol_link();
 			(obj.uri) = () => ((this.nav_furnished_link()));
-			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_furnished_sub"))]);
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_furnished_title")));
 			return obj;
 		}
 		nav_pets_link(){
@@ -11405,7 +11405,7 @@ var $;
 		nav_pets(){
 			const obj = new this.$.$mol_link();
 			(obj.uri) = () => ((this.nav_pets_link()));
-			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_pets_sub"))]);
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_pets_title")));
 			return obj;
 		}
 		nav_studio_link(){
@@ -11414,7 +11414,7 @@ var $;
 		nav_studio(){
 			const obj = new this.$.$mol_link();
 			(obj.uri) = () => ((this.nav_studio_link()));
-			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_studio_sub"))]);
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_studio_title")));
 			return obj;
 		}
 		Nav_catalog_links(){
@@ -11442,7 +11442,7 @@ var $;
 		nav_privacy(){
 			const obj = new this.$.$mol_link();
 			(obj.uri) = () => ((this.nav_privacy_link()));
-			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_privacy_sub"))]);
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_privacy_title")));
 			return obj;
 		}
 		nav_terms_link(){
@@ -11451,7 +11451,7 @@ var $;
 		nav_terms(){
 			const obj = new this.$.$mol_link();
 			(obj.uri) = () => ((this.nav_terms_link()));
-			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_terms_sub"))]);
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_terms_title")));
 			return obj;
 		}
 		nav_consent_link(){
@@ -11460,7 +11460,7 @@ var $;
 		nav_consent(){
 			const obj = new this.$.$mol_link();
 			(obj.uri) = () => ((this.nav_consent_link()));
-			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_consent_sub"))]);
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_consent_title")));
 			return obj;
 		}
 		nav_cookies_link(){
@@ -11469,7 +11469,7 @@ var $;
 		nav_cookies(){
 			const obj = new this.$.$mol_link();
 			(obj.uri) = () => ((this.nav_cookies_link()));
-			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_cookies_sub"))]);
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_bzrl_app_footer_nav_cookies_title")));
 			return obj;
 		}
 		Nav_docs_links(){
