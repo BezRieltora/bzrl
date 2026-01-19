@@ -10147,7 +10147,7 @@ var $;
                 bog_bzrl_app_hero_variant: {
                     promo: {
                         background: {
-                            image: 'url(/bog/bzrl/app/hero/promo-bg.jpg)',
+                            image: 'linear-gradient(135deg, #ffe4b5 0%, #ffb347 100%)',
                             size: ['cover'],
                             position: 'center',
                         },
