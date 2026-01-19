@@ -36,24 +36,19 @@ $bog_bzrl_app_footer $mol_view
 							rows /
 								<= nav_home $mol_link
 									uri <= nav_home_link \
-									sub /
-										@ \Главная
+									title @ \Главная
 								<= nav_profile $mol_link
 									uri <= nav_profile_link \
-									sub /
-										@ \Профиль
+									title @ \Профиль
 								<= nav_all $mol_link
 									uri <= nav_all_link \
-									sub /
-										@ \Все квартиры
+									title @ \Все квартиры
 								<= nav_rent $mol_link
 									uri <= nav_rent_link \
-									sub /
-										@ \Сдать квартиру
+									title @ \Сдать квартиру
 								<= nav_get $mol_link
 									uri <= nav_get_link \
-									sub /
-										@ \Снять квартиру
+									title @ \Снять квартиру
 				<= Nav_catalog $mol_view
 					sub /
 						<= nav_catalog_title @ \Каталог
@@ -61,24 +56,19 @@ $bog_bzrl_app_footer $mol_view
 							rows /
 								<= nav_districts $mol_link
 									uri <= nav_districts_link \
-									sub /
-										@ \Районы
+									title @ \Районы
 								<= nav_new $mol_link
 									uri <= nav_new_link \
-									sub /
-										@ \Новые
+									title @ \Новые
 								<= nav_furnished $mol_link
 									uri <= nav_furnished_link \
-									sub /
-										@ \С мебелью
+									title @ \С мебелью
 								<= nav_pets $mol_link
 									uri <= nav_pets_link \
-									sub /
-										@ \Можно с животными
+									title @ \Можно с животными
 								<= nav_studio $mol_link
 									uri <= nav_studio_link \
-									sub /
-										@ \Студии
+									title @ \Студии
 				<= Nav_docs $mol_view
 					sub /
 						<= nav_docs_title @ \Документы
@@ -86,20 +76,16 @@ $bog_bzrl_app_footer $mol_view
 							rows /
 								<= nav_privacy $mol_link
 									uri <= nav_privacy_link \
-									sub /
-										@ \Политика конфиденциальности
+									title @ \Политика конфиденциальности
 								<= nav_terms $mol_link
 									uri <= nav_terms_link \
-									sub /
-										@ \Пользовательское соглашение / оферта
+									title @ \Пользовательское соглашение / оферта
 								<= nav_consent $mol_link
 									uri <= nav_consent_link \
-									sub /
-										@ \Согласие на обработку персональных данных
+									title @ \Согласие на обработку персональных данных
 								<= nav_cookies $mol_link
 									uri <= nav_cookies_link \
-									sub /
-										@ \Политика cookies
+									title @ \Политика cookies
 		<= Bottom $mol_view
 			sub /
 				<= Copyright $mol_paragraph
