@@ -9967,6 +9967,15 @@ var $;
 		variant(){
 			return "default";
 		}
+		icon_uri(){
+			return "";
+		}
+		Icon(next){
+			if(next !== undefined) return next;
+			const obj = new this.$.$mol_image();
+			(obj.uri) = () => ((this.icon_uri()));
+			return obj;
+		}
 		title(){
 			return "";
 		}
@@ -9999,24 +10008,42 @@ var $;
 		Content(){
 			const obj = new this.$.$mol_view();
 			(obj.sub) = () => ([
+				(this.Icon()), 
 				(this.Title()), 
 				(this.Description()), 
 				(this.Action())
 			]);
 			return obj;
 		}
+		media_uri(){
+			return "";
+		}
+		Media_image(){
+			const obj = new this.$.$mol_image();
+			(obj.uri) = () => ((this.media_uri()));
+			return obj;
+		}
+		Media(next){
+			if(next !== undefined) return next;
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Media_image())]);
+			return obj;
+		}
 		attr(){
 			return {...(super.attr()), "bog_bzrl_app_hero_variant": (this.variant())};
 		}
 		sub(){
-			return [(this.Content())];
+			return [(this.Content()), (this.Media())];
 		}
 	};
+	($mol_mem(($.$bog_bzrl_app_hero.prototype), "Icon"));
 	($mol_mem(($.$bog_bzrl_app_hero.prototype), "Title"));
 	($mol_mem(($.$bog_bzrl_app_hero.prototype), "Description"));
 	($mol_mem(($.$bog_bzrl_app_hero.prototype), "action"));
 	($mol_mem(($.$bog_bzrl_app_hero.prototype), "Action"));
 	($mol_mem(($.$bog_bzrl_app_hero.prototype), "Content"));
+	($mol_mem(($.$bog_bzrl_app_hero.prototype), "Media_image"));
+	($mol_mem(($.$bog_bzrl_app_hero.prototype), "Media"));
 	($.$bog_bzrl_app_hero_promo) = class $bog_bzrl_app_hero_promo extends ($.$bog_bzrl_app_hero) {
 		variant(){
 			return "promo";
@@ -10030,6 +10057,9 @@ var $;
 		action_label(){
 			return (this.$.$mol_locale.text("$bog_bzrl_app_hero_promo_action_label"));
 		}
+		media_uri(){
+			return "bog/bzrl/assets/HomeRent Design System Rectangle.png";
+		}
 	};
 	($.$bog_bzrl_app_hero_privacy) = class $bog_bzrl_app_hero_privacy extends ($.$bog_bzrl_app_hero) {
 		variant(){
@@ -10040,6 +10070,9 @@ var $;
 		}
 		description(){
 			return (this.$.$mol_locale.text("$bog_bzrl_app_hero_privacy_description"));
+		}
+		icon_uri(){
+			return "bog/bzrl/assets/Solar Lock Keyhole Bold Duotone.png";
 		}
 	};
 	($.$bog_bzrl_app_hero_let) = class $bog_bzrl_app_hero_let extends ($.$bog_bzrl_app_hero) {
@@ -10097,6 +10130,12 @@ var $;
     var $$;
     (function ($$) {
         class $bog_bzrl_app_hero extends $.$bog_bzrl_app_hero {
+            Icon() {
+                return this.icon_uri() ? super.Icon() : null;
+            }
+            Media() {
+                return this.media_uri() ? super.Media() : null;
+            }
         }
         $$.$bog_bzrl_app_hero = $bog_bzrl_app_hero;
         class $bog_bzrl_app_hero_promo extends $.$bog_bzrl_app_hero_promo {
@@ -10118,6 +10157,12 @@ var $;
     var $$;
     (function ($$) {
         $mol_style_define($bog_bzrl_app_hero, {
+            display: 'grid',
+            gridTemplateColumns: '1fr',
+            gap: '2rem',
+            align: {
+                items: 'center',
+            },
             padding: '3rem',
             border: {
                 radius: $mol_gap.round,
@@ -10131,6 +10176,19 @@ var $;
                 },
                 gap: $mol_gap.block,
                 maxWidth: '500px',
+            },
+            Icon: {
+                display: 'none',
+                width: '5rem',
+                height: '5rem',
+            },
+            Media: {
+                display: 'none',
+            },
+            Media_image: {
+                width: '100%',
+                height: 'auto',
+                objectFit: 'contain',
             },
             Title: {
                 font: {
@@ -10157,21 +10215,61 @@ var $;
             '@': {
                 bog_bzrl_app_hero_variant: {
                     promo: {
+                        gridTemplateColumns: '1.2fr 1fr',
                         background: {
-                            image: 'linear-gradient(135deg, #ffe4b5 0%, #ffb347 100%)',
-                            size: ['cover'],
-                            position: 'center',
+                            color: '#F6D7A6',
+                        },
+                        Content: {
+                            maxWidth: '520px',
+                        },
+                        Media: {
+                            display: 'flex',
+                            justify: {
+                                content: 'flex-end',
+                            },
+                            align: {
+                                items: 'flex-end',
+                            },
+                        },
+                        Action: {
+                            background: {
+                                color: '#CDDC39',
+                            },
+                            border: {
+                                style: 'none',
+                            },
+                            color: '#1b1b1b',
+                            font: {
+                                weight: 600,
+                            },
                         },
                     },
                     privacy: {
                         background: {
-                            color: '#1a1a2e',
+                            color: 'transparent',
                         },
-                        color: '#fff',
+                        color: '#1b1b1b',
                         textAlign: 'center',
                         Content: {
-                            maxWidth: '600px',
-                            margin: 'auto',
+                            maxWidth: '640px',
+                            margin: {
+                                left: 'auto',
+                                right: 'auto',
+                            },
+                            align: {
+                                items: 'center',
+                            },
+                        },
+                        Icon: {
+                            display: 'block',
+                            width: '6rem',
+                            height: '6rem',
+                        },
+                        Description: {
+                            color: '#3d4a5d',
+                        },
+                        Action: {
+                            display: 'none',
                         },
                     },
                 },
@@ -10605,10 +10703,9 @@ var $;
         class $bog_bzrl_app_slider extends $.$bog_bzrl_app_slider {
             slides_data() {
                 return [
-                    'https://picsum.photos/800/400?random=20',
-                    'https://picsum.photos/800/400?random=21',
-                    'https://picsum.photos/800/400?random=22',
-                    'https://picsum.photos/800/400?random=23',
+                    '/bog/bzrl/assets/HomeRent Design System Frame 76.png',
+                    '/bog/bzrl/assets/HomeRent Design System Frame 76 (1).png',
+                    '/bog/bzrl/assets/HomeRent Design System Frame 76.png',
                 ];
             }
             current_index(next) {
@@ -10697,7 +10794,7 @@ var $;
             },
             Slide: {
                 width: '100%',
-                height: '400px',
+                height: '320px',
                 objectFit: 'cover',
             },
             Prev: {
@@ -10706,14 +10803,19 @@ var $;
                 top: '50%',
                 transform: 'translateY(-50%)',
                 background: {
-                    color: '#ffffffe6',
+                    color: '#fff',
                 },
                 border: {
                     radius: '50%',
+                    style: 'solid',
+                    width: '1px',
+                    color: '#e4edf9',
                 },
                 width: '3rem',
                 height: '3rem',
-                zIndex: 1,
+                color: '#3b4a5a',
+                boxShadow: '0 6px 16px rgba(30, 60, 114, 0.12)',
+                zIndex: 2,
             },
             Next: {
                 position: 'absolute',
@@ -10721,14 +10823,19 @@ var $;
                 top: '50%',
                 transform: 'translateY(-50%)',
                 background: {
-                    color: '#ffffffe6',
+                    color: '#fff',
                 },
                 border: {
                     radius: '50%',
+                    style: 'solid',
+                    width: '1px',
+                    color: '#e4edf9',
                 },
                 width: '3rem',
                 height: '3rem',
-                zIndex: 1,
+                color: '#3b4a5a',
+                boxShadow: '0 6px 16px rgba(30, 60, 114, 0.12)',
+                zIndex: 2,
             },
             Dots: {
                 position: 'absolute',
@@ -10737,6 +10844,7 @@ var $;
                 transform: 'translateX(-50%)',
                 display: 'flex',
                 gap: $mol_gap.text,
+                zIndex: 2,
             },
             Dot: {
                 width: '.625rem',
@@ -10746,7 +10854,7 @@ var $;
                     radius: '50%',
                 },
                 background: {
-                    color: '#ffffff80',
+                    color: '#c9ddff',
                 },
                 cursor: 'pointer',
             },
@@ -10755,7 +10863,7 @@ var $;
                     true: {
                         Dot: {
                             background: {
-                                color: '#CDDC39',
+                                color: '#6ca3f4',
                             },
                         },
                     },
@@ -11175,61 +11283,6 @@ var $;
 })($ || ($ = {}));
 
 ;
-	($.$mol_icon_alpha) = class $mol_icon_alpha extends ($.$mol_icon) {
-		path(){
-			return "M18.08,17.8C17.62,17.93 17.21,18 16.85,18C15.65,18 14.84,17.12 14.43,15.35H14.38C13.39,17.26 12,18.21 10.25,18.21C8.94,18.21 7.89,17.72 7.1,16.73C6.31,15.74 5.92,14.5 5.92,13C5.92,11.25 6.37,9.85 7.26,8.76C8.15,7.67 9.36,7.12 10.89,7.12C11.71,7.12 12.45,7.35 13.09,7.8C13.73,8.26 14.22,8.9 14.56,9.73H14.6L15.31,7.33H17.87L15.73,12.65C15.97,13.89 16.22,14.74 16.5,15.19C16.74,15.64 17.08,15.87 17.5,15.87C17.74,15.87 17.93,15.83 18.1,15.76L18.08,17.8M13.82,12.56C13.61,11.43 13.27,10.55 12.81,9.95C12.36,9.34 11.81,9.04 11.18,9.04C10.36,9.04 9.7,9.41 9.21,10.14C8.72,10.88 8.5,11.79 8.5,12.86C8.5,13.84 8.69,14.65 9.12,15.31C9.54,15.97 10.11,16.29 10.82,16.29C11.42,16.29 11.97,16 12.46,15.45C12.96,14.88 13.37,14.05 13.7,12.96L13.82,12.56Z";
-		}
-	};
-
-
-;
-"use strict";
-
-;
-	($.$mol_icon_alpha_v) = class $mol_icon_alpha_v extends ($.$mol_icon) {
-		path(){
-			return "M9,7L11,17H13L15,7H13L12,12L11,7H9Z";
-		}
-	};
-
-
-;
-"use strict";
-
-;
-	($.$mol_icon_alpha_v_circle) = class $mol_icon_alpha_v_circle extends ($.$mol_icon) {
-		path(){
-			return "M9,7L11,17H13L15,7H13L12,12L11,7H9M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2Z";
-		}
-	};
-
-
-;
-"use strict";
-
-;
-	($.$mol_icon_telegram) = class $mol_icon_telegram extends ($.$mol_icon) {
-		path(){
-			return "M9.78,18.65L10.06,14.42L17.74,7.5C18.08,7.19 17.67,7.04 17.22,7.31L7.74,13.3L3.64,12C2.76,11.75 2.75,11.14 3.84,10.7L19.81,4.54C20.54,4.21 21.24,4.72 20.96,5.84L18.24,18.65C18.05,19.56 17.5,19.78 16.74,19.36L12.6,16.3L10.61,18.23C10.38,18.46 10.19,18.65 9.78,18.65Z";
-		}
-	};
-
-
-;
-"use strict";
-
-;
-	($.$mol_icon_youtube) = class $mol_icon_youtube extends ($.$mol_icon) {
-		path(){
-			return "M10,15L15.19,12L10,9V15M21.56,7.17C21.69,7.64 21.78,8.27 21.84,9.07C21.91,9.87 21.94,10.56 21.94,11.16L22,12C22,14.19 21.84,15.8 21.56,16.83C21.31,17.73 20.73,18.31 19.83,18.56C19.36,18.69 18.5,18.78 17.18,18.84C15.88,18.91 14.69,18.94 13.59,18.94L12,19C7.81,19 5.2,18.84 4.17,18.56C3.27,18.31 2.69,17.73 2.44,16.83C2.31,16.36 2.22,15.73 2.16,14.93C2.09,14.13 2.06,13.44 2.06,12.84L2,12C2,9.81 2.16,8.2 2.44,7.17C2.69,6.27 3.27,5.69 4.17,5.44C4.64,5.31 5.5,5.22 6.82,5.16C8.12,5.09 9.31,5.06 10.41,5.06L12,5C16.19,5 18.8,5.16 19.83,5.44C20.73,5.69 21.31,6.27 21.56,7.17Z";
-		}
-	};
-
-
-;
-"use strict";
-
-;
 	($.$bog_bzrl_app_footer) = class $bog_bzrl_app_footer extends ($.$mol_view) {
 		Email(){
 			const obj = new this.$.$mol_link();
@@ -11263,8 +11316,20 @@ var $;
 			]);
 			return obj;
 		}
+		Ig_icon(){
+			const obj = new this.$.$mol_image();
+			(obj.uri) = () => ("bog/bzrl/assets/HomeRent Design System Frame 82.png");
+			return obj;
+		}
+		Ig(){
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ("https://instagram.com");
+			(obj.sub) = () => ([(this.Ig_icon())]);
+			return obj;
+		}
 		Vk_icon(){
-			const obj = new this.$.$mol_icon_alpha_v_circle();
+			const obj = new this.$.$mol_image();
+			(obj.uri) = () => ("bog/bzrl/assets/HomeRent Design System Frame 83.png");
 			return obj;
 		}
 		Vk(){
@@ -11274,7 +11339,8 @@ var $;
 			return obj;
 		}
 		Tg_icon(){
-			const obj = new this.$.$mol_icon_telegram();
+			const obj = new this.$.$mol_image();
+			(obj.uri) = () => ("bog/bzrl/assets/HomeRent Design System Frame 84.png");
 			return obj;
 		}
 		Tg(){
@@ -11283,22 +11349,12 @@ var $;
 			(obj.sub) = () => ([(this.Tg_icon())]);
 			return obj;
 		}
-		Youtube_icon(){
-			const obj = new this.$.$mol_icon_youtube();
-			return obj;
-		}
-		Youtube(){
-			const obj = new this.$.$mol_link();
-			(obj.uri) = () => ("https://youtube.com");
-			(obj.sub) = () => ([(this.Youtube_icon())]);
-			return obj;
-		}
 		Social(){
 			const obj = new this.$.$mol_view();
 			(obj.sub) = () => ([
+				(this.Ig()), 
 				(this.Vk()), 
-				(this.Tg()), 
-				(this.Youtube())
+				(this.Tg())
 			]);
 			return obj;
 		}
@@ -11529,12 +11585,12 @@ var $;
 	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Phone"));
 	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Phone_hint"));
 	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Contact"));
+	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Ig_icon"));
+	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Ig"));
 	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Vk_icon"));
 	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Vk"));
 	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Tg_icon"));
 	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Tg"));
-	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Youtube_icon"));
-	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Youtube"));
 	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Social"));
 	($mol_mem(($.$bog_bzrl_app_footer.prototype), "Top"));
 	($mol_mem(($.$bog_bzrl_app_footer.prototype), "nav_home"));
@@ -11636,8 +11692,9 @@ var $;
             gap: '2rem',
             padding: '2rem',
             background: {
-                color: $mol_theme.card,
+                color: '#3f3f3f',
             },
+            color: '#fff',
             Top: {
                 display: 'flex',
                 justify: {
@@ -11662,9 +11719,10 @@ var $;
                     size: '1.25rem',
                     weight: 500,
                 },
+                color: '#fff',
             },
             Email_hint: {
-                color: $mol_theme.shade,
+                color: '#ffffffb3',
                 font: {
                     size: '.75rem',
                 },
@@ -11674,9 +11732,10 @@ var $;
                     size: '1.25rem',
                     weight: 500,
                 },
+                color: '#fff',
             },
             Phone_hint: {
-                color: $mol_theme.shade,
+                color: '#ffffffb3',
                 font: {
                     size: '.75rem',
                 },
@@ -11684,11 +11743,27 @@ var $;
             Social: {
                 display: 'flex',
                 gap: $mol_gap.block,
+                align: {
+                    items: 'center',
+                },
+            },
+            Ig_icon: {
+                width: '42px',
+                height: '42px',
+            },
+            Vk_icon: {
+                width: '42px',
+                height: '42px',
+            },
+            Tg_icon: {
+                width: '42px',
+                height: '42px',
             },
             Nav: {
                 display: 'grid',
                 gridTemplateColumns: 'repeat(3, 1fr)',
                 gap: '2rem',
+                color: '#fff',
             },
             Nav_main: {
                 flex: {
@@ -11720,10 +11795,10 @@ var $;
                     top: {
                         style: 'solid',
                         width: '1px',
-                        color: $mol_theme.line,
+                        color: '#ffffff26',
                     },
                 },
-                color: $mol_theme.shade,
+                color: '#ffffffb3',
                 font: {
                     size: '.75rem',
                 },
@@ -11947,7 +12022,7 @@ var $;
 			if(next !== undefined) return next;
 			const obj = new this.$.$bog_bzrl_app_hero_team();
 			(obj.attr) = () => ({"id": "team"});
-			(obj.photo) = () => ("https://picsum.photos/600/400?random=10");
+			(obj.photo) = () => ("bog/bzrl/assets/HomeRent Design System Frame 77.png");
 			return obj;
 		}
 		Footer(next){
@@ -12404,20 +12479,28 @@ var $;
             },
             Privacy: {
                 position: 'relative',
+                display: 'grid',
+                gridTemplateAreas: '"stack"',
                 border: {
                     radius: $mol_gap.round,
                 },
                 overflow: 'hidden',
             },
+            Privacy_slider: {
+                gridArea: 'stack',
+                zIndex: 0,
+            },
             Privacy_content: {
-                position: 'absolute',
-                bottom: 0,
-                left: 0,
-                right: 0,
-                padding: '2rem',
-                background: {
-                    image: 'linear-gradient(transparent, #000000cc)',
-                },
+                gridArea: 'stack',
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                padding: '3rem',
+                textAlign: 'center',
+                pointerEvents: 'none',
+                zIndex: 1,
             },
             Benefits: {
                 flex: {

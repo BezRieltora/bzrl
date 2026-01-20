@@ -3488,33 +3488,50 @@ declare namespace $.$$ {
 
 declare namespace $ {
 
-	type $mol_paragraph__title_bog_bzrl_app_hero_1 = $mol_type_enforce<
+	type $mol_image__uri_bog_bzrl_app_hero_1 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app_hero['icon_uri'] >
+		,
+		ReturnType< $mol_image['uri'] >
+	>
+	type $mol_paragraph__title_bog_bzrl_app_hero_2 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_hero['title'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_paragraph__title_bog_bzrl_app_hero_2 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_bzrl_app_hero_3 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_hero['description'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_button_minor__click_bog_bzrl_app_hero_3 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_bzrl_app_hero_4 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_hero['action'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__sub_bog_bzrl_app_hero_4 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_bzrl_app_hero_5 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_view__sub_bog_bzrl_app_hero_5 = $mol_type_enforce<
+	type $mol_view__sub_bog_bzrl_app_hero_6 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_image__uri_bog_bzrl_app_hero_7 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app_hero['media_uri'] >
+		,
+		ReturnType< $mol_image['uri'] >
+	>
+	type $mol_view__sub_bog_bzrl_app_hero_8 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
 	export class $bog_bzrl_app_hero extends $mol_view {
 		variant( ): string
+		icon_uri( ): string
+		Icon( next?: $mol_image ): $mol_image
 		title( ): string
 		Title( ): $mol_paragraph
 		description( ): string
@@ -3523,6 +3540,9 @@ declare namespace $ {
 		action_label( ): string
 		Action( ): $mol_button_minor
 		Content( ): $mol_view
+		media_uri( ): string
+		Media_image( ): $mol_image
+		Media( next?: $mol_view ): $mol_view
 		attr( ): ({ 
 			'bog_bzrl_app_hero_variant': ReturnType< $bog_bzrl_app_hero['variant'] >,
 		})  & ReturnType< $mol_view['attr'] >
@@ -3534,12 +3554,14 @@ declare namespace $ {
 		title( ): string
 		description( ): string
 		action_label( ): string
+		media_uri( ): string
 	}
 	
 	export class $bog_bzrl_app_hero_privacy extends $bog_bzrl_app_hero {
 		variant( ): string
 		title( ): string
 		description( ): string
+		icon_uri( ): string
 	}
 	
 	export class $bog_bzrl_app_hero_let extends $bog_bzrl_app_hero {
@@ -3582,6 +3604,8 @@ declare namespace $ {
 //# sourceMappingURL=hero.view.tree.d.ts.map
 declare namespace $.$$ {
     class $bog_bzrl_app_hero extends $.$bog_bzrl_app_hero {
+        Icon(): $.$mol_image;
+        Media(): $mol_view;
     }
     class $bog_bzrl_app_hero_promo extends $.$bog_bzrl_app_hero_promo {
     }
@@ -3981,51 +4005,6 @@ declare namespace $ {
 
 declare namespace $ {
 
-	export class $mol_icon_alpha extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=alpha.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_icon_alpha_v extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=v.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_icon_alpha_v_circle extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=circle.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_icon_telegram extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=telegram.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_icon_youtube extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=youtube.view.tree.d.ts.map
-declare namespace $ {
-
 	type $mol_link__uri_bog_bzrl_app_footer_1 = $mol_type_enforce<
 		string
 		,
@@ -4061,25 +4040,25 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_link__uri_bog_bzrl_app_footer_8 = $mol_type_enforce<
+	type $mol_image__uri_bog_bzrl_app_footer_8 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_image['uri'] >
+	>
+	type $mol_link__uri_bog_bzrl_app_footer_9 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__sub_bog_bzrl_app_footer_9 = $mol_type_enforce<
+	type $mol_link__sub_bog_bzrl_app_footer_10 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_link['sub'] >
 	>
-	type $mol_link__uri_bog_bzrl_app_footer_10 = $mol_type_enforce<
+	type $mol_image__uri_bog_bzrl_app_footer_11 = $mol_type_enforce<
 		string
 		,
-		ReturnType< $mol_link['uri'] >
-	>
-	type $mol_link__sub_bog_bzrl_app_footer_11 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_link['sub'] >
+		ReturnType< $mol_image['uri'] >
 	>
 	type $mol_link__uri_bog_bzrl_app_footer_12 = $mol_type_enforce<
 		string
@@ -4091,202 +4070,217 @@ declare namespace $ {
 		,
 		ReturnType< $mol_link['sub'] >
 	>
-	type $mol_view__sub_bog_bzrl_app_footer_14 = $mol_type_enforce<
+	type $mol_image__uri_bog_bzrl_app_footer_14 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_image['uri'] >
+	>
+	type $mol_link__uri_bog_bzrl_app_footer_15 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__sub_bog_bzrl_app_footer_16 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_view__sub_bog_bzrl_app_footer_17 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_bzrl_app_footer_15 = $mol_type_enforce<
+	type $mol_view__sub_bog_bzrl_app_footer_18 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_link__uri_bog_bzrl_app_footer_16 = $mol_type_enforce<
+	type $mol_link__uri_bog_bzrl_app_footer_19 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_home_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__title_bog_bzrl_app_footer_17 = $mol_type_enforce<
+	type $mol_link__title_bog_bzrl_app_footer_20 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__uri_bog_bzrl_app_footer_18 = $mol_type_enforce<
+	type $mol_link__uri_bog_bzrl_app_footer_21 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_profile_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__title_bog_bzrl_app_footer_19 = $mol_type_enforce<
+	type $mol_link__title_bog_bzrl_app_footer_22 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__uri_bog_bzrl_app_footer_20 = $mol_type_enforce<
+	type $mol_link__uri_bog_bzrl_app_footer_23 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_all_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__title_bog_bzrl_app_footer_21 = $mol_type_enforce<
+	type $mol_link__title_bog_bzrl_app_footer_24 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__uri_bog_bzrl_app_footer_22 = $mol_type_enforce<
+	type $mol_link__uri_bog_bzrl_app_footer_25 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_rent_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__title_bog_bzrl_app_footer_23 = $mol_type_enforce<
+	type $mol_link__title_bog_bzrl_app_footer_26 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__uri_bog_bzrl_app_footer_24 = $mol_type_enforce<
+	type $mol_link__uri_bog_bzrl_app_footer_27 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_get_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__title_bog_bzrl_app_footer_25 = $mol_type_enforce<
+	type $mol_link__title_bog_bzrl_app_footer_28 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_list__rows_bog_bzrl_app_footer_26 = $mol_type_enforce<
+	type $mol_list__rows_bog_bzrl_app_footer_29 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_list['rows'] >
 	>
-	type $mol_view__sub_bog_bzrl_app_footer_27 = $mol_type_enforce<
+	type $mol_view__sub_bog_bzrl_app_footer_30 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_link__uri_bog_bzrl_app_footer_28 = $mol_type_enforce<
+	type $mol_link__uri_bog_bzrl_app_footer_31 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_districts_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__title_bog_bzrl_app_footer_29 = $mol_type_enforce<
+	type $mol_link__title_bog_bzrl_app_footer_32 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__uri_bog_bzrl_app_footer_30 = $mol_type_enforce<
+	type $mol_link__uri_bog_bzrl_app_footer_33 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_new_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__title_bog_bzrl_app_footer_31 = $mol_type_enforce<
+	type $mol_link__title_bog_bzrl_app_footer_34 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__uri_bog_bzrl_app_footer_32 = $mol_type_enforce<
+	type $mol_link__uri_bog_bzrl_app_footer_35 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_furnished_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__title_bog_bzrl_app_footer_33 = $mol_type_enforce<
+	type $mol_link__title_bog_bzrl_app_footer_36 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__uri_bog_bzrl_app_footer_34 = $mol_type_enforce<
+	type $mol_link__uri_bog_bzrl_app_footer_37 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_pets_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__title_bog_bzrl_app_footer_35 = $mol_type_enforce<
+	type $mol_link__title_bog_bzrl_app_footer_38 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__uri_bog_bzrl_app_footer_36 = $mol_type_enforce<
+	type $mol_link__uri_bog_bzrl_app_footer_39 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_studio_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__title_bog_bzrl_app_footer_37 = $mol_type_enforce<
+	type $mol_link__title_bog_bzrl_app_footer_40 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_list__rows_bog_bzrl_app_footer_38 = $mol_type_enforce<
+	type $mol_list__rows_bog_bzrl_app_footer_41 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_list['rows'] >
 	>
-	type $mol_view__sub_bog_bzrl_app_footer_39 = $mol_type_enforce<
+	type $mol_view__sub_bog_bzrl_app_footer_42 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_link__uri_bog_bzrl_app_footer_40 = $mol_type_enforce<
+	type $mol_link__uri_bog_bzrl_app_footer_43 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_privacy_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__title_bog_bzrl_app_footer_41 = $mol_type_enforce<
+	type $mol_link__title_bog_bzrl_app_footer_44 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__uri_bog_bzrl_app_footer_42 = $mol_type_enforce<
+	type $mol_link__uri_bog_bzrl_app_footer_45 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_terms_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__title_bog_bzrl_app_footer_43 = $mol_type_enforce<
+	type $mol_link__title_bog_bzrl_app_footer_46 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__uri_bog_bzrl_app_footer_44 = $mol_type_enforce<
+	type $mol_link__uri_bog_bzrl_app_footer_47 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_consent_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__title_bog_bzrl_app_footer_45 = $mol_type_enforce<
+	type $mol_link__title_bog_bzrl_app_footer_48 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__uri_bog_bzrl_app_footer_46 = $mol_type_enforce<
+	type $mol_link__uri_bog_bzrl_app_footer_49 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['nav_cookies_link'] >
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__title_bog_bzrl_app_footer_47 = $mol_type_enforce<
+	type $mol_link__title_bog_bzrl_app_footer_50 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_list__rows_bog_bzrl_app_footer_48 = $mol_type_enforce<
+	type $mol_list__rows_bog_bzrl_app_footer_51 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_list['rows'] >
 	>
-	type $mol_view__sub_bog_bzrl_app_footer_49 = $mol_type_enforce<
+	type $mol_view__sub_bog_bzrl_app_footer_52 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_bzrl_app_footer_50 = $mol_type_enforce<
+	type $mol_view__sub_bog_bzrl_app_footer_53 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_paragraph__title_bog_bzrl_app_footer_51 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_bzrl_app_footer_54 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_footer['copyright'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_paragraph__title_bog_bzrl_app_footer_52 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_bzrl_app_footer_55 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_view__sub_bog_bzrl_app_footer_53 = $mol_type_enforce<
+	type $mol_view__sub_bog_bzrl_app_footer_56 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
@@ -4297,12 +4291,12 @@ declare namespace $ {
 		Phone( ): $mol_link
 		Phone_hint( ): $mol_paragraph
 		Contact( ): $mol_view
-		Vk_icon( ): $mol_icon_alpha_v_circle
+		Ig_icon( ): $mol_image
+		Ig( ): $mol_link
+		Vk_icon( ): $mol_image
 		Vk( ): $mol_link
-		Tg_icon( ): $mol_icon_telegram
+		Tg_icon( ): $mol_image
 		Tg( ): $mol_link
-		Youtube_icon( ): $mol_icon_youtube
-		Youtube( ): $mol_link
 		Social( ): $mol_view
 		Top( ): $mol_view
 		nav_main_title( ): string
