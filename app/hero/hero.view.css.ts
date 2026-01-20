@@ -1,5 +1,11 @@
 namespace $.$$ {
 	$mol_style_define($bog_bzrl_app_hero, {
+		display: 'grid',
+		gridTemplateColumns: '1fr',
+		gap: '2rem',
+		align: {
+			items: 'center',
+		},
 		padding: '3rem',
 		border: {
 			radius: $mol_gap.round,
@@ -14,6 +20,22 @@ namespace $.$$ {
 			},
 			gap: $mol_gap.block,
 			maxWidth: '500px',
+		},
+
+		Icon: {
+			display: 'none',
+			width: '5rem',
+			height: '5rem',
+		},
+
+		Media: {
+			display: 'none',
+		},
+
+		Media_image: {
+			width: '100%',
+			height: 'auto',
+			objectFit: 'contain',
 		},
 
 		Title: {
@@ -44,22 +66,61 @@ namespace $.$$ {
 		'@': {
 			bog_bzrl_app_hero_variant: {
 				promo: {
+					gridTemplateColumns: '1.2fr 1fr',
 					background: {
-						// Keep a visual background without relying on a missing asset.
-						image: 'linear-gradient(135deg, #ffe4b5 0%, #ffb347 100%)' as any,
-						size: ['cover'] as any,
-						position: 'center',
+						color: '#F6D7A6',
+					},
+					Content: {
+						maxWidth: '520px',
+					},
+					Media: {
+						display: 'flex',
+						justify: {
+							content: 'flex-end',
+						},
+						align: {
+							items: 'flex-end',
+						},
+					},
+					Action: {
+						background: {
+							color: '#CDDC39',
+						},
+						border: {
+							style: 'none',
+						},
+						color: '#1b1b1b',
+						font: {
+							weight: 600,
+						},
 					},
 				},
 				privacy: {
 					background: {
-						color: '#1a1a2e',
+						color: 'transparent',
 					},
-					color: '#fff',
+					color: '#1b1b1b',
 					textAlign: 'center',
 					Content: {
-						maxWidth: '600px',
-						margin: 'auto',
+						maxWidth: '640px',
+						margin: {
+							left: 'auto',
+							right: 'auto',
+						},
+						align: {
+							items: 'center',
+						},
+					},
+					Icon: {
+						display: 'block',
+						width: '6rem',
+						height: '6rem',
+					},
+					Description: {
+						color: '#3d4a5d',
+					},
+					Action: {
+						display: 'none',
 					},
 				},
 			},

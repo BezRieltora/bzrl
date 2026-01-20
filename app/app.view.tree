@@ -77,7 +77,7 @@ $bog_bzrl_app $mol_page
 		<= Team? $bog_bzrl_app_hero_team
 			attr *
 				id \team
-			photo \https://picsum.photos/600/400?random=10
+			photo \bog/bzrl/assets/HomeRent Design System Frame 77.png
 		<= Footer? $bog_bzrl_app_footer
 			attr *
 				id \contact

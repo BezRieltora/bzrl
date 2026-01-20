@@ -3,10 +3,9 @@ namespace $.$$ {
 		@$mol_mem
 		slides_data() {
 			return [
-				'https://picsum.photos/800/400?random=20',
-				'https://picsum.photos/800/400?random=21',
-				'https://picsum.photos/800/400?random=22',
-				'https://picsum.photos/800/400?random=23',
+				'/bog/bzrl/assets/HomeRent Design System Frame 76.png',
+				'/bog/bzrl/assets/HomeRent Design System Frame 76 (1).png',
+				'/bog/bzrl/assets/HomeRent Design System Frame 76.png',
 			]
 		}
 

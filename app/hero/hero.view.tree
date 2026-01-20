@@ -5,6 +5,8 @@ $bog_bzrl_app_hero $mol_view
 	sub /
 		<= Content $mol_view
 			sub /
+				<= Icon? $mol_image
+					uri <= icon_uri \
 				<= Title $mol_paragraph
 					title <= title \
 				<= Description $mol_paragraph
@@ -13,17 +15,23 @@ $bog_bzrl_app_hero $mol_view
 					click? <=> action? null
 					sub /
 						<= action_label \
+		<= Media? $mol_view
+			sub /
+				<= Media_image $mol_image
+					uri <= media_uri \
 
 $bog_bzrl_app_hero_promo $bog_bzrl_app_hero
 	variant \promo
 	title @ \Apartments in Kazan without brokers
 	description @ \Only owner-listed apartments, arranged directly. We verify manually and handle data carefully.
 	action_label @ \View apartments
+	media_uri \bog/bzrl/assets/HomeRent Design System Rectangle.png
 
 $bog_bzrl_app_hero_privacy $bog_bzrl_app_hero
 	variant \privacy
 	title @ \We value your personal data
 	description @ \All your personal information is securely encrypted on your device. We do not store it on our servers and access it only through your device.
+	icon_uri \bog/bzrl/assets/Solar Lock Keyhole Bold Duotone.png
 
 $bog_bzrl_app_hero_let $bog_bzrl_app_hero
 	title @ \Rent out your apartment without extra fees

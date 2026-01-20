@@ -12,7 +12,7 @@ namespace $.$$ {
 
 		Slide: {
 			width: '100%',
-			height: '400px',
+			height: '320px',
 			objectFit: 'cover',
 		},
 
@@ -22,14 +22,19 @@ namespace $.$$ {
 			top: '50%',
 			transform: 'translateY(-50%)',
 			background: {
-				color: '#ffffffe6' as any,
+				color: '#fff',
 			},
 			border: {
 				radius: '50%',
+				style: 'solid',
+				width: '1px',
+				color: '#e4edf9',
 			},
 			width: '3rem',
 			height: '3rem',
-			zIndex: 1,
+			color: '#3b4a5a',
+			boxShadow: '0 6px 16px rgba(30, 60, 114, 0.12)',
+			zIndex: 2,
 		},
 
 		Next: {
@@ -38,14 +43,19 @@ namespace $.$$ {
 			top: '50%',
 			transform: 'translateY(-50%)',
 			background: {
-				color: '#ffffffe6' as any,
+				color: '#fff',
 			},
 			border: {
 				radius: '50%',
+				style: 'solid',
+				width: '1px',
+				color: '#e4edf9',
 			},
 			width: '3rem',
 			height: '3rem',
-			zIndex: 1,
+			color: '#3b4a5a',
+			boxShadow: '0 6px 16px rgba(30, 60, 114, 0.12)',
+			zIndex: 2,
 		},
 
 		Dots: {
@@ -55,6 +65,7 @@ namespace $.$$ {
 			transform: 'translateX(-50%)',
 			display: 'flex',
 			gap: $mol_gap.text,
+			zIndex: 2,
 		},
 
 		Dot: {
@@ -65,7 +76,7 @@ namespace $.$$ {
 				radius: '50%',
 			},
 			background: {
-				color: '#ffffff80' as any,
+				color: '#c9ddff',
 			},
 			cursor: 'pointer',
 		},
@@ -75,7 +86,7 @@ namespace $.$$ {
 				true: {
 					Dot: {
 						background: {
-							color: '#CDDC39',
+							color: '#6ca3f4',
 						},
 					},
 				},

@@ -18,15 +18,18 @@ $bog_bzrl_app_footer $mol_view
 							title @ \For rental inquiries
 				<= Social $mol_view
 					sub /
+						<= Ig $mol_link
+							uri \https://instagram.com
+							sub / <= Ig_icon $mol_image
+								uri \bog/bzrl/assets/HomeRent Design System Frame 82.png
 						<= Vk $mol_link
 							uri \https://vk.com
-							sub / <= Vk_icon $mol_icon_alpha_v_circle
+							sub / <= Vk_icon $mol_image
+								uri \bog/bzrl/assets/HomeRent Design System Frame 83.png
 						<= Tg $mol_link
 							uri \https://t.me
-							sub / <= Tg_icon $mol_icon_telegram
-						<= Youtube $mol_link
-							uri \https://youtube.com
-							sub / <= Youtube_icon $mol_icon_youtube
+							sub / <= Tg_icon $mol_image
+								uri \bog/bzrl/assets/HomeRent Design System Frame 84.png
 		<= Nav $mol_view
 			sub /
 				<= Nav_main $mol_view

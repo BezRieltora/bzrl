@@ -6,8 +6,9 @@ namespace $.$$ {
 		gap: '2rem',
 		padding: '2rem',
 		background: {
-			color: $mol_theme.card,
+			color: '#3f3f3f',
 		},
+		color: '#fff',
 
 		Top: {
 			display: 'flex',
@@ -35,10 +36,11 @@ namespace $.$$ {
 				size: '1.25rem',
 				weight: 500,
 			},
+			color: '#fff',
 		},
 
 		Email_hint: {
-			color: $mol_theme.shade,
+			color: '#ffffffb3',
 			font: {
 				size: '.75rem',
 			},
@@ -49,10 +51,11 @@ namespace $.$$ {
 				size: '1.25rem',
 				weight: 500,
 			},
+			color: '#fff',
 		},
 
 		Phone_hint: {
-			color: $mol_theme.shade,
+			color: '#ffffffb3',
 			font: {
 				size: '.75rem',
 			},
@@ -61,12 +64,31 @@ namespace $.$$ {
 		Social: {
 			display: 'flex',
 			gap: $mol_gap.block,
+			align: {
+				items: 'center',
+			},
+		},
+
+		Ig_icon: {
+			width: '42px',
+			height: '42px',
+		},
+
+		Vk_icon: {
+			width: '42px',
+			height: '42px',
+		},
+
+		Tg_icon: {
+			width: '42px',
+			height: '42px',
 		},
 
 		Nav: {
 			display: 'grid',
 			gridTemplateColumns: 'repeat(3, 1fr)',
 			gap: '2rem',
+			color: '#fff',
 		},
 
 		Nav_main: {
@@ -102,10 +124,10 @@ namespace $.$$ {
 				top: {
 					style: 'solid',
 					width: '1px',
-					color: $mol_theme.line,
+					color: '#ffffff26',
 				},
 			},
-			color: $mol_theme.shade,
+			color: '#ffffffb3',
 			font: {
 				size: '.75rem',
 			},

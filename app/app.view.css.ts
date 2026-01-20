@@ -88,21 +88,30 @@ namespace $.$$ {
 
 		Privacy: {
 			position: 'relative',
+			display: 'grid',
+			gridTemplateAreas: '"stack"',
 			border: {
 				radius: $mol_gap.round,
 			},
 			overflow: 'hidden',
 		},
 
+		Privacy_slider: {
+			gridArea: 'stack',
+			zIndex: 0,
+		},
+
 		Privacy_content: {
-			position: 'absolute',
-			bottom: 0,
-			left: 0,
-			right: 0,
-			padding: '2rem',
-			background: {
-				image: 'linear-gradient(transparent, #000000cc)' as any,
-			},
+			gridArea: 'stack',
+			width: '100%',
+			height: '100%',
+			display: 'flex',
+			justifyContent: 'center',
+			alignItems: 'center',
+			padding: '3rem',
+			textAlign: 'center',
+			pointerEvents: 'none',
+			zIndex: 1,
 		},
 
 		Benefits: {
