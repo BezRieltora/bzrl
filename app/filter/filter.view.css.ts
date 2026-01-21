@@ -38,7 +38,7 @@ namespace $.$$ {
 				left: 'auto',
 			},
 			background: {
-				color: '#CDDC39',
+				color: $mol_theme.control,
 			},
 			color: '#000',
 		},

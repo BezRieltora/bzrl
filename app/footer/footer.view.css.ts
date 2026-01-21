@@ -6,7 +6,7 @@ namespace $.$$ {
 		gap: '2rem',
 		padding: '2rem',
 		background: {
-			color: '#3f3f3f',
+			color: '#4c4c4c',
 		},
 		color: '#fff',
 

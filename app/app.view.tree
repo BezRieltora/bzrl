@@ -2,11 +2,11 @@ $bog_bzrl_app $mol_page
 	title @ \HomeRent
 	plugins /
 		<= Theme $bog_theme_auto
-			theme_light \$mol_theme_light
-			theme_dark \$mol_theme_ainews_dark
+			theme_light \$mol_theme_homerent_light
+			theme_dark \$mol_theme_homerent_dark
 			themes_default /string
-				\$mol_theme_light
-				\$mol_theme_ainews_dark
+				\$mol_theme_homerent_light
+				\$mol_theme_homerent_dark
 	head /
 		<= Logo $mol_view
 			sub /

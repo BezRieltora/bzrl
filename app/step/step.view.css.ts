@@ -27,7 +27,7 @@ namespace $.$$ {
 				radius: '50%',
 			},
 			background: {
-				color: '#CDDC39',
+				color: $mol_theme.control,
 			},
 			display: 'flex',
 			justify: {
