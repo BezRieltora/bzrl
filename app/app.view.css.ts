@@ -2,6 +2,9 @@ namespace $.$$ {
 	$mol_style_define($bog_bzrl_app, {
 		maxWidth: 'none',
 		margin: 'auto',
+		background: {
+			color: '#f5f5f5',
+		},
 
 		Head: {
 			justify: {
@@ -184,10 +187,19 @@ namespace $.$$ {
 
 		Title_section: {
 			font: {
-				size: '2rem',
-				weight: 600,
+				family: 'PT Root UI, sans-serif',
+				size: '4rem',
+				weight: 700,
 			},
+			lineHeight: '1',
+			letterSpacing: '-0.03em',
 			textAlign: 'center',
+			color: '#4C4C4C',
+			maxWidth: '787px',
+			margin: {
+				left: 'auto',
+				right: 'auto',
+			},
 		},
 
 		Apartments: {

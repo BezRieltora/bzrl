@@ -21,15 +21,15 @@ $bog_bzrl_app_footer $mol_view
 						<= Ig $mol_link
 							uri \https://instagram.com
 							sub / <= Ig_icon $mol_image
-								uri \bog/bzrl/assets/HomeRent Design System Frame 82.png
+								uri \bog/bzrl/assets/HomeRent-Design-System Frame 82.png
 						<= Vk $mol_link
 							uri \https://vk.com
 							sub / <= Vk_icon $mol_image
-								uri \bog/bzrl/assets/HomeRent Design System Frame 83.png
+								uri \bog/bzrl/assets/HomeRent-Design-System Frame 83.png
 						<= Tg $mol_link
 							uri \https://t.me
 							sub / <= Tg_icon $mol_image
-								uri \bog/bzrl/assets/HomeRent Design System Frame 84.png
+								uri \bog/bzrl/assets/HomeRent-Design-System Frame 84.png
 		<= Nav $mol_view
 			sub /
 				<= Nav_main $mol_view

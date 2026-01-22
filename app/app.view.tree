@@ -31,7 +31,7 @@ $bog_bzrl_app $mol_page
 				<= Home_icon $mol_button_minor
 					sub /
 						<= home_icon_img $mol_image
-							uri \bog/bzrl/assets/HomeRent Design System Frame 71.png
+							uri \bog/bzrl/assets/HomeRent-Design-System-Frame-71.png
 		<= Actions $mol_view
 			sub /
 				<= Profile $bog_bzrl_app_profile
@@ -95,7 +95,7 @@ $bog_bzrl_app $mol_page
 		<= Team? $bog_bzrl_app_hero_team
 			attr *
 				id \team
-			photo \bog/bzrl/assets/HomeRent Design System Frame 77.png
+			photo \bog/bzrl/assets/HomeRent-Design-System Frame 77.png
 		<= Footer? $bog_bzrl_app_footer
 			attr *
 				id \contact

@@ -25,7 +25,7 @@ $bog_bzrl_app_hero_promo $bog_bzrl_app_hero
 	title @ \Apartments in Kazan without brokers
 	description @ \Only owner-listed apartments, arranged directly. We verify manually and handle data carefully.
 	action_label @ \View apartments
-	media_uri \bog/bzrl/assets/HomeRent Design System Rectangle.png
+	media_uri \bog/bzrl/assets/HomeRent-Design-System Rectangle.png
 
 $bog_bzrl_app_hero_privacy $bog_bzrl_app_hero
 	variant \privacy

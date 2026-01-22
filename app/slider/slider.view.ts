@@ -3,9 +3,9 @@ namespace $.$$ {
 		@$mol_mem
 		slides_data() {
 			return [
-				'/bog/bzrl/assets/HomeRent Design System Frame 76.png',
-				'/bog/bzrl/assets/HomeRent Design System Frame 76 (1).png',
-				'/bog/bzrl/assets/HomeRent Design System Frame 76.png',
+				'/bog/bzrl/assets/HomeRent-Design-System Frame 76.png',
+				'/bog/bzrl/assets/HomeRent-Design-System Frame 76 (1).png',
+				'/bog/bzrl/assets/HomeRent-Design-System Frame 76.png',
 			]
 		}
 
