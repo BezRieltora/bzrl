@@ -254,13 +254,13 @@ namespace $.$$ {
 
 		// Navigation handlers for header buttons
 		@$mol_action
-		let_click() {
+		let_click(next?: any) {
 			this.tab('let')
 			this.section('let')
 		}
 
 		@$mol_action
-		rent_click() {
+		rent_click(next?: any) {
 			this.tab('rent')
 			this.section('rent')
 		}
