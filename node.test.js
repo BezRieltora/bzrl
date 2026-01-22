@@ -10107,7 +10107,7 @@ var $;
 			return (this.$.$mol_locale.text("$bog_bzrl_app_hero_promo_action_label"));
 		}
 		media_uri(){
-			return "bog/bzrl/assets/HomeRent Design System Rectangle.png";
+			return "bog/bzrl/assets/HomeRent-Design-System Rectangle.png";
 		}
 	};
 	($.$bog_bzrl_app_hero_privacy) = class $bog_bzrl_app_hero_privacy extends ($.$bog_bzrl_app_hero) {
@@ -10752,9 +10752,9 @@ var $;
         class $bog_bzrl_app_slider extends $.$bog_bzrl_app_slider {
             slides_data() {
                 return [
-                    '/bog/bzrl/assets/HomeRent Design System Frame 76.png',
-                    '/bog/bzrl/assets/HomeRent Design System Frame 76 (1).png',
-                    '/bog/bzrl/assets/HomeRent Design System Frame 76.png',
+                    '/bog/bzrl/assets/HomeRent-Design-System Frame 76.png',
+                    '/bog/bzrl/assets/HomeRent-Design-System Frame 76 (1).png',
+                    '/bog/bzrl/assets/HomeRent-Design-System Frame 76.png',
                 ];
             }
             current_index(next) {
@@ -11367,7 +11367,7 @@ var $;
 		}
 		Ig_icon(){
 			const obj = new this.$.$mol_image();
-			(obj.uri) = () => ("bog/bzrl/assets/HomeRent Design System Frame 82.png");
+			(obj.uri) = () => ("bog/bzrl/assets/HomeRent-Design-System Frame 82.png");
 			return obj;
 		}
 		Ig(){
@@ -11378,7 +11378,7 @@ var $;
 		}
 		Vk_icon(){
 			const obj = new this.$.$mol_image();
-			(obj.uri) = () => ("bog/bzrl/assets/HomeRent Design System Frame 83.png");
+			(obj.uri) = () => ("bog/bzrl/assets/HomeRent-Design-System Frame 83.png");
 			return obj;
 		}
 		Vk(){
@@ -11389,7 +11389,7 @@ var $;
 		}
 		Tg_icon(){
 			const obj = new this.$.$mol_image();
-			(obj.uri) = () => ("bog/bzrl/assets/HomeRent Design System Frame 84.png");
+			(obj.uri) = () => ("bog/bzrl/assets/HomeRent-Design-System Frame 84.png");
 			return obj;
 		}
 		Tg(){
@@ -11906,7 +11906,7 @@ var $;
 		}
 		home_icon_img(){
 			const obj = new this.$.$mol_image();
-			(obj.uri) = () => ("bog/bzrl/assets/HomeRent Design System Frame 71.png");
+			(obj.uri) = () => ("bog/bzrl/assets/HomeRent-Design-System-Frame-71.png");
 			return obj;
 		}
 		Home_icon(){
@@ -12116,7 +12116,7 @@ var $;
 			if(next !== undefined) return next;
 			const obj = new this.$.$bog_bzrl_app_hero_team();
 			(obj.attr) = () => ({"id": "team"});
-			(obj.photo) = () => ("bog/bzrl/assets/HomeRent Design System Frame 77.png");
+			(obj.photo) = () => ("bog/bzrl/assets/HomeRent-Design-System Frame 77.png");
 			return obj;
 		}
 		Footer(next){
@@ -12501,6 +12501,9 @@ var $;
         $mol_style_define($bog_bzrl_app, {
             maxWidth: 'none',
             margin: 'auto',
+            background: {
+                color: '#f5f5f5',
+            },
             Head: {
                 justify: {
                     content: 'space-between',
@@ -12669,10 +12672,19 @@ var $;
             },
             Title_section: {
                 font: {
-                    size: '2rem',
-                    weight: 600,
+                    family: 'PT Root UI, sans-serif',
+                    size: '4rem',
+                    weight: 700,
                 },
+                lineHeight: '1',
+                letterSpacing: '-0.03em',
                 textAlign: 'center',
+                color: '#4C4C4C',
+                maxWidth: '787px',
+                margin: {
+                    left: 'auto',
+                    right: 'auto',
+                },
             },
             Apartments: {
                 display: 'grid',
