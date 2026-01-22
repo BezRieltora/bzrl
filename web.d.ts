@@ -4432,146 +4432,144 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_button_major__sub_bog_bzrl_app_9 = $mol_type_enforce<
+	type $mol_button_major__click_bog_bzrl_app_9 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app['rent_click'] >
+		,
+		ReturnType< $mol_button_major['click'] >
+	>
+	type $mol_button_major__sub_bog_bzrl_app_10 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_major['sub'] >
 	>
-	type $mol_button_minor__sub_bog_bzrl_app_10 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_bzrl_app_11 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app['let_click'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__sub_bog_bzrl_app_12 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_view__sub_bog_bzrl_app_11 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_image__uri_bog_bzrl_app_12 = $mol_type_enforce<
+	type $mol_image__uri_bog_bzrl_app_13 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_image['uri'] >
 	>
-	type $mol_button_minor__sub_bog_bzrl_app_13 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_bzrl_app_14 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
-	>
-	type $bog_bzrl_app_profile__theme_auto_bog_bzrl_app_14 = $mol_type_enforce<
-		ReturnType< $bog_bzrl_app['Theme'] >
-		,
-		ReturnType< $bog_bzrl_app_profile['theme_auto'] >
 	>
 	type $mol_view__sub_bog_bzrl_app_15 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_paragraph__title_bog_bzrl_app_16 = $mol_type_enforce<
-		string
+	type $bog_bzrl_app_profile__theme_auto_bog_bzrl_app_16 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app['Theme'] >
 		,
-		ReturnType< $mol_paragraph['title'] >
+		ReturnType< $bog_bzrl_app_profile['theme_auto'] >
 	>
-	type $bog_bzrl_app_filter__district_bog_bzrl_app_17 = $mol_type_enforce<
-		ReturnType< $bog_bzrl_app['filter_district'] >
-		,
-		ReturnType< $bog_bzrl_app_filter['district'] >
-	>
-	type $bog_bzrl_app_filter__rooms_bog_bzrl_app_18 = $mol_type_enforce<
-		ReturnType< $bog_bzrl_app['filter_rooms'] >
-		,
-		ReturnType< $bog_bzrl_app_filter['rooms'] >
-	>
-	type $bog_bzrl_app_filter__price_from_bog_bzrl_app_19 = $mol_type_enforce<
-		ReturnType< $bog_bzrl_app['filter_price'] >
-		,
-		ReturnType< $bog_bzrl_app_filter['price_from'] >
-	>
-	type $bog_bzrl_app_filter__search_bog_bzrl_app_20 = $mol_type_enforce<
-		ReturnType< $bog_bzrl_app['apartments_search'] >
-		,
-		ReturnType< $bog_bzrl_app_filter['search'] >
-	>
-	type $bog_bzrl_app_card__district_bog_bzrl_app_21 = $mol_type_enforce<
-		ReturnType< $bog_bzrl_app['apartment_district'] >
-		,
-		ReturnType< $bog_bzrl_app_card['district'] >
-	>
-	type $bog_bzrl_app_card__photo_bog_bzrl_app_22 = $mol_type_enforce<
-		ReturnType< $bog_bzrl_app['apartment_photo'] >
-		,
-		ReturnType< $bog_bzrl_app_card['photo'] >
-	>
-	type $bog_bzrl_app_card__area_bog_bzrl_app_23 = $mol_type_enforce<
-		ReturnType< $bog_bzrl_app['apartment_area'] >
-		,
-		ReturnType< $bog_bzrl_app_card['area'] >
-	>
-	type $bog_bzrl_app_card__floor_bog_bzrl_app_24 = $mol_type_enforce<
-		ReturnType< $bog_bzrl_app['apartment_floor'] >
-		,
-		ReturnType< $bog_bzrl_app_card['floor'] >
-	>
-	type $bog_bzrl_app_card__price_bog_bzrl_app_25 = $mol_type_enforce<
-		ReturnType< $bog_bzrl_app['apartment_price'] >
-		,
-		ReturnType< $bog_bzrl_app_card['price'] >
-	>
-	type $mol_view__attr_bog_bzrl_app_26 = $mol_type_enforce<
-		({ 
-			'id': string,
-		}) 
-		,
-		ReturnType< $mol_view['attr'] >
-	>
-	type $mol_view__sub_bog_bzrl_app_27 = $mol_type_enforce<
-		ReturnType< $bog_bzrl_app['apartment_rows'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $bog_bzrl_app_hero_promo__action_bog_bzrl_app_28 = $mol_type_enforce<
-		ReturnType< $bog_bzrl_app['promo_action'] >
-		,
-		ReturnType< $bog_bzrl_app_hero_promo['action'] >
-	>
-	type $mol_view__attr_bog_bzrl_app_29 = $mol_type_enforce<
-		({ 
-			'id': string,
-		}) 
-		,
-		ReturnType< $mol_view['attr'] >
-	>
-	type $mol_view__sub_bog_bzrl_app_30 = $mol_type_enforce<
+	type $mol_view__sub_bog_bzrl_app_17 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $bog_bzrl_app_hero_let__action_bog_bzrl_app_31 = $mol_type_enforce<
-		ReturnType< $bog_bzrl_app['let_action'] >
+	type $mol_paragraph__title_bog_bzrl_app_18 = $mol_type_enforce<
+		string
 		,
-		ReturnType< $bog_bzrl_app_hero_let['action'] >
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $bog_bzrl_app_filter__district_bog_bzrl_app_19 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app['filter_district'] >
+		,
+		ReturnType< $bog_bzrl_app_filter['district'] >
+	>
+	type $bog_bzrl_app_filter__rooms_bog_bzrl_app_20 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app['filter_rooms'] >
+		,
+		ReturnType< $bog_bzrl_app_filter['rooms'] >
+	>
+	type $bog_bzrl_app_filter__price_from_bog_bzrl_app_21 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app['filter_price'] >
+		,
+		ReturnType< $bog_bzrl_app_filter['price_from'] >
+	>
+	type $bog_bzrl_app_filter__search_bog_bzrl_app_22 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app['apartments_search'] >
+		,
+		ReturnType< $bog_bzrl_app_filter['search'] >
+	>
+	type $bog_bzrl_app_card__district_bog_bzrl_app_23 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app['apartment_district'] >
+		,
+		ReturnType< $bog_bzrl_app_card['district'] >
+	>
+	type $bog_bzrl_app_card__photo_bog_bzrl_app_24 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app['apartment_photo'] >
+		,
+		ReturnType< $bog_bzrl_app_card['photo'] >
+	>
+	type $bog_bzrl_app_card__area_bog_bzrl_app_25 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app['apartment_area'] >
+		,
+		ReturnType< $bog_bzrl_app_card['area'] >
+	>
+	type $bog_bzrl_app_card__floor_bog_bzrl_app_26 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app['apartment_floor'] >
+		,
+		ReturnType< $bog_bzrl_app_card['floor'] >
+	>
+	type $bog_bzrl_app_card__price_bog_bzrl_app_27 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app['apartment_price'] >
+		,
+		ReturnType< $bog_bzrl_app_card['price'] >
+	>
+	type $mol_view__attr_bog_bzrl_app_28 = $mol_type_enforce<
+		({ 
+			'id': string,
+		}) 
+		,
+		ReturnType< $mol_view['attr'] >
+	>
+	type $mol_view__sub_bog_bzrl_app_29 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app['apartment_rows'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $bog_bzrl_app_hero_promo__action_bog_bzrl_app_30 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app['promo_action'] >
+		,
+		ReturnType< $bog_bzrl_app_hero_promo['action'] >
+	>
+	type $mol_view__attr_bog_bzrl_app_31 = $mol_type_enforce<
+		({ 
+			'id': string,
+		}) 
+		,
+		ReturnType< $mol_view['attr'] >
 	>
 	type $mol_view__sub_bog_bzrl_app_32 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_paragraph__title_bog_bzrl_app_33 = $mol_type_enforce<
-		string
+	type $bog_bzrl_app_hero_let__action_bog_bzrl_app_33 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app['let_action'] >
 		,
-		ReturnType< $mol_paragraph['title'] >
+		ReturnType< $bog_bzrl_app_hero_let['action'] >
 	>
 	type $mol_view__sub_bog_bzrl_app_34 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__attr_bog_bzrl_app_35 = $mol_type_enforce<
-		({ 
-			'id': string,
-		}) 
+	type $mol_paragraph__title_bog_bzrl_app_35 = $mol_type_enforce<
+		string
 		,
-		ReturnType< $mol_view['attr'] >
+		ReturnType< $mol_paragraph['title'] >
 	>
 	type $mol_view__sub_bog_bzrl_app_36 = $mol_type_enforce<
 		readonly(any)[]
@@ -4590,41 +4588,53 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_paragraph__title_bog_bzrl_app_39 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_view__sub_bog_bzrl_app_40 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__attr_bog_bzrl_app_41 = $mol_type_enforce<
+	type $mol_view__attr_bog_bzrl_app_39 = $mol_type_enforce<
 		({ 
 			'id': string,
 		}) 
 		,
 		ReturnType< $mol_view['attr'] >
 	>
+	type $mol_view__sub_bog_bzrl_app_40 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_bzrl_app_41 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
 	type $mol_view__sub_bog_bzrl_app_42 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $bog_bzrl_app_hero_team__attr_bog_bzrl_app_43 = $mol_type_enforce<
+	type $mol_view__attr_bog_bzrl_app_43 = $mol_type_enforce<
+		({ 
+			'id': string,
+		}) 
+		,
+		ReturnType< $mol_view['attr'] >
+	>
+	type $mol_view__sub_bog_bzrl_app_44 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $bog_bzrl_app_hero_team__attr_bog_bzrl_app_45 = $mol_type_enforce<
 		({ 
 			'id': string,
 		}) 
 		,
 		ReturnType< $bog_bzrl_app_hero_team['attr'] >
 	>
-	type $bog_bzrl_app_hero_team__photo_bog_bzrl_app_44 = $mol_type_enforce<
+	type $bog_bzrl_app_hero_team__photo_bog_bzrl_app_46 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_bzrl_app_hero_team['photo'] >
 	>
-	type $bog_bzrl_app_footer__attr_bog_bzrl_app_45 = $mol_type_enforce<
+	type $bog_bzrl_app_footer__attr_bog_bzrl_app_47 = $mol_type_enforce<
 		({ 
 			'id': string,
 		}) 
@@ -4642,9 +4652,9 @@ declare namespace $ {
 		Rent_button( ): $mol_button_major
 		let_label( ): string
 		Let_link( ): $mol_button_minor
-		Nav( ): $mol_view
 		home_icon_img( ): $mol_image
 		Home_icon( ): $mol_button_minor
+		Nav( ): $mol_view
 		Profile( ): $bog_bzrl_app_profile
 		Actions( ): $mol_view
 		Title_section( ): $mol_paragraph
@@ -4685,6 +4695,8 @@ declare namespace $ {
 		Team( next?: $bog_bzrl_app_hero_team ): $bog_bzrl_app_hero_team
 		Footer( next?: $bog_bzrl_app_footer ): $bog_bzrl_app_footer
 		title( ): string
+		rent_click( next?: any ): any
+		let_click( next?: any ): any
 		plugins( ): readonly(any)[]
 		head( ): readonly(any)[]
 		body( ): readonly(any)[]
@@ -4725,6 +4737,8 @@ declare namespace $.$$ {
         let_action(): void;
         Rent_section(): $mol_view;
         Let_section(): $mol_view;
+        let_click(next?: any): void;
+        rent_click(next?: any): void;
         private parse_price;
     }
     export {};

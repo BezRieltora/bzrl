@@ -11900,6 +11900,7 @@ var $;
 		}
 		Rent_button(){
 			const obj = new this.$.$mol_button_major();
+			(obj.click) = (next) => ((this.rent_click(next)));
 			(obj.sub) = () => ([(this.rent_label())]);
 			return obj;
 		}
@@ -11908,12 +11909,8 @@ var $;
 		}
 		Let_link(){
 			const obj = new this.$.$mol_button_minor();
+			(obj.click) = (next) => ((this.let_click(next)));
 			(obj.sub) = () => ([(this.let_label())]);
-			return obj;
-		}
-		Nav(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Rent_button()), (this.Let_link())]);
 			return obj;
 		}
 		home_icon_img(){
@@ -11926,6 +11923,15 @@ var $;
 			(obj.sub) = () => ([(this.home_icon_img())]);
 			return obj;
 		}
+		Nav(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Rent_button()), 
+				(this.Let_link()), 
+				(this.Home_icon())
+			]);
+			return obj;
+		}
 		Profile(){
 			const obj = new this.$.$bog_bzrl_app_profile();
 			(obj.theme_auto) = () => ((this.Theme()));
@@ -11933,7 +11939,7 @@ var $;
 		}
 		Actions(){
 			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Home_icon()), (this.Profile())]);
+			(obj.sub) = () => ([(this.Profile())]);
 			return obj;
 		}
 		Title_section(){
@@ -12131,6 +12137,14 @@ var $;
 		title(){
 			return (this.$.$mol_locale.text("$bog_bzrl_app_title"));
 		}
+		rent_click(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		let_click(next){
+			if(next !== undefined) return next;
+			return null;
+		}
 		plugins(){
 			return [(this.Theme())];
 		}
@@ -12159,9 +12173,9 @@ var $;
 	($mol_mem(($.$bog_bzrl_app.prototype), "Logo"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "Rent_button"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "Let_link"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Nav"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "home_icon_img"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "Home_icon"));
+	($mol_mem(($.$bog_bzrl_app.prototype), "Nav"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "Profile"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "Actions"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "Title_section"));
@@ -12195,6 +12209,8 @@ var $;
 	($mol_mem(($.$bog_bzrl_app.prototype), "Benefits"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "Team"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "Footer"));
+	($mol_mem(($.$bog_bzrl_app.prototype), "rent_click"));
+	($mol_mem(($.$bog_bzrl_app.prototype), "let_click"));
 
 
 ;
@@ -12406,6 +12422,14 @@ var $;
             Let_section() {
                 return this.tab() === 'let' ? super.Let_section() : null;
             }
+            let_click(next) {
+                this.tab('let');
+                this.section('let');
+            }
+            rent_click(next) {
+                this.tab('rent');
+                this.section('rent');
+            }
             parse_price(value) {
                 const normalized = value.replace(/[^\d]/g, '');
                 if (!normalized)
@@ -12467,6 +12491,12 @@ var $;
         __decorate([
             $mol_action
         ], $bog_bzrl_app.prototype, "let_action", null);
+        __decorate([
+            $mol_action
+        ], $bog_bzrl_app.prototype, "let_click", null);
+        __decorate([
+            $mol_action
+        ], $bog_bzrl_app.prototype, "rent_click", null);
         $$.$bog_bzrl_app = $bog_bzrl_app;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
