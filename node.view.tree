@@ -43,6 +43,23 @@ $bog_theme_auto $mol_plugin
 	theme_set? null
 	attr * mol_theme <= theme \
 
+$mol_image $mol_view
+	dom_name \img
+	attr *any
+		^
+		src <= uri \
+		title <= hint
+		alt <= title \
+		loading <= loading \lazy
+		decoding <= decoding \async
+		crossOrigin <= cors null
+		width <= natural_width 0
+		height <= natural_height 0
+	event *any
+		load? <=> load? null
+	minimal_width 16
+	minimal_height 16
+
 $mol_speck $mol_view
 	theme \$mol_theme_accent
 	sub /
@@ -75,34 +92,8 @@ $mol_button_typed $mol_button
 
 $mol_button_minor $mol_button_typed
 
-$mol_check $mol_button_minor
-	attr *
-		^
-		mol_check_checked <= checked? false
-		aria-checked <= aria_checked \false
-		role <= aria_role \checkbox
-	sub /$mol_view_content
-		<= Icon null
-		<= label /
-			<= Title $mol_view
-				sub /
-					<= title \
-
-$mol_check_list $mol_view
-	dictionary *
-	Option* $mol_check
-		checked? <=> option_checked*? false
-		label <= option_label* /
-			<= option_title* \
-		enabled <= option_enabled* <= enabled true
-		hint <= option_hint* \
-		minimal_height 24
-	options *
-	keys /string
-	sub <= items /$mol_check
-
-$mol_switch $mol_check_list
-	value? \
+$mol_button_major $mol_button_minor
+	theme \$mol_theme_base
 
 $mol_svg $mol_view
 	dom_name \svg
@@ -401,6 +392,19 @@ $bog_bzrl_app_profile $mol_view
 									<= Menu_settings_icon $mol_icon_settings
 									<= Menu_settings_label @ \Settings
 
+$mol_check $mol_button_minor
+	attr *
+		^
+		mol_check_checked <= checked? false
+		aria-checked <= aria_checked \false
+		role <= aria_role \checkbox
+	sub /$mol_view_content
+		<= Icon null
+		<= label /
+			<= Title $mol_view
+				sub /
+					<= title \
+
 $mol_pick $mol_pop
 	event *
 		^
@@ -515,8 +519,21 @@ $mol_select $mol_pick
 		enabled <= enabled true
 	Trigger_icon $mol_icon_dots_vertical
 
-$mol_button_major $mol_button_minor
-	theme \$mol_theme_base
+$mol_check_list $mol_view
+	dictionary *
+	Option* $mol_check
+		checked? <=> option_checked*? false
+		label <= option_label* /
+			<= option_title* \
+		enabled <= option_enabled* <= enabled true
+		hint <= option_hint* \
+		minimal_height 24
+	options *
+	keys /string
+	sub <= items /$mol_check
+
+$mol_switch $mol_check_list
+	value? \
 
 $bog_bzrl_app_filter $mol_view
 	sub /
@@ -542,23 +559,6 @@ $bog_bzrl_app_filter $mol_view
 			click? <=> search? null
 			sub /
 				<= search_label @ \View apartments
-
-$mol_image $mol_view
-	dom_name \img
-	attr *any
-		^
-		src <= uri \
-		title <= hint
-		alt <= title \
-		loading <= loading \lazy
-		decoding <= decoding \async
-		crossOrigin <= cors null
-		width <= natural_width 0
-		height <= natural_height 0
-	event *any
-		load? <=> load? null
-	minimal_width 16
-	minimal_height 16
 
 $bog_bzrl_app_card $mol_view
 	attr *
@@ -855,22 +855,38 @@ $bog_bzrl_app $mol_page
 	title @ \HomeRent
 	plugins /
 		<= Theme $bog_theme_auto
-			theme_light \$mol_theme_light
-			theme_dark \$mol_theme_ainews_dark
+			theme_light \$mol_theme_homerent_light
+			theme_dark \$mol_theme_homerent_dark
 			themes_default /string
-				\$mol_theme_light
-				\$mol_theme_ainews_dark
+				\$mol_theme_homerent_light
+				\$mol_theme_homerent_dark
 	head /
 		<= Logo $mol_view
 			sub /
-				<= logo_text \HomeRent
-		<= Tabs $mol_switch
-			value? <=> tab? \rent
-			options *
-				rent @ \Rent
-				let @ \Let
-		<= Profile $bog_bzrl_app_profile
-			theme_auto <= Theme
+				<= Logo_icon $mol_image
+					uri \bog/bzrl/assets/favicon.png
+				<= Logo_text $mol_view
+					sub /
+						<= logo_home \home
+						<= logo_rent \rent
+		<= Nav $mol_view
+			sub /
+				<= Rent_button $mol_button_major
+					- click? <=> rent_click?
+					sub /
+						<= rent_label @ \Снять
+				<= Let_link $mol_button_minor
+					- click? <=> let_click?
+					sub /
+						<= let_label @ \Сдать
+		<= Actions $mol_view
+			sub /
+				<= Home_icon $mol_button_minor
+					sub /
+						<= home_icon_img $mol_image
+							uri \bog/bzrl/assets/HomeRent Design System Frame 71.png
+				<= Profile $bog_bzrl_app_profile
+					theme_auto <= Theme
 	body /
 		<= Rent_section? $mol_view
 			attr *

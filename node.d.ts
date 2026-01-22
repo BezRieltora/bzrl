@@ -398,6 +398,10 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    function $mol_array_chunks<Item>(array: readonly Item[], rule: number | ((item: Item, index: number) => boolean)): Item[][];
+}
+
+declare namespace $ {
     function $mol_tree2_from_json(json: any, span?: $mol_span): $mol_tree2;
 }
 
@@ -1531,7 +1535,7 @@ declare namespace $.$$ {
 
 declare namespace $ {
     const $bog_theme: Record<"image" | "line" | "text" | "field" | "focus" | "back" | "hover" | "card" | "current" | "special" | "control" | "shade" | "spirit", $mol_style_func<"var", unknown>>;
-    const $bog_theme_names: readonly ["$mol_theme_light", "$mol_theme_dark", "$mol_theme_monefro_light", "$mol_theme_monefro_dark", "$mol_theme_upwork", "$mol_theme_ainews_light", "$mol_theme_ainews_dark"];
+    const $bog_theme_names: readonly ["$mol_theme_light", "$mol_theme_dark", "$mol_theme_monefro_light", "$mol_theme_monefro_dark", "$mol_theme_homerent_light", "$mol_theme_homerent_dark", "$mol_theme_upwork", "$mol_theme_ainews_light", "$mol_theme_ainews_dark"];
     type $bog_theme_name = (typeof $bog_theme_names)[number];
 }
 
@@ -1566,6 +1570,52 @@ declare namespace $.$$ {
         theme_next(): void;
         theme_prev(): void;
         theme_set(index: number): void;
+    }
+}
+
+declare namespace $ {
+
+	export class $mol_image extends $mol_view {
+		uri( ): string
+		title( ): string
+		loading( ): string
+		decoding( ): string
+		cors( ): any
+		natural_width( ): number
+		natural_height( ): number
+		load( next?: any ): any
+		dom_name( ): string
+		attr( ): Record<string, any> & ReturnType< $mol_view['attr'] >
+		event( ): Record<string, any>
+		minimal_width( ): number
+		minimal_height( ): number
+	}
+	
+}
+
+//# sourceMappingURL=image.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_image extends $.$mol_image {
+        natural_width(next?: null): number;
+        natural_height(next?: null): number;
+        load(): void;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    interface $mol_locale_dict {
+        [key: string]: string;
+    }
+    class $mol_locale extends $mol_object {
+        static lang_default(): string;
+        static lang(next?: string): string;
+        static source(lang: string): any;
+        static texts(lang: string, next?: $mol_locale_dict): $mol_locale_dict;
+        static text(key: string): string;
+        static warn(key: string): null;
     }
 }
 
@@ -1779,144 +1829,13 @@ declare namespace $ {
 
 declare namespace $ {
 
-	type $mol_view__sub_mol_check_1 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	export class $mol_check extends $mol_button_minor {
-		checked( next?: boolean ): boolean
-		aria_checked( ): string
-		aria_role( ): string
-		Icon( ): any
-		title( ): string
-		Title( ): $mol_view
-		label( ): readonly(any)[]
-		attr( ): ({ 
-			'mol_check_checked': ReturnType< $mol_check['checked'] >,
-			'aria-checked': ReturnType< $mol_check['aria_checked'] >,
-			'role': ReturnType< $mol_check['aria_role'] >,
-		})  & ReturnType< $mol_button_minor['attr'] >
-		sub( ): readonly($mol_view_content)[]
+	export class $mol_button_major extends $mol_button_minor {
+		theme( ): string
 	}
 	
 }
 
-//# sourceMappingURL=check.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $mol_check extends $.$mol_check {
-        click(next?: Event): void;
-        sub(): readonly $mol_view_content[];
-        label(): readonly any[];
-        aria_checked(): string;
-    }
-}
-
-declare namespace $ {
-
-	type $mol_check__checked_mol_check_list_1 = $mol_type_enforce<
-		ReturnType< $mol_check_list['option_checked'] >
-		,
-		ReturnType< $mol_check['checked'] >
-	>
-	type $mol_check__label_mol_check_list_2 = $mol_type_enforce<
-		ReturnType< $mol_check_list['option_label'] >
-		,
-		ReturnType< $mol_check['label'] >
-	>
-	type $mol_check__enabled_mol_check_list_3 = $mol_type_enforce<
-		ReturnType< $mol_check_list['option_enabled'] >
-		,
-		ReturnType< $mol_check['enabled'] >
-	>
-	type $mol_check__hint_mol_check_list_4 = $mol_type_enforce<
-		ReturnType< $mol_check_list['option_hint'] >
-		,
-		ReturnType< $mol_check['hint'] >
-	>
-	type $mol_check__minimal_height_mol_check_list_5 = $mol_type_enforce<
-		number
-		,
-		ReturnType< $mol_check['minimal_height'] >
-	>
-	export class $mol_check_list extends $mol_view {
-		option_checked( id: any, next?: boolean ): boolean
-		option_title( id: any): string
-		option_label( id: any): readonly(any)[]
-		enabled( ): boolean
-		option_enabled( id: any): ReturnType< $mol_check_list['enabled'] >
-		option_hint( id: any): string
-		items( ): readonly($mol_check)[]
-		dictionary( ): Record<string, any>
-		Option( id: any): $mol_check
-		options( ): Record<string, any>
-		keys( ): readonly(string)[]
-		sub( ): ReturnType< $mol_check_list['items'] >
-	}
-	
-}
-
-//# sourceMappingURL=list.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $mol_check_list extends $.$mol_check_list {
-        options(): {
-            [key: string]: string;
-        };
-        dictionary(next?: Record<string, boolean>): Record<string, boolean>;
-        option_checked(id: string, next?: boolean | null): boolean;
-        keys(): readonly string[];
-        items(): $.$mol_check[];
-        option_title(key: string): string;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-    class $mol_state_session<Value> extends $mol_object {
-        static 'native()': Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
-        static native(): Storage | {
-            getItem(key: string): any;
-            setItem(key: string, value: string): void;
-            removeItem(key: string): void;
-        };
-        static value<Value>(key: string, next?: Value): Value;
-        prefix(): string;
-        value(key: string, next?: Value): Value;
-    }
-}
-
-declare namespace $ {
-
-	export class $mol_switch extends $mol_check_list {
-		value( next?: string ): string
-	}
-	
-}
-
-//# sourceMappingURL=switch.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $mol_switch extends $.$mol_switch {
-        value(next?: string): string;
-        option_checked(key: string, next?: boolean): boolean;
-    }
-}
-
-declare namespace $ {
-    interface $mol_locale_dict {
-        [key: string]: string;
-    }
-    class $mol_locale extends $mol_object {
-        static lang_default(): string;
-        static lang(next?: string): string;
-        static source(lang: string): any;
-        static texts(lang: string, next?: $mol_locale_dict): $mol_locale_dict;
-        static text(key: string): string;
-        static warn(key: string): null;
-    }
-}
-
+//# sourceMappingURL=major.view.tree.d.ts.map
 declare namespace $ {
     class $mol_state_time extends $mol_object {
         static task(precision: number, reset?: null): $mol_after_timeout | $mol_after_frame;
@@ -2425,8 +2344,8 @@ declare namespace $ {
 declare namespace $.$$ {
     class $bog_theme_picker extends $.$bog_theme_picker {
         theme_rows(): $.$bog_theme_picker_row[];
-        filtered_themes(): ("$mol_theme_light" | "$mol_theme_dark" | "$mol_theme_monefro_light" | "$mol_theme_monefro_dark" | "$mol_theme_upwork" | "$mol_theme_ainews_light" | "$mol_theme_ainews_dark")[];
-        theme_name(index: number): "$mol_theme_light" | "$mol_theme_dark" | "$mol_theme_monefro_light" | "$mol_theme_monefro_dark" | "$mol_theme_upwork" | "$mol_theme_ainews_light" | "$mol_theme_ainews_dark";
+        filtered_themes(): ("$mol_theme_light" | "$mol_theme_dark" | "$mol_theme_monefro_light" | "$mol_theme_monefro_dark" | "$mol_theme_homerent_light" | "$mol_theme_homerent_dark" | "$mol_theme_upwork" | "$mol_theme_ainews_light" | "$mol_theme_ainews_dark")[];
+        theme_name(index: number): "$mol_theme_light" | "$mol_theme_dark" | "$mol_theme_monefro_light" | "$mol_theme_monefro_dark" | "$mol_theme_homerent_light" | "$mol_theme_homerent_dark" | "$mol_theme_upwork" | "$mol_theme_ainews_light" | "$mol_theme_ainews_dark";
         theme_focused(index: number): boolean;
         theme_select(index: number, event?: MouseEvent): null;
         theme_hover(index: number, event?: PointerEvent): null;
@@ -2957,6 +2876,53 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+    class $mol_dom_event<EventType extends Event> extends $mol_object {
+        readonly native: EventType;
+        constructor(native: EventType);
+        prevented(next?: boolean): boolean;
+        static wrap<EventType extends Event>(event: EventType): $mol_dom_event<EventType>;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	type $mol_view__sub_mol_check_1 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $mol_check extends $mol_button_minor {
+		checked( next?: boolean ): boolean
+		aria_checked( ): string
+		aria_role( ): string
+		Icon( ): any
+		title( ): string
+		Title( ): $mol_view
+		label( ): readonly(any)[]
+		attr( ): ({ 
+			'mol_check_checked': ReturnType< $mol_check['checked'] >,
+			'aria-checked': ReturnType< $mol_check['aria_checked'] >,
+			'role': ReturnType< $mol_check['aria_role'] >,
+		})  & ReturnType< $mol_button_minor['attr'] >
+		sub( ): readonly($mol_view_content)[]
+	}
+	
+}
+
+//# sourceMappingURL=check.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_check extends $.$mol_check {
+        click(next?: Event): void;
+        sub(): readonly $mol_view_content[];
+        label(): readonly any[];
+        aria_checked(): string;
+    }
+}
+
+declare namespace $ {
 
 	type $mol_check__minimal_width_mol_pick_1 = $mol_type_enforce<
 		number
@@ -3211,10 +3177,10 @@ declare namespace $ {
 //# sourceMappingURL=search.view.tree.d.ts.map
 declare namespace $.$$ {
     class $mol_search extends $.$mol_search {
-        anchor_content(): ($mol_button_minor | $.$mol_string)[];
+        anchor_content(): ($.$mol_string | $mol_button_minor)[];
         suggests_showed(next?: boolean): boolean;
         suggest_selected(next?: string): void;
-        nav_components(): ($mol_button_minor | $.$mol_string)[];
+        nav_components(): ($.$mol_string | $mol_button_minor)[];
         nav_focused(component?: $mol_view): $mol_view | $.$mol_string | null;
         suggest_label(key: string): string;
         menu_items(): $mol_button_minor[];
@@ -3369,17 +3335,96 @@ declare namespace $ {
 }
 
 declare namespace $ {
-}
 
-declare namespace $ {
-
-	export class $mol_button_major extends $mol_button_minor {
-		theme( ): string
+	type $mol_check__checked_mol_check_list_1 = $mol_type_enforce<
+		ReturnType< $mol_check_list['option_checked'] >
+		,
+		ReturnType< $mol_check['checked'] >
+	>
+	type $mol_check__label_mol_check_list_2 = $mol_type_enforce<
+		ReturnType< $mol_check_list['option_label'] >
+		,
+		ReturnType< $mol_check['label'] >
+	>
+	type $mol_check__enabled_mol_check_list_3 = $mol_type_enforce<
+		ReturnType< $mol_check_list['option_enabled'] >
+		,
+		ReturnType< $mol_check['enabled'] >
+	>
+	type $mol_check__hint_mol_check_list_4 = $mol_type_enforce<
+		ReturnType< $mol_check_list['option_hint'] >
+		,
+		ReturnType< $mol_check['hint'] >
+	>
+	type $mol_check__minimal_height_mol_check_list_5 = $mol_type_enforce<
+		number
+		,
+		ReturnType< $mol_check['minimal_height'] >
+	>
+	export class $mol_check_list extends $mol_view {
+		option_checked( id: any, next?: boolean ): boolean
+		option_title( id: any): string
+		option_label( id: any): readonly(any)[]
+		enabled( ): boolean
+		option_enabled( id: any): ReturnType< $mol_check_list['enabled'] >
+		option_hint( id: any): string
+		items( ): readonly($mol_check)[]
+		dictionary( ): Record<string, any>
+		Option( id: any): $mol_check
+		options( ): Record<string, any>
+		keys( ): readonly(string)[]
+		sub( ): ReturnType< $mol_check_list['items'] >
 	}
 	
 }
 
-//# sourceMappingURL=major.view.tree.d.ts.map
+//# sourceMappingURL=list.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_check_list extends $.$mol_check_list {
+        options(): {
+            [key: string]: string;
+        };
+        dictionary(next?: Record<string, boolean>): Record<string, boolean>;
+        option_checked(id: string, next?: boolean | null): boolean;
+        keys(): readonly string[];
+        items(): $.$mol_check[];
+        option_title(key: string): string;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_state_session<Value> extends $mol_object {
+        static 'native()': Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
+        static native(): Storage | {
+            getItem(key: string): any;
+            setItem(key: string, value: string): void;
+            removeItem(key: string): void;
+        };
+        static value<Value>(key: string, next?: Value): Value;
+        prefix(): string;
+        value(key: string, next?: Value): Value;
+    }
+}
+
+declare namespace $ {
+
+	export class $mol_switch extends $mol_check_list {
+		value( next?: string ): string
+	}
+	
+}
+
+//# sourceMappingURL=switch.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_switch extends $.$mol_switch {
+        value(next?: string): string;
+        option_checked(key: string, next?: boolean): boolean;
+    }
+}
+
 declare namespace $ {
 
 	type $mol_select__value_bog_bzrl_app_filter_1 = $mol_type_enforce<
@@ -3455,38 +3500,6 @@ declare namespace $.$$ {
 }
 
 declare namespace $.$$ {
-}
-
-declare namespace $ {
-
-	export class $mol_image extends $mol_view {
-		uri( ): string
-		title( ): string
-		loading( ): string
-		decoding( ): string
-		cors( ): any
-		natural_width( ): number
-		natural_height( ): number
-		load( next?: any ): any
-		dom_name( ): string
-		attr( ): Record<string, any> & ReturnType< $mol_view['attr'] >
-		event( ): Record<string, any>
-		minimal_width( ): number
-		minimal_height( ): number
-	}
-	
-}
-
-//# sourceMappingURL=image.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $mol_image extends $.$mol_image {
-        natural_width(next?: null): number;
-        natural_height(next?: null): number;
-        load(): void;
-    }
-}
-
-declare namespace $ {
 }
 
 declare namespace $ {
@@ -4450,12 +4463,12 @@ declare namespace $ {
 		ReturnType< $bog_theme_auto['theme_dark'] >
 	>
 	type $bog_bzrl_app_Theme__4 = $mol_type_enforce<
-		`$mol_theme_light`
+		`$mol_theme_homerent_light`
 		,
 		string
 	>
 	type $bog_bzrl_app_Theme__5 = $mol_type_enforce<
-		`$mol_theme_ainews_dark`
+		`$mol_theme_homerent_dark`
 		,
 		string
 	>
@@ -4464,127 +4477,122 @@ declare namespace $ {
 		,
 		ReturnType< $bog_theme_auto['themes_default'] >
 	>
-	type $mol_view__sub_bog_bzrl_app_6 = $mol_type_enforce<
+	type $mol_image__uri_bog_bzrl_app_6 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_image['uri'] >
+	>
+	type $mol_view__sub_bog_bzrl_app_7 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_switch__value_bog_bzrl_app_7 = $mol_type_enforce<
-		ReturnType< $bog_bzrl_app['tab'] >
+	type $mol_view__sub_bog_bzrl_app_8 = $mol_type_enforce<
+		readonly(any)[]
 		,
-		ReturnType< $mol_switch['value'] >
+		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_switch__options_bog_bzrl_app_8 = $mol_type_enforce<
-		({ 
-			'rent': string,
-			'let': string,
-		}) 
+	type $mol_button_major__sub_bog_bzrl_app_9 = $mol_type_enforce<
+		readonly(any)[]
 		,
-		ReturnType< $mol_switch['options'] >
+		ReturnType< $mol_button_major['sub'] >
 	>
-	type $bog_bzrl_app_profile__theme_auto_bog_bzrl_app_9 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_bzrl_app_10 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
+	>
+	type $mol_view__sub_bog_bzrl_app_11 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_image__uri_bog_bzrl_app_12 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_image['uri'] >
+	>
+	type $mol_button_minor__sub_bog_bzrl_app_13 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
+	>
+	type $bog_bzrl_app_profile__theme_auto_bog_bzrl_app_14 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app['Theme'] >
 		,
 		ReturnType< $bog_bzrl_app_profile['theme_auto'] >
 	>
-	type $mol_paragraph__title_bog_bzrl_app_10 = $mol_type_enforce<
+	type $mol_view__sub_bog_bzrl_app_15 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_bzrl_app_16 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $bog_bzrl_app_filter__district_bog_bzrl_app_11 = $mol_type_enforce<
+	type $bog_bzrl_app_filter__district_bog_bzrl_app_17 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app['filter_district'] >
 		,
 		ReturnType< $bog_bzrl_app_filter['district'] >
 	>
-	type $bog_bzrl_app_filter__rooms_bog_bzrl_app_12 = $mol_type_enforce<
+	type $bog_bzrl_app_filter__rooms_bog_bzrl_app_18 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app['filter_rooms'] >
 		,
 		ReturnType< $bog_bzrl_app_filter['rooms'] >
 	>
-	type $bog_bzrl_app_filter__price_from_bog_bzrl_app_13 = $mol_type_enforce<
+	type $bog_bzrl_app_filter__price_from_bog_bzrl_app_19 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app['filter_price'] >
 		,
 		ReturnType< $bog_bzrl_app_filter['price_from'] >
 	>
-	type $bog_bzrl_app_filter__search_bog_bzrl_app_14 = $mol_type_enforce<
+	type $bog_bzrl_app_filter__search_bog_bzrl_app_20 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app['apartments_search'] >
 		,
 		ReturnType< $bog_bzrl_app_filter['search'] >
 	>
-	type $bog_bzrl_app_card__district_bog_bzrl_app_15 = $mol_type_enforce<
+	type $bog_bzrl_app_card__district_bog_bzrl_app_21 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app['apartment_district'] >
 		,
 		ReturnType< $bog_bzrl_app_card['district'] >
 	>
-	type $bog_bzrl_app_card__photo_bog_bzrl_app_16 = $mol_type_enforce<
+	type $bog_bzrl_app_card__photo_bog_bzrl_app_22 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app['apartment_photo'] >
 		,
 		ReturnType< $bog_bzrl_app_card['photo'] >
 	>
-	type $bog_bzrl_app_card__area_bog_bzrl_app_17 = $mol_type_enforce<
+	type $bog_bzrl_app_card__area_bog_bzrl_app_23 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app['apartment_area'] >
 		,
 		ReturnType< $bog_bzrl_app_card['area'] >
 	>
-	type $bog_bzrl_app_card__floor_bog_bzrl_app_18 = $mol_type_enforce<
+	type $bog_bzrl_app_card__floor_bog_bzrl_app_24 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app['apartment_floor'] >
 		,
 		ReturnType< $bog_bzrl_app_card['floor'] >
 	>
-	type $bog_bzrl_app_card__price_bog_bzrl_app_19 = $mol_type_enforce<
+	type $bog_bzrl_app_card__price_bog_bzrl_app_25 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app['apartment_price'] >
 		,
 		ReturnType< $bog_bzrl_app_card['price'] >
 	>
-	type $mol_view__attr_bog_bzrl_app_20 = $mol_type_enforce<
+	type $mol_view__attr_bog_bzrl_app_26 = $mol_type_enforce<
 		({ 
 			'id': string,
 		}) 
 		,
 		ReturnType< $mol_view['attr'] >
 	>
-	type $mol_view__sub_bog_bzrl_app_21 = $mol_type_enforce<
+	type $mol_view__sub_bog_bzrl_app_27 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app['apartment_rows'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $bog_bzrl_app_hero_promo__action_bog_bzrl_app_22 = $mol_type_enforce<
+	type $bog_bzrl_app_hero_promo__action_bog_bzrl_app_28 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app['promo_action'] >
 		,
 		ReturnType< $bog_bzrl_app_hero_promo['action'] >
-	>
-	type $mol_view__attr_bog_bzrl_app_23 = $mol_type_enforce<
-		({ 
-			'id': string,
-		}) 
-		,
-		ReturnType< $mol_view['attr'] >
-	>
-	type $mol_view__sub_bog_bzrl_app_24 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $bog_bzrl_app_hero_let__action_bog_bzrl_app_25 = $mol_type_enforce<
-		ReturnType< $bog_bzrl_app['let_action'] >
-		,
-		ReturnType< $bog_bzrl_app_hero_let['action'] >
-	>
-	type $mol_view__sub_bog_bzrl_app_26 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_paragraph__title_bog_bzrl_app_27 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_view__sub_bog_bzrl_app_28 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
 	>
 	type $mol_view__attr_bog_bzrl_app_29 = $mol_type_enforce<
 		({ 
@@ -4598,12 +4606,10 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__attr_bog_bzrl_app_31 = $mol_type_enforce<
-		({ 
-			'id': string,
-		}) 
+	type $bog_bzrl_app_hero_let__action_bog_bzrl_app_31 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app['let_action'] >
 		,
-		ReturnType< $mol_view['attr'] >
+		ReturnType< $bog_bzrl_app_hero_let['action'] >
 	>
 	type $mol_view__sub_bog_bzrl_app_32 = $mol_type_enforce<
 		readonly(any)[]
@@ -4632,19 +4638,53 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $bog_bzrl_app_hero_team__attr_bog_bzrl_app_37 = $mol_type_enforce<
+	type $mol_view__attr_bog_bzrl_app_37 = $mol_type_enforce<
+		({ 
+			'id': string,
+		}) 
+		,
+		ReturnType< $mol_view['attr'] >
+	>
+	type $mol_view__sub_bog_bzrl_app_38 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_bzrl_app_39 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_view__sub_bog_bzrl_app_40 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__attr_bog_bzrl_app_41 = $mol_type_enforce<
+		({ 
+			'id': string,
+		}) 
+		,
+		ReturnType< $mol_view['attr'] >
+	>
+	type $mol_view__sub_bog_bzrl_app_42 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $bog_bzrl_app_hero_team__attr_bog_bzrl_app_43 = $mol_type_enforce<
 		({ 
 			'id': string,
 		}) 
 		,
 		ReturnType< $bog_bzrl_app_hero_team['attr'] >
 	>
-	type $bog_bzrl_app_hero_team__photo_bog_bzrl_app_38 = $mol_type_enforce<
+	type $bog_bzrl_app_hero_team__photo_bog_bzrl_app_44 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_bzrl_app_hero_team['photo'] >
 	>
-	type $bog_bzrl_app_footer__attr_bog_bzrl_app_39 = $mol_type_enforce<
+	type $bog_bzrl_app_footer__attr_bog_bzrl_app_45 = $mol_type_enforce<
 		({ 
 			'id': string,
 		}) 
@@ -4653,11 +4693,20 @@ declare namespace $ {
 	>
 	export class $bog_bzrl_app extends $mol_page {
 		Theme( ): $bog_theme_auto
-		logo_text( ): string
+		Logo_icon( ): $mol_image
+		logo_home( ): string
+		logo_rent( ): string
+		Logo_text( ): $mol_view
 		Logo( ): $mol_view
-		tab( next?: string ): string
-		Tabs( ): $mol_switch
+		rent_label( ): string
+		Rent_button( ): $mol_button_major
+		let_label( ): string
+		Let_link( ): $mol_button_minor
+		Nav( ): $mol_view
+		home_icon_img( ): $mol_image
+		Home_icon( ): $mol_button_minor
 		Profile( ): $bog_bzrl_app_profile
+		Actions( ): $mol_view
 		Title_section( ): $mol_paragraph
 		filter_district( next?: string ): string
 		filter_rooms( next?: string ): string
@@ -4718,7 +4767,6 @@ declare namespace $.$$ {
     export class $bog_bzrl_app extends $.$bog_bzrl_app {
         tab(next?: string): string;
         section(next?: string | null): string;
-        section_visible(section: string): boolean;
         filter_district(next?: string): string;
         filter_rooms(next?: string): string;
         filter_price(next?: string): string;
@@ -4737,11 +4785,6 @@ declare namespace $.$$ {
         let_action(): void;
         Rent_section(): $mol_view;
         Let_section(): $mol_view;
-        How_it_works(): $mol_view;
-        Privacy(): $mol_view;
-        Benefits(): $mol_view;
-        Team(): $.$bog_bzrl_app_hero_team;
-        Footer(): $.$bog_bzrl_app_footer;
         private parse_price;
     }
     export {};
