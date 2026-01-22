@@ -252,6 +252,18 @@ namespace $.$$ {
 			return this.section_visible('contact') ? super.Footer() : null!
 		}
 
+		@$mol_action
+		let_click() {
+			this.tab('let')
+			this.section('let')
+		}
+
+		@$mol_action
+		rent_click() {
+			this.tab('rent')
+			this.section('rent')
+		}
+
 		private parse_price(value: string) {
 			const normalized = value.replace(/[^\d]/g, '')
 			if (!normalized) return null

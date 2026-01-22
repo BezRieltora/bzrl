@@ -10,14 +10,30 @@ $bog_bzrl_app $mol_page
 	head /
 		<= Logo $mol_view
 			sub /
-				<= logo_text \HomeRent
-		<= Tabs $mol_switch
-			value? <=> tab? \rent
-			options *
-				rent @ \Rent
-				let @ \Let
-		<= Profile $bog_bzrl_app_profile
-			theme_auto <= Theme
+				<= Logo_icon $mol_image
+					uri \bog/bzrl/assets/favicon.png
+				<= Logo_text $mol_view
+					sub /
+						<= logo_home \home
+						<= logo_rent \rent
+		<= Nav $mol_view
+			sub /
+				<= Rent_button $mol_button_major
+					click? <=> rent_click?
+					sub /
+						<= rent_label @ \Снять
+				<= Let_link $mol_button_minor
+					click? <=> let_click?
+					sub /
+						<= let_label @ \Сдать
+		<= Actions $mol_view
+			sub /
+				<= Home_icon $mol_button_minor
+					sub /
+						<= home_icon_img $mol_image
+							uri \bog/bzrl/assets/HomeRent Design System Frame 71.png
+				<= Profile $bog_bzrl_app_profile
+					theme_auto <= Theme
 	body /
 		<= Rent_section? $mol_view
 			attr *
