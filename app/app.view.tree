@@ -19,11 +19,11 @@ $bog_bzrl_app $mol_page
 		<= Nav $mol_view
 			sub /
 				<= Rent_button $mol_button_major
-					click? <=> rent_click?
+					- click? <=> rent_click?
 					sub /
 						<= rent_label @ \Снять
 				<= Let_link $mol_button_minor
-					click? <=> let_click?
+					- click? <=> let_click?
 					sub /
 						<= let_label @ \Сдать
 		<= Actions $mol_view
