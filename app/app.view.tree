@@ -95,7 +95,7 @@ $bog_bzrl_app $mol_page
 		<= Team? $bog_bzrl_app_hero_team
 			attr *
 				id \team
-			photo \bog/bzrl/assets/HomeRent-Design-System Frame 77.png
+			photo \bog/bzrl/assets/HomeRent-Design-System-Frame-77.png
 		<= Footer? $bog_bzrl_app_footer
 			attr *
 				id \contact
