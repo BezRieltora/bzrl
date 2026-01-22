@@ -607,13 +607,13 @@ $bog_bzrl_app_hero_promo $bog_bzrl_app_hero
 	title @ \Apartments in Kazan without brokers
 	description @ \Only owner-listed apartments, arranged directly. We verify manually and handle data carefully.
 	action_label @ \View apartments
-	media_uri \bog/bzrl/assets/HomeRent-Design-System Rectangle.png
+	media_uri \bog/bzrl/assets/HomeRent-Design-System-Rectangle.png
 
 $bog_bzrl_app_hero_privacy $bog_bzrl_app_hero
 	variant \privacy
 	title @ \We value your personal data
 	description @ \All your personal information is securely encrypted on your device. We do not store it on our servers and access it only through your device.
-	icon_uri \bog/bzrl/assets/Solar Lock Keyhole Bold Duotone.png
+	icon_uri \bog/bzrl/assets/Solar-Lock-Keyhole-Bold-Duotone.png
 
 $bog_bzrl_app_hero_let $bog_bzrl_app_hero
 	title @ \Rent out your apartment without extra fees
@@ -776,15 +776,15 @@ $bog_bzrl_app_footer $mol_view
 						<= Ig $mol_link
 							uri \https://instagram.com
 							sub / <= Ig_icon $mol_image
-								uri \bog/bzrl/assets/HomeRent-Design-System Frame 82.png
+								uri \bog/bzrl/assets/HomeRent-Design-System-Frame-82.png
 						<= Vk $mol_link
 							uri \https://vk.com
 							sub / <= Vk_icon $mol_image
-								uri \bog/bzrl/assets/HomeRent-Design-System Frame 83.png
+								uri \bog/bzrl/assets/HomeRent-Design-System-Frame-83.png
 						<= Tg $mol_link
 							uri \https://t.me
 							sub / <= Tg_icon $mol_image
-								uri \bog/bzrl/assets/HomeRent-Design-System Frame 84.png
+								uri \bog/bzrl/assets/HomeRent-Design-System-Frame-84.png
 		<= Nav $mol_view
 			sub /
 				<= Nav_main $mol_view
@@ -948,7 +948,7 @@ $bog_bzrl_app $mol_page
 		<= Team? $bog_bzrl_app_hero_team
 			attr *
 				id \team
-			photo \bog/bzrl/assets/HomeRent-Design-System Frame 77.png
+			photo \bog/bzrl/assets/HomeRent-Design-System-Frame-77.png
 		<= Footer? $bog_bzrl_app_footer
 			attr *
 				id \contact
