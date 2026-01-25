@@ -47,8 +47,6 @@ namespace $.$$ {
 				store.blob(file)
 				profile.PhotoFile(null)!.remote(store)
 			}
-			profile.Photo(null)!.val(null)
-			profile.PhotoType(null)!.val(null)
 
 			return []
 		}
