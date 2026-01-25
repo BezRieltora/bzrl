@@ -39,6 +39,19 @@
 	pack icon git \https://github.com/nin-jin/mol_icon.git
 \/mol/view
 	include \/mol/view/tree/test
+\/giper
+	pack balls git \https://github.com/giper-dev/balls.git
+	pack baza git \https://github.com/giper-dev/baza.git
+	pack bot git \https://github.com/giper-dev/bot.git
+	pack canary git \https://github.com/giper-dev/canary.git
+	pack iq git \https://github.com/giper-dev/iq.git
+	pack lines git \https://github.com/giper-dev/lines.git
+	pack lingua git \https://github.com/giper-dev/lingua.git
+	pack player git \https://github.com/giper-dev/player.git
+	pack search git \https://github.com/giper-dev/search.git
+	pack web git \https://github.com/giper-dev/web.git
+\/giper/baza/file
+	include \/mol/offline/install
 \/bog/bzrl/app
 	include \/mol/offline/install
 	deploy \/bog/bzrl/assets
