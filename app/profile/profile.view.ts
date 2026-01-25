@@ -47,7 +47,7 @@ namespace $.$$ {
 		}
 
 		protected default_avatar_uri() {
-			return '/bog/bzrl/assets/HomeRent-Design-System-Frame-69.png'
+			return './bog/bzrl/assets/HomeRent-Design-System-Frame-69.png'
 		}
 
 		@$mol_mem
