@@ -66,6 +66,9 @@ namespace $.$$ {
 				items: 'center',
 			},
 			gap: '1.5rem',
+			backgroundColor: '#f5f5f5',
+			borderRadius: '2rem',
+			padding: '5px',
 		},
 
 		Rent_button: {
