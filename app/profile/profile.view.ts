@@ -53,10 +53,9 @@ namespace $.$$ {
 		@$mol_mem
 		avatar_uri() {
 			const profile = this.profile_entity()
-			const data = profile.Photo()?.val() ?? ''
-			if (!data) return this.default_avatar_uri()
-			const mime = profile.PhotoType()?.val() ?? 'image/*'
-			return `data:${mime};base64,${data}`
+			const file = profile.PhotoFile()?.remote() ?? null
+			if (!file) return this.default_avatar_uri()
+			return this.$.$mol_dom_context.URL.createObjectURL(file.blob())
 		}
 
 		navigate_profile() {}

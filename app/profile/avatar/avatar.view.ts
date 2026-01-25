@@ -19,34 +19,18 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
-		private_photo() {
+		private_photo_file() {
 			const profile = this.profile()
-			if (!profile) return ''
-			return profile.Photo()?.val() ?? ''
-		}
-
-		@$mol_mem
-		private_photo_type() {
-			const profile = this.profile()
-			if (!profile) return 'image/*'
-			return profile.PhotoType()?.val() ?? 'image/*'
+			if (!profile) return null
+			return profile.PhotoFile()?.remote() ?? null
 		}
 
 		@$mol_mem
 		image_uri() {
-			const data = this.private_photo()
-			if (!data) return this.default_uri()
-			return `data:${this.private_photo_type()};base64,${data}`
-		}
-
-		protected encode_base64(buffer: Uint8Array) {
-			const chunk = 0x8000
-			let binary = ''
-			for (let i = 0; i < buffer.length; i += chunk) {
-				const slice = buffer.subarray(i, i + chunk)
-				binary += String.fromCharCode(...slice)
-			}
-			return this.$.$mol_dom_context.btoa(binary)
+			const file = this.private_photo_file()
+			if (!file) return this.default_uri()
+			const url = this.$.$mol_dom_context.URL.createObjectURL(file.blob())
+			return url
 		}
 
 		@$mol_action
@@ -58,9 +42,13 @@ namespace $.$$ {
 			if (!profile) return []
 
 			const file = next[0]
-			const buffer = new Uint8Array(this.$.$mol_wire_sync(file).arrayBuffer())
-			profile.Photo(null)!.val(this.encode_base64(buffer))
-			profile.PhotoType(null)!.val(file.type || 'image/*')
+			const store = profile.PhotoFile(null)!.ensure(null)
+			if (store) {
+				store.blob(file)
+				profile.PhotoFile(null)!.remote(store)
+			}
+			profile.Photo(null)!.val(null)
+			profile.PhotoType(null)!.val(null)
 
 			return []
 		}
