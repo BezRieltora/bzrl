@@ -13874,7 +13874,7 @@ var $;
                 return false;
             }
             default_uri() {
-                return '/bog/bzrl/assets/HomeRent-Design-System-Frame-69.png';
+                return './bog/bzrl/assets/HomeRent-Design-System-Frame-69.png';
             }
             private_photo_file() {
                 const profile = this.profile();
