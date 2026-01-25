@@ -1,7 +1,7 @@
 namespace $.$$ {
 	$mol_style_define($bog_bzrl_app_profile_avatar, {
-		width: '100%',
-		height: '100%',
+		width: '4rem',
+		height: '4rem',
 		padding: 0,
 		border: {
 			radius: '50%',

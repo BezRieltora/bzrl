@@ -1,3 +1,2 @@
 include \/mol/offline/install
-include \/bog/bzrl/baza
 deploy \/bog/bzrl/assets
