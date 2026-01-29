@@ -3021,6 +3021,7 @@ declare namespace $ {
         tier_min(): $giper_baza_rank_tier;
         _land: null | $giper_baza_land;
         dump(): {};
+        toString(): string;
     }
 }
 
@@ -3048,6 +3049,7 @@ declare namespace $ {
             time: string;
         };
         tier_min(): $giper_baza_rank_tier;
+        toString(): string;
         [$mol_dev_format_head](): any[];
     }
 }
@@ -3077,6 +3079,7 @@ declare namespace $ {
         tier_min(): $giper_baza_rank_tier;
         rank_min(): number;
         path(): string;
+        toString(): string;
         [$mol_dev_format_head](): any[];
     }
 }
@@ -3095,11 +3098,11 @@ declare namespace $ {
         _open: Uint8Array<ArrayBuffer> | null;
         static length(size: number): number;
         static length_ball(size: number): number;
-        static make(size: number): $giper_baza_unit_sand;
-        hint(tag?: keyof typeof $giper_baza_unit_sand_tag): void;
+        static make(size: number, tag?: keyof typeof $giper_baza_unit_sand_tag): $giper_baza_unit_sand;
         tag(): keyof typeof $giper_baza_unit_sand_tag;
         big(): boolean;
-        size(next?: number): number;
+        size(): number;
+        dead(): boolean;
         _self: $giper_baza_link;
         self(next?: $giper_baza_link): $giper_baza_link;
         _head: $giper_baza_link;
@@ -3125,6 +3128,7 @@ declare namespace $ {
             time: string;
         };
         tier_min(): $giper_baza_rank_tier.post | $giper_baza_rank_tier.pull;
+        toString(): string;
         [$mol_dev_format_head](): any[];
     }
 }
@@ -3156,7 +3160,7 @@ declare namespace $ {
         offsets_del: WeakMap<ArrayBuffer, number>;
         offsets_ins: WeakMap<ArrayBuffer, number>;
         save(...data: [ArrayBufferView<ArrayBuffer>, ...ArrayBufferView<ArrayBuffer>[]]): number;
-        free(...data: [ArrayBufferView<ArrayBuffer>, ...ArrayBufferView<ArrayBuffer>[]]): void;
+        free(data: ArrayBufferView<ArrayBuffer>, size?: number): void;
     }
     class $giper_baza_mine_fs_yym extends $mol_object2 {
         readonly sides: [$mol_file, $mol_file];
