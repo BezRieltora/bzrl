@@ -7787,33 +7787,6 @@ declare namespace $ {
 
 declare namespace $ {
 
-	export class $mol_icon_account extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=account.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_icon_star extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=star.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_icon_settings extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=settings.view.tree.d.ts.map
-declare namespace $ {
-
 	type $mol_view__sub_mol_card_1 = $mol_type_enforce<
 		ReturnType< $mol_card['content'] >
 		,
@@ -7890,10 +7863,10 @@ declare namespace $ {
 		,
 		ReturnType< $mol_string_button['value'] >
 	>
-	type $mol_string_button__value_bog_bzrl_app_profile_8 = $mol_type_enforce<
-		ReturnType< $bog_bzrl_app_profile['email'] >
+	type $mol_string_button__hint_bog_bzrl_app_profile_8 = $mol_type_enforce<
+		string
 		,
-		ReturnType< $mol_string_button['value'] >
+		ReturnType< $mol_string_button['hint'] >
 	>
 	type $mol_dimmer__haystack_bog_bzrl_app_profile_9 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_profile['profile_id'] >
@@ -7905,42 +7878,27 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_button_minor__sub_bog_bzrl_app_profile_11 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_button_minor['sub'] >
-	>
-	type $mol_button_minor__sub_bog_bzrl_app_profile_12 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_button_minor['sub'] >
-	>
-	type $mol_button_minor__sub_bog_bzrl_app_profile_13 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_button_minor['sub'] >
-	>
-	type $mol_list__rows_bog_bzrl_app_profile_14 = $mol_type_enforce<
+	type $mol_list__rows_bog_bzrl_app_profile_11 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_list['rows'] >
 	>
-	type $mol_card__Content_bog_bzrl_app_profile_15 = $mol_type_enforce<
+	type $mol_card__Content_bog_bzrl_app_profile_12 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_profile['Menu'] >
 		,
 		ReturnType< $mol_card['Content'] >
 	>
-	type $mol_pop__showed_bog_bzrl_app_profile_16 = $mol_type_enforce<
+	type $mol_pop__showed_bog_bzrl_app_profile_13 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_profile['opened'] >
 		,
 		ReturnType< $mol_pop['showed'] >
 	>
-	type $mol_pop__Anchor_bog_bzrl_app_profile_17 = $mol_type_enforce<
+	type $mol_pop__Anchor_bog_bzrl_app_profile_14 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_profile['Button'] >
 		,
 		ReturnType< $mol_pop['Anchor'] >
 	>
-	type $mol_pop__bubble_content_bog_bzrl_app_profile_18 = $mol_type_enforce<
+	type $mol_pop__bubble_content_bog_bzrl_app_profile_15 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_pop['bubble_content'] >
@@ -7954,21 +7912,9 @@ declare namespace $ {
 		Header_top( ): $mol_view
 		name( next?: string ): string
 		Name( ): $mol_string_button
-		email( next?: string ): string
-		Email( ): $mol_string_button
 		profile_id( ): string
 		Id( ): $mol_dimmer
 		Header( ): $mol_view
-		Divider_1( ): $mol_view
-		Menu_profile_icon( ): $mol_icon_account
-		Menu_profile_label( ): string
-		Menu_profile( ): $mol_button_minor
-		Menu_stars_icon( ): $mol_icon_star
-		Menu_stars_label( ): string
-		Menu_stars( ): $mol_button_minor
-		Menu_settings_icon( ): $mol_icon_settings
-		Menu_settings_label( ): string
-		Menu_settings( ): $mol_button_minor
 		Menu( ): $mol_list
 		Card( ): $mol_card
 		Panel( ): $mol_pop
@@ -7988,7 +7934,6 @@ declare namespace $.$$ {
         profile_entity(): $bog_bzrl_baza_profile;
         protected profile_text(ensure: (profile: $bog_bzrl_baza_profile) => $giper_baza_atom_text | null, next?: string, fallback?: string): string;
         name(next?: string): string;
-        email(next?: string): string;
         profile_id(): string;
         protected default_avatar_uri(): string;
         avatar_uri(): string;
@@ -9739,9 +9684,17 @@ declare namespace $ {
 		,
 		ReturnType< $bog_bzrl_app_hero_let['action'] >
 	>
+	type $bog_bzrl_app_footer__attr_bog_bzrl_app_let_2 = $mol_type_enforce<
+		({ 
+			'id': string,
+		}) 
+		,
+		ReturnType< $bog_bzrl_app_footer['attr'] >
+	>
 	export class $bog_bzrl_app_let extends $mol_view {
 		action( next?: any ): any
 		Let_hero( ): $bog_bzrl_app_hero_let
+		Footer( ): $bog_bzrl_app_footer
 		sub( ): readonly(any)[]
 	}
 	
