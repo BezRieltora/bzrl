@@ -5686,6 +5686,204 @@ var $;
 })($ || ($ = {}));
 
 ;
+	($.$mol_link) = class $mol_link extends ($.$mol_view) {
+		uri_toggle(){
+			return "";
+		}
+		hint(){
+			return "";
+		}
+		hint_safe(){
+			return (this.hint());
+		}
+		target(){
+			return "_self";
+		}
+		file_name(){
+			return "";
+		}
+		current(){
+			return false;
+		}
+		relation(){
+			return "";
+		}
+		event_click(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		click(next){
+			return (this.event_click(next));
+		}
+		uri(){
+			return "";
+		}
+		dom_name(){
+			return "a";
+		}
+		uri_off(){
+			return "";
+		}
+		uri_native(){
+			return null;
+		}
+		external(){
+			return false;
+		}
+		attr(){
+			return {
+				...(super.attr()), 
+				"href": (this.uri_toggle()), 
+				"title": (this.hint_safe()), 
+				"target": (this.target()), 
+				"download": (this.file_name()), 
+				"mol_link_current": (this.current()), 
+				"rel": (this.relation())
+			};
+		}
+		sub(){
+			return [(this.title())];
+		}
+		arg(){
+			return {};
+		}
+		event(){
+			return {...(super.event()), "click": (next) => (this.click(next))};
+		}
+	};
+	($mol_mem(($.$mol_link.prototype), "event_click"));
+
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_link extends $.$mol_link {
+            uri_toggle() {
+                return this.current() ? this.uri_off() : this.uri();
+            }
+            uri() {
+                return new this.$.$mol_state_arg(this.state_key()).link(this.arg());
+            }
+            uri_off() {
+                const arg2 = {};
+                for (let i in this.arg())
+                    arg2[i] = null;
+                return new this.$.$mol_state_arg(this.state_key()).link(arg2);
+            }
+            uri_native() {
+                const base = this.$.$mol_state_arg.href();
+                return new URL(this.uri(), base);
+            }
+            current() {
+                const base = this.$.$mol_state_arg.href_normal();
+                const target = this.uri_native().toString();
+                if (base === target)
+                    return true;
+                const args = this.arg();
+                const keys = Object.keys(args).filter(key => args[key] != null);
+                if (keys.length === 0)
+                    return false;
+                for (const key of keys) {
+                    if (this.$.$mol_state_arg.value(key) != args[key])
+                        return false;
+                }
+                return true;
+            }
+            file_name() {
+                return null;
+            }
+            minimal_height() {
+                return Math.max(super.minimal_height(), 24);
+            }
+            external() {
+                return this.uri_native().origin !== $mol_dom_context.location.origin;
+            }
+            target() {
+                return this.external() ? '_blank' : '_self';
+            }
+            hint_safe() {
+                try {
+                    return this.hint();
+                }
+                catch (error) {
+                    $mol_fail_log(error);
+                    return '';
+                }
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $mol_link.prototype, "uri_toggle", null);
+        __decorate([
+            $mol_mem
+        ], $mol_link.prototype, "uri", null);
+        __decorate([
+            $mol_mem
+        ], $mol_link.prototype, "uri_off", null);
+        __decorate([
+            $mol_mem
+        ], $mol_link.prototype, "uri_native", null);
+        __decorate([
+            $mol_mem
+        ], $mol_link.prototype, "current", null);
+        $$.$mol_link = $mol_link;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const { rem } = $mol_style_unit;
+    $mol_style_define($mol_link, {
+        textDecoration: 'none',
+        color: $mol_theme.control,
+        stroke: 'currentcolor',
+        cursor: 'pointer',
+        padding: $mol_gap.text,
+        boxSizing: 'border-box',
+        position: 'relative',
+        minWidth: rem(2.5),
+        minHeight: rem(2.5),
+        gap: $mol_gap.space,
+        border: {
+            radius: $mol_gap.round,
+        },
+        ':hover': {
+            background: {
+                color: $mol_theme.hover,
+            },
+        },
+        ':focus': {
+            outline: 'none',
+        },
+        ':focus-visible': {
+            outline: 'none',
+            background: {
+                color: $mol_theme.hover,
+            }
+        },
+        ':active': {
+            color: $mol_theme.focus,
+        },
+        '@': {
+            mol_link_current: {
+                'true': {
+                    color: $mol_theme.current,
+                    textShadow: '0 0',
+                }
+            }
+        },
+    });
+})($ || ($ = {}));
+
+;
 	($.$mol_speck) = class $mol_speck extends ($.$mol_view) {
 		value(){
 			return null;
@@ -6031,22 +6229,164 @@ var $;
 "use strict";
 
 ;
-	($.$mol_button_major) = class $mol_button_major extends ($.$mol_button_minor) {
-		theme(){
-			return "$mol_theme_base";
+	($.$bog_bzrl_app_nav) = class $bog_bzrl_app_nav extends ($.$mol_view) {
+		rent_label(){
+			return (this.$.$mol_locale.text("$bog_bzrl_app_nav_rent_label"));
+		}
+		Rent_button(){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ({"tab": "rent", "section": "rent"});
+			(obj.sub) = () => ([(this.rent_label())]);
+			return obj;
+		}
+		let_label(){
+			return (this.$.$mol_locale.text("$bog_bzrl_app_nav_let_label"));
+		}
+		Let_link(){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ({"tab": "let", "section": "let"});
+			(obj.sub) = () => ([(this.let_label())]);
+			return obj;
+		}
+		home_icon_img(){
+			const obj = new this.$.$mol_image();
+			(obj.uri) = () => ("bog/bzrl/assets/HomeRent-Design-System-Frame-71.png");
+			return obj;
+		}
+		Home_icon(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.sub) = () => ([(this.home_icon_img())]);
+			return obj;
+		}
+		sub(){
+			return [
+				(this.Rent_button()), 
+				(this.Let_link()), 
+				(this.Home_icon())
+			];
 		}
 	};
+	($mol_mem(($.$bog_bzrl_app_nav.prototype), "Rent_button"));
+	($mol_mem(($.$bog_bzrl_app_nav.prototype), "Let_link"));
+	($mol_mem(($.$bog_bzrl_app_nav.prototype), "home_icon_img"));
+	($mol_mem(($.$bog_bzrl_app_nav.prototype), "Home_icon"));
 
+
+;
+"use strict";
 
 ;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("mol/button/major/major.view.css", "[mol_button_major] {\n\tbackground-color: var(--mol_theme_back);\n\tcolor: var(--mol_theme_text);\n}\n");
+    var $$;
+    (function ($$) {
+        class $bog_bzrl_app_nav extends $.$bog_bzrl_app_nav {
+        }
+        $$.$bog_bzrl_app_nav = $bog_bzrl_app_nav;
+    })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 
 ;
 "use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        $mol_style_define($bog_bzrl_app_nav, {
+            display: 'flex',
+            align: {
+                items: 'center',
+            },
+            gap: '1.5rem',
+            backgroundColor: '#f5f5f5',
+            borderRadius: '2rem',
+            padding: '5px',
+            Rent_button: {
+                background: {
+                    color: '#8BC34A',
+                },
+                border: {
+                    radius: '2rem',
+                },
+                padding: {
+                    top: '0.75rem',
+                    bottom: '0.75rem',
+                    left: '2rem',
+                    right: '2rem',
+                },
+                font: {
+                    size: '1rem',
+                    weight: 500,
+                },
+                color: 'white',
+                textDecoration: 'none',
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                ':hover': {
+                    background: {
+                        color: '#7CB342',
+                    },
+                },
+            },
+            Let_link: {
+                font: {
+                    size: '1rem',
+                    weight: 400,
+                },
+                color: '#666',
+                textDecoration: 'none',
+                cursor: 'pointer',
+                transition: 'color 0.2s',
+                background: {
+                    color: 'transparent',
+                },
+                border: {
+                    width: 0,
+                },
+                padding: {
+                    left: 0,
+                    right: 0,
+                },
+                ':hover': {
+                    color: '#333',
+                    background: {
+                        color: 'transparent',
+                    },
+                },
+            },
+            Home_icon: {
+                width: '2.5rem',
+                height: '2.5rem',
+                border: {
+                    radius: '50%',
+                },
+                display: 'flex',
+                justify: {
+                    content: 'center',
+                },
+                align: {
+                    items: 'center',
+                },
+                background: {
+                    color: 'transparent',
+                },
+                cursor: 'pointer',
+                transition: 'background 0.2s',
+                padding: 0,
+                ':hover': {
+                    background: {
+                        color: '#f5f5f5',
+                    },
+                },
+            },
+            home_icon_img: {
+                width: '1.5rem',
+                height: '1.5rem',
+            },
+        });
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
 
 ;
 	($.$mol_svg) = class $mol_svg extends ($.$mol_view) {
@@ -6897,13 +7237,20 @@ var $;
             return $mol_dev_format_span({ 'color': 'darkorange' }, this.str || '_');
         }
         toBin() {
-            return $mol_base64_ae_decode((this.str).split('_').map(numb => numb || 'AAAAAAAA').join(''));
+            const str = this.relate(_base).str;
+            const norm = str && str
+                .replace(/^___/, '')
+                .split('_')
+                .map(numb => numb || 'AAAAAAAA')
+                .join('');
+            return $mol_base64_ae_decode(norm);
         }
         static from_int(int) {
             return new this($mol_base64_ae_encode(new Uint8Array(new BigUint64Array([BigInt(int)]).buffer, 0, 6)));
         }
         static from_bin(bin) {
-            return new this([...$mol_base64_ae_encode(bin).match(/(.{8})/g) ?? []].join('_'));
+            const str = [...$mol_base64_ae_encode(bin).match(/(.{8})/g) ?? []].join('_');
+            return new this(str).resolve(_base);
         }
         static _hash_cache = new WeakMap();
         static hash_bin(bin) {
@@ -6934,6 +7281,8 @@ var $;
             return new $giper_baza_link(this.str.split('_').slice(0, 3).join('_'));
         }
         relate(base) {
+            if (base.str === '')
+                return this;
             base = base.land();
             if (this.land().str !== base.str)
                 return this;
@@ -6941,14 +7290,16 @@ var $;
             return new $giper_baza_link('___' + head);
         }
         resolve(base) {
+            if (base.str === '')
+                return this;
             if (this.str === '')
                 return base.land();
-            if (!this.str.startsWith('___'))
+            if (this.str.length > 16)
                 return this;
             const parts = base.land().toString().split('_');
             while (parts.length < 3)
                 parts.push('');
-            parts.push(this.str.slice(3));
+            parts.push(this.str.replace(/^___/, ''));
             return new $giper_baza_link(parts.join('_'));
         }
         mix(mixin) {
@@ -6961,6 +7312,18 @@ var $;
         }
     }
     $.$giper_baza_link = $giper_baza_link;
+    let _base = $giper_baza_link.hole;
+    function $giper_baza_link_base(base, task) {
+        const prev = _base;
+        _base = base;
+        try {
+            return task();
+        }
+        finally {
+            _base = prev;
+        }
+    }
+    $.$giper_baza_link_base = $giper_baza_link_base;
 })($ || ($ = {}));
 
 ;
@@ -8190,7 +8553,7 @@ var $;
                 this.summ = summ;
         }
         [$mol_dev_format_head]() {
-            return $mol_dev_format_span({}, $mol_dev_format_native(this), $mol_dev_format_shade(' ', $giper_baza_time_dump(this.time), ' &', this.tick, ' %', this.summ));
+            return $mol_dev_format_span({}, $mol_dev_format_native(this), $mol_dev_format_shade(' ', $giper_baza_time_dump(this.time), ' !', this.tick, ' %', this.summ));
         }
     }
     $.$giper_baza_face = $giper_baza_face;
@@ -8517,6 +8880,7 @@ var $;
                             sand._ball = buf.slice(offset, offset + size);
                             offset += length_ball;
                         }
+                        ;
                         part.units.push(sand);
                         continue;
                     }
@@ -8619,19 +8983,19 @@ var $;
             super();
             this.item_make = item_make;
         }
-        Item(head) {
+        Head(head) {
             return this.item_make(head);
         }
         Data() {
-            return this.Item($giper_baza_land_root.data);
+            return this.Head($giper_baza_land_root.data);
         }
         Tine() {
-            return this.Item($giper_baza_land_root.tine);
+            return this.Head($giper_baza_land_root.tine);
         }
     }
     __decorate([
         $mol_mem_key
-    ], $giper_baza_fund.prototype, "Item", null);
+    ], $giper_baza_fund.prototype, "Head", null);
     $.$giper_baza_fund = $giper_baza_fund;
 })($ || ($ = {}));
 
@@ -10225,7 +10589,7 @@ var $;
             if (area.str === lord.str)
                 return;
             const Lord = this.$.$giper_baza_glob.Land(lord);
-            Lord.saving();
+            Lord.units_saving();
             const units = new Set();
             for (const gift of Lord._gift.values()) {
                 const prev = $mol_wire_sync(this._gift).get(gift.mate().str);
@@ -10246,15 +10610,15 @@ var $;
             part = pack.parts()[0][1];
             this.diff_apply(part.units, 'skip_load');
         }
-        Data(Node) {
-            return this.Node(Node).Item($.$giper_baza_land_root.data);
+        Data(Pawn) {
+            return this.Pawn(Pawn).Head($.$giper_baza_land_root.data);
         }
         Tine() {
-            return this.Node($giper_baza_list_link).Item($.$giper_baza_land_root.tine);
+            return this.Pawn($giper_baza_list_link).Head($.$giper_baza_land_root.tine);
         }
-        Node(Node) {
+        Pawn(Pawn) {
             return new $giper_baza_fund((head) => {
-                return Node.make({
+                return Pawn.make({
                     land: $mol_const(this),
                     head: $mol_const(head),
                 });
@@ -10621,14 +10985,12 @@ var $;
         }
         post(lead, head, self, vary, tag = 'term') {
             this.join();
-            if (vary instanceof $giper_baza_link)
-                vary = vary.relate(this.link());
             const lord_pass = this.auth().pass();
             const encrypted = this.encrypted();
-            let bin = $giper_baza_vary.pack([vary]);
-            const length = encrypted ? Math.ceil((bin.byteLength + 1) / 16) * 16 : bin.byteLength;
+            let open = $giper_baza_link_base(this.link(), () => $giper_baza_vary.pack([vary]));
+            const length = encrypted ? Math.ceil((open.byteLength + 1) / 16) * 16 : open.byteLength;
             const sand = $giper_baza_unit_sand.make(length, tag);
-            sand._open = bin;
+            sand._open = open;
             sand._land = this;
             $giper_baza_unit_trusted_grant(sand);
             sand.time_tick(this.faces.tick().time_tick);
@@ -10636,7 +10998,7 @@ var $;
             sand.lead(lead);
             sand.head(head);
             sand._vary = vary;
-            sand.self(self ?? this.self_make($mol_hash_numbers(bin, sand.idea_seed())));
+            sand.self(self ?? this.self_make($mol_hash_numbers(open, sand.idea_seed())));
             this.diff_apply([lord_pass, sand]);
             this.broadcast();
             return sand;
@@ -10691,7 +11053,7 @@ var $;
             return this.$.$giper_baza_mine.land(this.link());
         }
         sync_mine() {
-            return new $mol_wire_atom('', () => this.saving()).fresh();
+            return new $mol_wire_atom('', () => this.units_saving()).fresh();
         }
         sync_yard() {
             return new $mol_wire_atom('', () => this.$.$giper_baza_glob.yard().sync_land(this.link())).fresh();
@@ -10755,24 +11117,21 @@ var $;
             this.sand_encoding();
             batch(this, this.units_unsigned, this.units_sign);
         }
-        saving() {
-            this.units_signing();
+        units_unsaved() {
             const mine = this.mine();
             const persisting = [];
             const check_lord = (lord) => {
                 const pass = this.lord_pass(lord);
                 if (!pass)
                     return;
-                if ($mol_wire_sync(mine.units_persisted).has(pass))
+                if (mine.units_persisted.has(pass))
                     return;
                 persisting.push(pass);
-                mine.units_persisted.add(pass);
             };
             for (const gift of this._gift.values()) {
-                if ($mol_wire_sync(mine.units_persisted).has(gift))
+                if (mine.units_persisted.has(gift))
                     continue;
                 persisting.push(gift);
-                mine.units_persisted.add(gift);
                 check_lord(gift.lord());
                 check_lord(gift.mate());
             }
@@ -10782,7 +11141,6 @@ var $;
                         if ($mol_wire_sync(mine.units_persisted).has(sand))
                             continue;
                         persisting.push(sand);
-                        mine.units_persisted.add(sand);
                         check_lord(sand.lord());
                     }
                 }
@@ -10790,24 +11148,29 @@ var $;
             for (const seal of this._seal_shot.values()) {
                 if (!seal.alive_items.size)
                     continue;
-                if ($mol_wire_sync(mine.units_persisted).has(seal))
+                if (mine.units_persisted.has(seal))
                     continue;
                 persisting.push(seal);
-                mine.units_persisted.add(seal);
             }
-            if (!persisting.length)
-                return;
-            const part = new $giper_baza_pack_part(persisting);
+            return persisting;
+        }
+        units_saving() {
+            this.units_signing();
+            batch(this, this.units_unsaved, this.units_save);
+        }
+        async units_save(units) {
+            const mine = this.mine();
+            const part = new $giper_baza_pack_part(units);
             const pack = $giper_baza_pack.make([[this.link().str, part]]);
             this.bus().send(pack.buffer);
             const reaping = [...this.units_reaping];
-            $mol_wire_sync(mine).units_save({ ins: persisting, del: reaping });
             this.units_reaping.clear();
+            await $mol_wire_async(mine).units_save({ ins: units, del: reaping });
             if (this.$.$giper_baza_log())
                 this.$.$mol_log3_done({
                     place: this,
                     message: '💾 Save Unit',
-                    ins: persisting,
+                    ins: units,
                     del: reaping,
                 });
         }
@@ -10878,10 +11241,8 @@ var $;
         }
         sand_decode(sand) {
             try {
-                let vary = this.sand_decode_raw(sand);
-                if (vary instanceof $giper_baza_link)
-                    vary = vary.resolve(this.link());
-                return vary;
+                const open = this.sand_decrypt(sand);
+                return $giper_baza_link_base(this.link(), () => $giper_baza_vary.take(open)[0]);
             }
             catch (error) {
                 if (error instanceof Promise)
@@ -10890,20 +11251,18 @@ var $;
                 return null;
             }
         }
-        sand_decode_raw(sand) {
+        sand_decrypt(sand) {
             if (this.sand_get(sand.head(), sand.lord(), sand.self()) !== sand) {
                 for (const id of this.Tine().items_vary() ?? []) {
-                    const vary = this.$.$giper_baza_glob.Land($giper_baza_vary_cast_link(id)).sand_decode_raw(sand);
-                    if (vary !== undefined)
-                        return vary;
+                    const open = this.$.$giper_baza_glob.Land($giper_baza_vary_cast_link(id)).sand_decrypt(sand);
+                    if (open)
+                        return open;
                 }
                 return undefined;
             }
             const secret = this.secret();
-            if (sand._vary !== undefined)
-                return sand._vary;
-            if (sand._open !== null)
-                return sand._vary = $giper_baza_vary.take(sand._open)[0] ?? null;
+            if (sand._open)
+                return sand._open;
             if (!sand._ball)
                 sand._ball = sand.big() ? $mol_wire_sync(this.mine()).ball_load(sand) : sand.data();
             if (secret && sand._ball && !sand.dead()) {
@@ -10922,7 +11281,7 @@ var $;
             else {
                 sand._open = sand._ball;
             }
-            return sand._vary = (sand._open ? $giper_baza_vary.take(sand._open)[0] ?? null : null);
+            return sand._open;
         }
         encryptable() {
             return !this._sand.size;
@@ -10970,7 +11329,7 @@ var $;
             return new $mol_crypto_sacred($mol_wire_sync(secret_mutual).open(gift.code(), gift.salt()).buffer);
         }
         dump() {
-            this.saving();
+            this.units_saving();
             const units = [];
             for (const gift of this._gift.values())
                 units.push(gift);
@@ -11011,7 +11370,7 @@ var $;
     ], $giper_baza_land.prototype, "Tine", null);
     __decorate([
         $mol_mem_key
-    ], $giper_baza_land.prototype, "Node", null);
+    ], $giper_baza_land.prototype, "Pawn", null);
     __decorate([
         $mol_mem
     ], $giper_baza_land.prototype, "total", null);
@@ -11078,7 +11437,10 @@ var $;
     ], $giper_baza_land.prototype, "units_signing", null);
     __decorate([
         $mol_mem
-    ], $giper_baza_land.prototype, "saving", null);
+    ], $giper_baza_land.prototype, "units_unsaved", null);
+    __decorate([
+        $mol_mem
+    ], $giper_baza_land.prototype, "units_saving", null);
     __decorate([
         $mol_mem_key
     ], $giper_baza_land.prototype, "sand_load", null);
@@ -11087,7 +11449,7 @@ var $;
     ], $giper_baza_land.prototype, "sand_decode", null);
     __decorate([
         $mol_mem_key
-    ], $giper_baza_land.prototype, "sand_decode_raw", null);
+    ], $giper_baza_land.prototype, "sand_decrypt", null);
     __decorate([
         $mol_mem
     ], $giper_baza_land.prototype, "encryptable", null);
@@ -11557,7 +11919,7 @@ var $;
                     }
                 }
                 for (const land of lands)
-                    land.saving();
+                    land.units_saving();
                 this.lands_news.clear();
             }
             catch (error) {
@@ -11695,7 +12057,7 @@ var $;
                 if (!faces)
                     return;
                 const Land = this.$.$giper_baza_glob.Land(land);
-                Land.saving();
+                Land.units_saving();
                 const units = Land.diff_units(faces);
                 if (!units.length)
                     return;
@@ -11898,6 +12260,8 @@ var $;
             }
             else {
                 const bin = next.toBin();
+                if (bin.byteLength === 0)
+                    return next;
                 if (bin.byteLength !== 6)
                     $mol_fail(new Error(`Wrong Link size (${next})`));
                 this.asArray().set(bin, this.byteOffset + offset);
@@ -11910,6 +12274,8 @@ var $;
             }
             else {
                 const bin = next.toBin();
+                if (bin.byteLength === 0)
+                    return next;
                 if (bin.byteLength !== 12)
                     $mol_fail(new Error(`Wrong Link size (${next})`));
                 this.asArray().set(bin, this.byteOffset + offset);
@@ -11957,7 +12323,7 @@ var $;
         toString() {
             const hash = '🔖' + $mol_term_color.magenta(this.hash().str);
             const lord = '👾' + $mol_term_color.magenta(this.lord().str);
-            const time = $mol_term_color.gray(this.moment().toString('YYYY-MM-DD hh:mm:ss') + ' &' + this.tick());
+            const time = $mol_term_color.gray(this.moment().toString('YYYY-MM-DD hh:mm:ss') + ' !' + this.tick());
             return `${lord} ${time} ${hash}`;
         }
     }
@@ -12039,7 +12405,7 @@ var $;
             return `${super.toString()} 🏅 ${mate} ${read} ${rank}`;
         }
         [$mol_dev_format_head]() {
-            return $mol_dev_format_span({}, $mol_dev_format_native(this), ' 👾', $mol_dev_format_auto(this.lord()), ' 🏅', ' ', $mol_dev_format_shade(this.moment().toString('YYYY-MM-DD hh:mm:ss'), ' &', this.tick()), ' #', $mol_dev_format_auto(this.hash()), ' 👾', $mol_dev_format_accent(this.mate().str || '______anyone_____'), this.code().some(v => v) ? ' 🔐' : ' 👀', $giper_baza_rank_tier[this.tier()], ':', this.rate().toString(16).toUpperCase());
+            return $mol_dev_format_span({}, $mol_dev_format_native(this), ' 👾', $mol_dev_format_auto(this.lord()), ' 🏅', ' ', $mol_dev_format_shade(this.moment().toString('YYYY-MM-DD hh:mm:ss'), ' !', this.tick()), ' #', $mol_dev_format_auto(this.hash()), ' 👾', $mol_dev_format_accent(this.mate().str || '______anyone_____'), this.code().some(v => v) ? ' 🔐' : ' 👀', $giper_baza_rank_tier[this.tier()], ':', this.rate().toString(16).toUpperCase());
         }
     }
     __decorate([
@@ -12136,7 +12502,7 @@ var $;
             return `${super.toString()} ✍ ${items}`;
         }
         [$mol_dev_format_head]() {
-            return $mol_dev_format_span({}, $mol_dev_format_native(this), ' 👾', $mol_dev_format_auto(this.lord()), ' ✍ ', $mol_dev_format_shade(this.moment().toString('YYYY-MM-DD hh:mm:ss'), ' &', this.tick()), ' #', $mol_dev_format_auto(this.hash()), ' ', $mol_dev_format_auto(this.hash_list()));
+            return $mol_dev_format_span({}, $mol_dev_format_native(this), ' 👾', $mol_dev_format_auto(this.lord()), ' ✍ ', $mol_dev_format_shade(this.moment().toString('YYYY-MM-DD hh:mm:ss'), ' !', this.tick()), ' #', $mol_dev_format_auto(this.hash()), ' ', $mol_dev_format_auto(this.hash_list()));
         }
     }
     __decorate([
@@ -12297,7 +12663,7 @@ var $;
             return `${super.toString()} 📦 ${lead}\\${head}/${self} ${tag} ${vary}`;
         }
         [$mol_dev_format_head]() {
-            return $mol_dev_format_span({}, $mol_dev_format_native(this), ' 👾', $mol_dev_format_auto(this.lord()), ' 📦 ', $mol_dev_format_shade(this.moment().toString('YYYY-MM-DD hh:mm:ss'), ' &', this.tick()), ' #', $mol_dev_format_auto(this.hash()), ' ', this.lead().str || '__knot__', $mol_dev_format_shade('\\'), $mol_dev_format_accent(this.head().str || '__root__'), $mol_dev_format_shade('/'), this.self().str || '__spec__', ' ', {
+            return $mol_dev_format_span({}, $mol_dev_format_native(this), ' 👾', $mol_dev_format_auto(this.lord()), ' 📦 ', $mol_dev_format_shade(this.moment().toString('YYYY-MM-DD hh:mm:ss'), ' !', this.tick()), ' #', $mol_dev_format_auto(this.hash()), ' ', this.lead().str || '__knot__', $mol_dev_format_shade('\\'), $mol_dev_format_accent(this.head().str || '__root__'), $mol_dev_format_shade('/'), this.self().str || '__spec__', ' ', {
                 term: '💼',
                 solo: '1️⃣',
                 vals: '🎹',
@@ -12414,7 +12780,7 @@ var $;
         }
         load_init() {
             const version = (file) => file.modified()?.valueOf() ?? Number.POSITIVE_INFINITY;
-            if (version(this.sides[0]) > version(this.sides[1]))
+            if (version(this.sides[0]) < version(this.sides[1]))
                 this.sides.reverse();
         }
         load() {
@@ -12544,7 +12910,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $giper_baza_node extends $mol_object {
+    class $giper_baza_pawn extends $mol_object {
         static tag = 'vals';
         land() {
             return null;
@@ -12561,18 +12927,18 @@ var $;
         toJSON() {
             return this.link().str;
         }
-        cast(Node) {
-            return this.land().Node(Node).Item(this.head());
+        cast(Pawn) {
+            return this.land().Pawn(Pawn).Head(this.head());
         }
-        nodes(Node) {
+        pawns(Pawn) {
             const land = this.land();
             const map = {
-                term: () => land.Node(Node || $giper_baza_atom_vary),
-                solo: () => land.Node(Node || $giper_baza_atom_vary),
-                vals: () => land.Node(Node || $giper_baza_list_vary),
-                keys: () => land.Node(Node || $giper_baza_dict),
+                term: () => land.Pawn(Pawn || $giper_baza_atom_vary),
+                solo: () => land.Pawn(Pawn || $giper_baza_atom_vary),
+                vals: () => land.Pawn(Pawn || $giper_baza_list_vary),
+                keys: () => land.Pawn(Pawn || $giper_baza_dict),
             };
-            return this.units().map(unit => map[unit.tag()]().Item(unit.self()));
+            return this.units().map(unit => map[unit.tag()]().Head(unit.self()));
         }
         units() {
             return this.units_of($giper_baza_link.hole);
@@ -12610,7 +12976,7 @@ var $;
                     last = sand.time();
                 if (sand.tag() === 'term')
                     return;
-                land.Node($giper_baza_node).Item(sand.self()).units().forEach(visit);
+                land.Pawn($giper_baza_pawn).Head(sand.self()).units().forEach(visit);
             };
             this.units().forEach(visit);
             return last ? $giper_baza_time_moment(last) : null;
@@ -12622,7 +12988,7 @@ var $;
                 peers.add(land.lord_pass(sand.lord()));
                 if (sand.tag() === 'term')
                     return;
-                land.Node($giper_baza_node).Item(sand.self()).units_of(null).forEach(visit);
+                land.Pawn($giper_baza_pawn).Head(sand.self()).units_of(null).forEach(visit);
             };
             this.units_of(null).forEach(visit);
             return [...peers];
@@ -12634,29 +13000,29 @@ var $;
     }
     __decorate([
         $mol_memo.method
-    ], $giper_baza_node.prototype, "link", null);
+    ], $giper_baza_pawn.prototype, "link", null);
     __decorate([
         $mol_mem_key
-    ], $giper_baza_node.prototype, "cast", null);
+    ], $giper_baza_pawn.prototype, "cast", null);
     __decorate([
         $mol_mem_key
-    ], $giper_baza_node.prototype, "nodes", null);
+    ], $giper_baza_pawn.prototype, "pawns", null);
     __decorate([
         $mol_mem_key
-    ], $giper_baza_node.prototype, "units_of", null);
+    ], $giper_baza_pawn.prototype, "units_of", null);
     __decorate([
         $mol_mem
-    ], $giper_baza_node.prototype, "meta", null);
+    ], $giper_baza_pawn.prototype, "meta", null);
     __decorate([
         $mol_mem_key
-    ], $giper_baza_node.prototype, "meta_of", null);
+    ], $giper_baza_pawn.prototype, "meta_of", null);
     __decorate([
         $mol_mem
-    ], $giper_baza_node.prototype, "last_change", null);
+    ], $giper_baza_pawn.prototype, "last_change", null);
     __decorate([
         $mol_mem
-    ], $giper_baza_node.prototype, "authors", null);
-    $.$giper_baza_node = $giper_baza_node;
+    ], $giper_baza_pawn.prototype, "authors", null);
+    $.$giper_baza_pawn = $giper_baza_pawn;
 })($ || ($ = {}));
 
 ;
@@ -12703,7 +13069,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $giper_baza_list_vary extends $giper_baza_node {
+    class $giper_baza_list_vary extends $giper_baza_pawn {
         static tag = $giper_baza_unit_sand_tag[$giper_baza_unit_sand_tag.vals];
         items_vary(next, tag = 'term') {
             const units = this.units();
@@ -12762,9 +13128,9 @@ var $;
         wipe(seat) {
             this.land().sand_wipe(this.units()[seat]);
         }
-        node_make(Node, vary, tag = 'term') {
+        pawn_make(Pawn, vary, tag = 'term') {
             this.splice([vary], undefined, undefined, tag);
-            return this.land().Node(Node).Item(this.units().at(-1).self());
+            return this.land().Pawn(Pawn).Head(this.units().at(-1).self());
         }
         ;
         [$mol_dev_format_head]() {
@@ -12844,11 +13210,11 @@ var $;
             }
             remote_list(next) {
                 const glob = this.$.$giper_baza_glob;
-                const Node = Value();
+                const Pawn = Value();
                 return this.items_vary(next?.map(item => item.link()))
                     .map($giper_baza_vary_cast_link)
                     .filter($mol_guard_defined)
-                    .map(link => glob.Node(link, Node));
+                    .map(link => glob.Pawn(link, Pawn));
             }
             remote_add(item) {
                 this.add(item.link());
@@ -12856,19 +13222,19 @@ var $;
             make(config) {
                 if (config === null || typeof config === 'number') {
                     const self = this.land().self_make(config || undefined);
-                    const node = this.land().Node(Value()).Item(self);
-                    this.splice([node.link()]);
-                    return node;
+                    const pawn = this.land().Pawn(Value()).Head(self);
+                    this.splice([pawn.link()]);
+                    return pawn;
                 }
                 else if (config instanceof $giper_baza_land) {
                     const land = config.area_make();
                     this.splice([land.link()]);
-                    return land.Node(Value()).Data();
+                    return land.Pawn(Value()).Data();
                 }
                 else if (config) {
                     const land = this.$.$giper_baza_glob.land_grab(config);
                     this.splice([land.link()]);
-                    return land.Node(Value()).Data();
+                    return land.Pawn(Value()).Data();
                 }
             }
         }
@@ -12895,11 +13261,11 @@ var $;
         keys() {
             return this.items_vary();
         }
-        dive(key, Node, auto) {
+        dive(key, Pawn, auto) {
             if (this.can_change() && auto !== undefined)
-                this.has(key, true, Node.tag);
+                this.has(key, true, Pawn.tag);
             const unit = this.find(key);
-            return unit ? this.land().Node(Node).Item(unit.self()) : null;
+            return unit ? this.land().Pawn(Pawn).Head(unit.self()) : null;
         }
         static schema = {};
         static with(schema) {
@@ -12923,8 +13289,8 @@ var $;
         ;
         [$mol_dev_format_head]() {
             const keys = $mol_wire_probe(() => this.keys());
-            const nodes = $mol_wire_probe(() => this.nodes(null)) ?? [];
-            return $mol_dev_format_span({}, $mol_dev_format_native(this), ' ', this.head(), ' ', $mol_dev_format_auto(keys?.map((key, index) => new Pair(key, nodes[index]))));
+            const pawns = $mol_wire_probe(() => this.pawns(null)) ?? [];
+            return $mol_dev_format_span({}, $mol_dev_format_native(this), ' ', this.head(), ' ', $mol_dev_format_auto(keys?.map((key, index) => new Pair(key, pawns[index]))));
         }
     }
     __decorate([
@@ -12974,7 +13340,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $giper_baza_atom_vary extends $giper_baza_node {
+    class $giper_baza_atom_vary extends $giper_baza_pawn {
         static tag = $giper_baza_unit_sand_tag[$giper_baza_unit_sand_tag.solo];
         pick_unit(peer) {
             return this.units_of(peer).at(0);
@@ -13120,7 +13486,7 @@ var $;
                 link = $giper_baza_vary_cast_link(this.vary_of(peer, link));
                 if (!link)
                     return null;
-                return this.$.$giper_baza_glob.Node(link, Value());
+                return this.$.$giper_baza_glob.Pawn(link, Value());
             }
             ensure(config) {
                 return this.ensure_of($giper_baza_link.hole, config);
@@ -13141,8 +13507,8 @@ var $;
             ensure_here(peer) {
                 const idea = $mol_hash_string(this.link().str);
                 const head = this.land().self_make(idea);
-                const node = this.land().Node(Value()).Item(head);
-                this.remote_of(peer, node);
+                const pawn = this.land().Pawn(Value()).Head(head);
+                this.remote_of(peer, pawn);
             }
             ensure_area(peer, land) {
                 const idea = $mol_hash_string(this.link().str);
@@ -13302,8 +13668,8 @@ var $;
         Selection: $giper_baza_atom_text,
         Hall: $giper_baza_atom_link_to(() => $giper_baza_dict),
     }) {
-        hall_by(Node, auto) {
-            return this.Hall(auto)?.ensure(auto === null ? this.land() : undefined)?.cast(Node) ?? null;
+        hall_by(Pawn, auto) {
+            return this.Hall(auto)?.ensure(auto === null ? this.land() : undefined)?.cast(Pawn) ?? null;
         }
     }
     $.$giper_baza_home = $giper_baza_home;
@@ -13318,8 +13684,8 @@ var $;
         static yard() {
             return new this.$.$giper_baza_yard;
         }
-        static home(Node) {
-            return this.Land(this.$.$giper_baza_auth.current().pass().lord()).Data(Node ?? this.$.$giper_baza_home);
+        static home(Pawn) {
+            return this.Land(this.$.$giper_baza_auth.current().pass().lord()).Data(Pawn ?? this.$.$giper_baza_home);
         }
         static king_grab(preset = [[null, this.$.$giper_baza_rank_read]]) {
             const mapping = new Map(preset);
@@ -13345,9 +13711,9 @@ var $;
                 link: $mol_const(link),
             });
         }
-        static Node(link, Node) {
+        static Pawn(link, Pawn) {
             const land = this.Land(link.land());
-            return land.Node(Node).Item(link.head());
+            return land.Pawn(Pawn).Head(link.head());
         }
         static apply_pack(pack) {
             return this.apply_parts(pack.parts());
@@ -13406,7 +13772,7 @@ var $;
             profile(next) {
                 if (next !== undefined)
                     return next;
-                return this.$.$giper_baza_glob.home().land().Node($bog_bzrl_baza_profile).Data();
+                return this.$.$giper_baza_glob.home().land().Data($bog_bzrl_baza_profile);
             }
             accept() {
                 return 'image/*';
@@ -15687,7 +16053,7 @@ var $;
                 this.opened(!this.opened());
             }
             profile_entity() {
-                return this.$.$giper_baza_glob.home().land().Node($bog_bzrl_baza_profile).Data();
+                return this.$.$giper_baza_glob.home().land().Data($bog_bzrl_baza_profile);
             }
             profile_text(ensure, next, fallback) {
                 const profile = this.profile_entity();
@@ -16878,6 +17244,24 @@ var $;
         $$.$mol_switch = $mol_switch;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
+
+;
+	($.$mol_button_major) = class $mol_button_major extends ($.$mol_button_minor) {
+		theme(){
+			return "$mol_theme_base";
+		}
+	};
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/button/major/major.view.css", "[mol_button_major] {\n\tbackground-color: var(--mol_theme_back);\n\tcolor: var(--mol_theme_text);\n}\n");
+})($ || ($ = {}));
+
+;
+"use strict";
 
 ;
 	($.$bog_bzrl_app_filter) = class $bog_bzrl_app_filter extends ($.$mol_view) {
@@ -18314,204 +18698,6 @@ var $;
 })($ || ($ = {}));
 
 ;
-	($.$mol_link) = class $mol_link extends ($.$mol_view) {
-		uri_toggle(){
-			return "";
-		}
-		hint(){
-			return "";
-		}
-		hint_safe(){
-			return (this.hint());
-		}
-		target(){
-			return "_self";
-		}
-		file_name(){
-			return "";
-		}
-		current(){
-			return false;
-		}
-		relation(){
-			return "";
-		}
-		event_click(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		click(next){
-			return (this.event_click(next));
-		}
-		uri(){
-			return "";
-		}
-		dom_name(){
-			return "a";
-		}
-		uri_off(){
-			return "";
-		}
-		uri_native(){
-			return null;
-		}
-		external(){
-			return false;
-		}
-		attr(){
-			return {
-				...(super.attr()), 
-				"href": (this.uri_toggle()), 
-				"title": (this.hint_safe()), 
-				"target": (this.target()), 
-				"download": (this.file_name()), 
-				"mol_link_current": (this.current()), 
-				"rel": (this.relation())
-			};
-		}
-		sub(){
-			return [(this.title())];
-		}
-		arg(){
-			return {};
-		}
-		event(){
-			return {...(super.event()), "click": (next) => (this.click(next))};
-		}
-	};
-	($mol_mem(($.$mol_link.prototype), "event_click"));
-
-
-;
-"use strict";
-
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        class $mol_link extends $.$mol_link {
-            uri_toggle() {
-                return this.current() ? this.uri_off() : this.uri();
-            }
-            uri() {
-                return new this.$.$mol_state_arg(this.state_key()).link(this.arg());
-            }
-            uri_off() {
-                const arg2 = {};
-                for (let i in this.arg())
-                    arg2[i] = null;
-                return new this.$.$mol_state_arg(this.state_key()).link(arg2);
-            }
-            uri_native() {
-                const base = this.$.$mol_state_arg.href();
-                return new URL(this.uri(), base);
-            }
-            current() {
-                const base = this.$.$mol_state_arg.href_normal();
-                const target = this.uri_native().toString();
-                if (base === target)
-                    return true;
-                const args = this.arg();
-                const keys = Object.keys(args).filter(key => args[key] != null);
-                if (keys.length === 0)
-                    return false;
-                for (const key of keys) {
-                    if (this.$.$mol_state_arg.value(key) != args[key])
-                        return false;
-                }
-                return true;
-            }
-            file_name() {
-                return null;
-            }
-            minimal_height() {
-                return Math.max(super.minimal_height(), 24);
-            }
-            external() {
-                return this.uri_native().origin !== $mol_dom_context.location.origin;
-            }
-            target() {
-                return this.external() ? '_blank' : '_self';
-            }
-            hint_safe() {
-                try {
-                    return this.hint();
-                }
-                catch (error) {
-                    $mol_fail_log(error);
-                    return '';
-                }
-            }
-        }
-        __decorate([
-            $mol_mem
-        ], $mol_link.prototype, "uri_toggle", null);
-        __decorate([
-            $mol_mem
-        ], $mol_link.prototype, "uri", null);
-        __decorate([
-            $mol_mem
-        ], $mol_link.prototype, "uri_off", null);
-        __decorate([
-            $mol_mem
-        ], $mol_link.prototype, "uri_native", null);
-        __decorate([
-            $mol_mem
-        ], $mol_link.prototype, "current", null);
-        $$.$mol_link = $mol_link;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    const { rem } = $mol_style_unit;
-    $mol_style_define($mol_link, {
-        textDecoration: 'none',
-        color: $mol_theme.control,
-        stroke: 'currentcolor',
-        cursor: 'pointer',
-        padding: $mol_gap.text,
-        boxSizing: 'border-box',
-        position: 'relative',
-        minWidth: rem(2.5),
-        minHeight: rem(2.5),
-        gap: $mol_gap.space,
-        border: {
-            radius: $mol_gap.round,
-        },
-        ':hover': {
-            background: {
-                color: $mol_theme.hover,
-            },
-        },
-        ':focus': {
-            outline: 'none',
-        },
-        ':focus-visible': {
-            outline: 'none',
-            background: {
-                color: $mol_theme.hover,
-            }
-        },
-        ':active': {
-            color: $mol_theme.focus,
-        },
-        '@': {
-            mol_link_current: {
-                'true': {
-                    color: $mol_theme.current,
-                    textShadow: '0 0',
-                }
-            }
-        },
-    });
-})($ || ($ = {}));
-
-;
 	($.$bog_bzrl_app_footer) = class $bog_bzrl_app_footer extends ($.$mol_view) {
 		Email(){
 			const obj = new this.$.$mol_link();
@@ -19037,116 +19223,34 @@ var $;
 })($ || ($ = {}));
 
 ;
-	($.$bog_bzrl_app) = class $bog_bzrl_app extends ($.$mol_page) {
-		Theme(){
-			const obj = new this.$.$bog_theme_auto();
-			(obj.theme_light) = () => ("$mol_theme_homerent_light");
-			(obj.theme_dark) = () => ("$mol_theme_homerent_dark");
-			(obj.themes_default) = () => (["$mol_theme_homerent_light", "$mol_theme_homerent_dark"]);
-			return obj;
-		}
-		Logo_icon(){
-			const obj = new this.$.$mol_image();
-			(obj.uri) = () => ("bog/bzrl/assets/favicon.png");
-			return obj;
-		}
-		logo_home(){
-			return "home";
-		}
-		l(){
-			return " ";
-		}
-		logo_rent(){
-			return "rent";
-		}
-		Logo_text(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([
-				(this.logo_home()), 
-				(this.l()), 
-				(this.logo_rent())
-			]);
-			return obj;
-		}
-		Logo(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Logo_icon()), (this.Logo_text())]);
-			return obj;
-		}
-		rent_label(){
-			return (this.$.$mol_locale.text("$bog_bzrl_app_rent_label"));
-		}
-		Rent_button(){
-			const obj = new this.$.$mol_button_major();
-			(obj.click) = (next) => ((this.rent_click(next)));
-			(obj.sub) = () => ([(this.rent_label())]);
-			return obj;
-		}
-		let_label(){
-			return (this.$.$mol_locale.text("$bog_bzrl_app_let_label"));
-		}
-		Let_link(){
-			const obj = new this.$.$mol_button_minor();
-			(obj.click) = (next) => ((this.let_click(next)));
-			(obj.sub) = () => ([(this.let_label())]);
-			return obj;
-		}
-		home_icon_img(){
-			const obj = new this.$.$mol_image();
-			(obj.uri) = () => ("bog/bzrl/assets/HomeRent-Design-System-Frame-71.png");
-			return obj;
-		}
-		Home_icon(){
-			const obj = new this.$.$mol_button_minor();
-			(obj.sub) = () => ([(this.home_icon_img())]);
-			return obj;
-		}
-		Nav(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([
-				(this.Rent_button()), 
-				(this.Let_link()), 
-				(this.Home_icon())
-			]);
-			return obj;
-		}
-		Profile(){
-			const obj = new this.$.$bog_bzrl_app_profile();
-			(obj.theme_auto) = () => ((this.Theme()));
-			return obj;
-		}
-		Actions(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Profile())]);
-			return obj;
-		}
+	($.$bog_bzrl_app_rent) = class $bog_bzrl_app_rent extends ($.$mol_view) {
 		Title_section(){
 			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_bzrl_app_Title_section_title")));
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_bzrl_app_rent_Title_section_title")));
 			return obj;
 		}
-		filter_district(next){
+		district(next){
 			if(next !== undefined) return next;
 			return "all";
 		}
-		filter_rooms(next){
+		rooms(next){
 			if(next !== undefined) return next;
 			return "studio";
 		}
-		filter_price(next){
+		price_from(next){
 			if(next !== undefined) return next;
 			return "";
 		}
-		apartments_search(next){
+		search(next){
 			if(next !== undefined) return next;
 			return null;
 		}
 		Filter(){
 			const obj = new this.$.$bog_bzrl_app_filter();
-			(obj.district) = (next) => ((this.filter_district(next)));
-			(obj.rooms) = (next) => ((this.filter_rooms(next)));
-			(obj.price_from) = (next) => ((this.filter_price(next)));
-			(obj.search) = (next) => ((this.apartments_search(next)));
+			(obj.district) = (next) => ((this.district(next)));
+			(obj.rooms) = (next) => ((this.rooms(next)));
+			(obj.price_from) = (next) => ((this.price_from(next)));
+			(obj.search) = (next) => ((this.search(next)));
 			return obj;
 		}
 		apartment_district(id){
@@ -19191,36 +19295,9 @@ var $;
 			(obj.action) = (next) => ((this.promo_action(next)));
 			return obj;
 		}
-		Rent_section(next){
-			if(next !== undefined) return next;
-			const obj = new this.$.$mol_view();
-			(obj.attr) = () => ({"id": "top"});
-			(obj.sub) = () => ([
-				(this.Title_section()), 
-				(this.Filter()), 
-				(this.Apartments()), 
-				(this.Promo())
-			]);
-			return obj;
-		}
-		let_action(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		Let_hero(){
-			const obj = new this.$.$bog_bzrl_app_hero_let();
-			(obj.action) = (next) => ((this.let_action(next)));
-			return obj;
-		}
-		Let_section(next){
-			if(next !== undefined) return next;
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Let_hero())]);
-			return obj;
-		}
 		How_title(){
 			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_bzrl_app_How_title_title")));
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_bzrl_app_rent_How_title_title")));
 			return obj;
 		}
 		Step_match(){
@@ -19244,8 +19321,7 @@ var $;
 			]);
 			return obj;
 		}
-		How_it_works(next){
-			if(next !== undefined) return next;
+		How_it_works(){
 			const obj = new this.$.$mol_view();
 			(obj.attr) = () => ({"id": "how"});
 			(obj.sub) = () => ([(this.How_title()), (this.Steps())]);
@@ -19259,8 +19335,7 @@ var $;
 			const obj = new this.$.$bog_bzrl_app_hero_privacy();
 			return obj;
 		}
-		Privacy(next){
-			if(next !== undefined) return next;
+		Privacy(){
 			const obj = new this.$.$mol_view();
 			(obj.attr) = () => ({"id": "privacy"});
 			(obj.sub) = () => ([(this.Privacy_slider()), (this.Privacy_content())]);
@@ -19268,7 +19343,7 @@ var $;
 		}
 		Benefits_title(){
 			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_bzrl_app_Benefits_title_title")));
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_bzrl_app_rent_Benefits_title_title")));
 			return obj;
 		}
 		Benefit_owners(){
@@ -19292,36 +19367,394 @@ var $;
 			]);
 			return obj;
 		}
-		Benefits(next){
-			if(next !== undefined) return next;
+		Benefits(){
 			const obj = new this.$.$mol_view();
 			(obj.attr) = () => ({"id": "benefits"});
 			(obj.sub) = () => ([(this.Benefits_title()), (this.Benefits_list())]);
 			return obj;
 		}
-		Team(next){
-			if(next !== undefined) return next;
+		Team(){
 			const obj = new this.$.$bog_bzrl_app_hero_team();
 			(obj.attr) = () => ({"id": "team"});
 			(obj.photo) = () => ("bog/bzrl/assets/HomeRent-Design-System-Frame-77.png");
 			return obj;
 		}
-		Footer(next){
-			if(next !== undefined) return next;
+		Footer(){
 			const obj = new this.$.$bog_bzrl_app_footer();
 			(obj.attr) = () => ({"id": "contact"});
 			return obj;
 		}
+		apartments(){
+			return [];
+		}
+		sub(){
+			return [
+				(this.Title_section()), 
+				(this.Filter()), 
+				(this.Apartments()), 
+				(this.Promo()), 
+				(this.How_it_works()), 
+				(this.Privacy()), 
+				(this.Benefits()), 
+				(this.Team()), 
+				(this.Footer())
+			];
+		}
+	};
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "Title_section"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "district"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "rooms"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "price_from"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "search"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "Filter"));
+	($mol_mem_key(($.$bog_bzrl_app_rent.prototype), "Apartment"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "Apartments"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "promo_action"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "Promo"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "How_title"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "Step_match"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "Step_request"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "Step_pay"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "Steps"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "How_it_works"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "Privacy_slider"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "Privacy_content"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "Privacy"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "Benefits_title"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "Benefit_owners"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "Benefit_verified"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "Benefit_secure"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "Benefits_list"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "Benefits"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "Team"));
+	($mol_mem(($.$bog_bzrl_app_rent.prototype), "Footer"));
+
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $bog_bzrl_app_rent extends $.$bog_bzrl_app_rent {
+            apartment_rows() {
+                return this.apartment_ids().map(id => this.Apartment(id));
+            }
+            apartment_ids() {
+                return this.apartments().map(apartment => apartment.id);
+            }
+            apartment_data(id) {
+                return this.apartments().find(apartment => apartment.id === id);
+            }
+            apartment_district(id) {
+                return this.apartment_data(id).district;
+            }
+            apartment_photo(id) {
+                return this.apartment_data(id).photo;
+            }
+            apartment_area(id) {
+                return this.apartment_data(id).area;
+            }
+            apartment_floor(id) {
+                return this.apartment_data(id).floor;
+            }
+            apartment_price(id) {
+                return this.apartment_data(id).price;
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $bog_bzrl_app_rent.prototype, "apartment_rows", null);
+        __decorate([
+            $mol_mem
+        ], $bog_bzrl_app_rent.prototype, "apartment_ids", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_bzrl_app_rent.prototype, "apartment_data", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_bzrl_app_rent.prototype, "apartment_district", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_bzrl_app_rent.prototype, "apartment_photo", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_bzrl_app_rent.prototype, "apartment_area", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_bzrl_app_rent.prototype, "apartment_floor", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_bzrl_app_rent.prototype, "apartment_price", null);
+        $$.$bog_bzrl_app_rent = $bog_bzrl_app_rent;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        $mol_style_define($bog_bzrl_app_rent, {
+            display: 'flex',
+            flex: {
+                direction: 'column',
+            },
+            gap: '2rem',
+            Title_section: {
+                font: {
+                    family: 'PT Root UI, sans-serif',
+                    size: '4rem',
+                    weight: 700,
+                },
+                lineHeight: '1',
+                letterSpacing: '-0.03em',
+                textAlign: 'center',
+                color: '#4C4C4C',
+                maxWidth: '787px',
+                margin: {
+                    left: 'auto',
+                    right: 'auto',
+                },
+            },
+            Apartments: {
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gap: '1.5rem',
+            },
+            How_it_works: {
+                flex: {
+                    direction: 'column',
+                },
+                gap: '2rem',
+            },
+            How_title: {
+                font: {
+                    size: '1.75rem',
+                    weight: 600,
+                },
+            },
+            Steps: {
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gap: '1.5rem',
+            },
+            Privacy: {
+                position: 'relative',
+                display: 'grid',
+                gridTemplateAreas: '"stack"',
+                border: {
+                    radius: $mol_gap.round,
+                },
+                overflow: 'hidden',
+            },
+            Privacy_slider: {
+                gridArea: 'stack',
+                zIndex: 0,
+            },
+            Privacy_content: {
+                gridArea: 'stack',
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                padding: '3rem',
+                textAlign: 'center',
+                pointerEvents: 'none',
+                zIndex: 1,
+            },
+            Benefits: {
+                flex: {
+                    direction: 'column',
+                },
+                gap: '2rem',
+            },
+            Benefits_title: {
+                font: {
+                    size: '1.75rem',
+                    weight: 600,
+                },
+            },
+            Benefits_list: {
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gap: '1.5rem',
+            },
+            '@media': {
+                'screen and (max-width: 900px)': {
+                    Apartments: {
+                        gridTemplateColumns: 'repeat(2, 1fr)',
+                    },
+                    Steps: {
+                        gridTemplateColumns: '1fr',
+                    },
+                    Benefits_list: {
+                        gridTemplateColumns: '1fr',
+                    },
+                },
+                'screen and (max-width: 600px)': {
+                    Apartments: {
+                        gridTemplateColumns: '1fr',
+                    },
+                },
+            },
+        });
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+	($.$bog_bzrl_app_let) = class $bog_bzrl_app_let extends ($.$mol_view) {
+		action(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Let_hero(){
+			const obj = new this.$.$bog_bzrl_app_hero_let();
+			(obj.action) = (next) => ((this.action(next)));
+			return obj;
+		}
+		sub(){
+			return [(this.Let_hero())];
+		}
+	};
+	($mol_mem(($.$bog_bzrl_app_let.prototype), "action"));
+	($mol_mem(($.$bog_bzrl_app_let.prototype), "Let_hero"));
+
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $bog_bzrl_app_let extends $.$bog_bzrl_app_let {
+        }
+        $$.$bog_bzrl_app_let = $bog_bzrl_app_let;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        $mol_style_define($bog_bzrl_app_let, {
+            display: 'flex',
+            flex: {
+                direction: 'column',
+            },
+            gap: '2rem',
+        });
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+	($.$bog_bzrl_app) = class $bog_bzrl_app extends ($.$mol_page) {
+		Theme(){
+			const obj = new this.$.$bog_theme_auto();
+			(obj.theme_light) = () => ("$mol_theme_homerent_light");
+			(obj.theme_dark) = () => ("$mol_theme_homerent_dark");
+			(obj.themes_default) = () => (["$mol_theme_homerent_light", "$mol_theme_homerent_dark"]);
+			return obj;
+		}
+		Logo_icon(){
+			const obj = new this.$.$mol_image();
+			(obj.uri) = () => ("bog/bzrl/assets/favicon.png");
+			return obj;
+		}
+		logo_home(){
+			return "home";
+		}
+		l(){
+			return " ";
+		}
+		logo_rent(){
+			return "rent";
+		}
+		Logo_text(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.logo_home()), 
+				(this.l()), 
+				(this.logo_rent())
+			]);
+			return obj;
+		}
+		Logo(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Logo_icon()), (this.Logo_text())]);
+			return obj;
+		}
+		Nav(){
+			const obj = new this.$.$bog_bzrl_app_nav();
+			return obj;
+		}
+		Profile(){
+			const obj = new this.$.$bog_bzrl_app_profile();
+			(obj.theme_auto) = () => ((this.Theme()));
+			return obj;
+		}
+		Actions(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Profile())]);
+			return obj;
+		}
+		filter_district(next){
+			if(next !== undefined) return next;
+			return "all";
+		}
+		filter_rooms(next){
+			if(next !== undefined) return next;
+			return "studio";
+		}
+		filter_price(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		apartments_search(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		apartments_filtered(){
+			return [];
+		}
+		promo_action(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Rent_page(next){
+			if(next !== undefined) return next;
+			const obj = new this.$.$bog_bzrl_app_rent();
+			(obj.attr) = () => ({"id": "top"});
+			(obj.district) = (next) => ((this.filter_district(next)));
+			(obj.rooms) = (next) => ((this.filter_rooms(next)));
+			(obj.price_from) = (next) => ((this.filter_price(next)));
+			(obj.search) = (next) => ((this.apartments_search(next)));
+			(obj.apartments) = () => ((this.apartments_filtered()));
+			(obj.promo_action) = (next) => ((this.promo_action(next)));
+			return obj;
+		}
+		let_action(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Let_page(next){
+			if(next !== undefined) return next;
+			const obj = new this.$.$bog_bzrl_app_let();
+			(obj.action) = (next) => ((this.let_action(next)));
+			return obj;
+		}
 		title(){
 			return (this.$.$mol_locale.text("$bog_bzrl_app_title"));
-		}
-		rent_click(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		let_click(next){
-			if(next !== undefined) return next;
-			return null;
 		}
 		plugins(){
 			return [(this.Theme())];
@@ -19334,61 +19767,24 @@ var $;
 			];
 		}
 		body(){
-			return [
-				(this.Rent_section()), 
-				(this.Let_section()), 
-				(this.How_it_works()), 
-				(this.Privacy()), 
-				(this.Benefits()), 
-				(this.Team()), 
-				(this.Footer())
-			];
+			return [(this.Rent_page()), (this.Let_page())];
 		}
 	};
 	($mol_mem(($.$bog_bzrl_app.prototype), "Theme"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "Logo_icon"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "Logo_text"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "Logo"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Rent_button"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Let_link"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "home_icon_img"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Home_icon"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "Nav"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "Profile"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "Actions"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Title_section"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "filter_district"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "filter_rooms"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "filter_price"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "apartments_search"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Filter"));
-	($mol_mem_key(($.$bog_bzrl_app.prototype), "Apartment"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Apartments"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "promo_action"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Promo"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Rent_section"));
+	($mol_mem(($.$bog_bzrl_app.prototype), "Rent_page"));
 	($mol_mem(($.$bog_bzrl_app.prototype), "let_action"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Let_hero"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Let_section"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "How_title"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Step_match"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Step_request"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Step_pay"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Steps"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "How_it_works"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Privacy_slider"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Privacy_content"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Privacy"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Benefits_title"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Benefit_owners"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Benefit_verified"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Benefit_secure"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Benefits_list"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Benefits"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Team"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "Footer"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "rent_click"));
-	($mol_mem(($.$bog_bzrl_app.prototype), "let_click"));
+	($mol_mem(($.$bog_bzrl_app.prototype), "Let_page"));
 
 
 ;
@@ -19403,12 +19799,12 @@ var $;
         class $bog_bzrl_app extends $.$bog_bzrl_app {
             tab(next) {
                 if (next !== undefined) {
-                    $mol_state_session.value(`${this}.tab()`, next);
+                    this.$.$mol_state_arg.value('tab', next);
                     if (this.section())
                         this.section(next);
                     return next;
                 }
-                return $mol_state_session.value(`${this}.tab()`) ?? 'rent';
+                return this.$.$mol_state_arg.value('tab') ?? 'rent';
             }
             section(next) {
                 return this.$.$mol_state_arg.value('section', next) ?? '';
@@ -19525,8 +19921,8 @@ var $;
                     },
                 ];
             }
-            apartment_rows() {
-                return this.apartments_filtered().map(apt => this.Apartment(apt.id));
+            apartment_ids() {
+                return this.apartments_filtered().map(apt => apt.id);
             }
             apartment_data(id) {
                 return this.apartments_data().find(a => a.id === id);
@@ -19574,19 +19970,11 @@ var $;
             let_action() {
                 this.section('let');
             }
-            Rent_section() {
-                return this.tab() === 'rent' ? super.Rent_section() : null;
+            Rent_page() {
+                return this.tab() === 'rent' ? super.Rent_page() : null;
             }
-            Let_section() {
-                return this.tab() === 'let' ? super.Let_section() : null;
-            }
-            let_click(next) {
-                this.tab('let');
-                this.section('let');
-            }
-            rent_click(next) {
-                this.tab('rent');
-                this.section('rent');
+            Let_page() {
+                return this.tab() === 'let' ? super.Let_page() : null;
             }
             parse_price(value) {
                 const normalized = value.replace(/[^\d]/g, '');
@@ -19618,7 +20006,7 @@ var $;
         ], $bog_bzrl_app.prototype, "apartments_data", null);
         __decorate([
             $mol_mem
-        ], $bog_bzrl_app.prototype, "apartment_rows", null);
+        ], $bog_bzrl_app.prototype, "apartment_ids", null);
         __decorate([
             $mol_mem_key
         ], $bog_bzrl_app.prototype, "apartment_data", null);
@@ -19651,10 +20039,7 @@ var $;
         ], $bog_bzrl_app.prototype, "let_action", null);
         __decorate([
             $mol_action
-        ], $bog_bzrl_app.prototype, "let_click", null);
-        __decorate([
-            $mol_action
-        ], $bog_bzrl_app.prototype, "rent_click", null);
+        ], $bog_bzrl_app.prototype, "parse_price", null);
         $$.$bog_bzrl_app = $bog_bzrl_app;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -19722,70 +20107,6 @@ var $;
                 color: '#333',
                 width: 'min-content',
             },
-            Nav: {
-                display: 'flex',
-                align: {
-                    items: 'center',
-                },
-                gap: '1.5rem',
-                backgroundColor: '#f5f5f5',
-                borderRadius: '2rem',
-                padding: '5px',
-            },
-            Rent_button: {
-                background: {
-                    color: '#8BC34A',
-                },
-                border: {
-                    radius: '2rem',
-                },
-                padding: {
-                    top: '0.75rem',
-                    bottom: '0.75rem',
-                    left: '2rem',
-                    right: '2rem',
-                },
-                font: {
-                    size: '1rem',
-                    weight: 500,
-                },
-                color: 'white',
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                ':hover': {
-                    background: {
-                        color: '#7CB342',
-                    },
-                },
-            },
-            Let_link: {
-                font: {
-                    size: '1rem',
-                    weight: 400,
-                },
-                color: '#666',
-                textDecoration: 'none',
-                cursor: 'pointer',
-                transition: 'color 0.2s',
-                background: {
-                    color: 'transparent',
-                },
-                border: {
-                    width: 0,
-                },
-                padding: {
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                },
-                ':hover': {
-                    color: '#333',
-                    background: {
-                        color: 'transparent',
-                    },
-                },
-            },
             Actions: {
                 display: 'flex',
                 align: {
@@ -19793,151 +20114,12 @@ var $;
                 },
                 gap: '1rem',
             },
-            Home_icon: {
-                width: '2.5rem',
-                height: '2.5rem',
-                border: {
-                    radius: '50%',
-                },
-                display: 'flex',
-                justify: {
-                    content: 'center',
-                },
-                align: {
-                    items: 'center',
-                },
-                background: {
-                    color: 'transparent',
-                },
-                cursor: 'pointer',
-                transition: 'background 0.2s',
-                padding: 0,
-                ':hover': {
-                    background: {
-                        color: '#f5f5f5',
-                    },
-                },
-            },
-            home_icon_img: {
-                width: '1.5rem',
-                height: '1.5rem',
-            },
             Body: {
                 flex: {
                     direction: 'column',
                 },
                 gap: '3rem',
                 padding: '2rem',
-            },
-            Rent_section: {
-                flex: {
-                    direction: 'column',
-                },
-                gap: '2rem',
-            },
-            Let_section: {
-                flex: {
-                    direction: 'column',
-                },
-                gap: '2rem',
-            },
-            Title_section: {
-                font: {
-                    family: 'PT Root UI, sans-serif',
-                    size: '4rem',
-                    weight: 700,
-                },
-                lineHeight: '1',
-                letterSpacing: '-0.03em',
-                textAlign: 'center',
-                color: '#4C4C4C',
-                maxWidth: '787px',
-                margin: {
-                    left: 'auto',
-                    right: 'auto',
-                },
-            },
-            Apartments: {
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: '1.5rem',
-            },
-            How_it_works: {
-                flex: {
-                    direction: 'column',
-                },
-                gap: '2rem',
-            },
-            How_title: {
-                font: {
-                    size: '1.75rem',
-                    weight: 600,
-                },
-            },
-            Steps: {
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: '1.5rem',
-            },
-            Privacy: {
-                position: 'relative',
-                display: 'grid',
-                gridTemplateAreas: '"stack"',
-                border: {
-                    radius: $mol_gap.round,
-                },
-                overflow: 'hidden',
-            },
-            Privacy_slider: {
-                gridArea: 'stack',
-                zIndex: 0,
-            },
-            Privacy_content: {
-                gridArea: 'stack',
-                width: '100%',
-                height: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                padding: '3rem',
-                textAlign: 'center',
-                pointerEvents: 'none',
-                zIndex: 1,
-            },
-            Benefits: {
-                flex: {
-                    direction: 'column',
-                },
-                gap: '2rem',
-            },
-            Benefits_title: {
-                font: {
-                    size: '1.75rem',
-                    weight: 600,
-                },
-            },
-            Benefits_list: {
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: '1.5rem',
-            },
-            '@media': {
-                'screen and (max-width: 900px)': {
-                    Apartments: {
-                        gridTemplateColumns: 'repeat(2, 1fr)',
-                    },
-                    Steps: {
-                        gridTemplateColumns: '1fr',
-                    },
-                    Benefits_list: {
-                        gridTemplateColumns: '1fr',
-                    },
-                },
-                'screen and (max-width: 600px)': {
-                    Apartments: {
-                        gridTemplateColumns: '1fr',
-                    },
-                },
             },
         });
     })($$ = $.$$ || ($.$$ = {}));
@@ -23156,20 +23338,20 @@ var $;
                 $mol_assert_equal(new $giper_baza_link('qwertyui_asdfghjk__zxcvbnm0').area(), new $giper_baza_link('qwertyui_asdfghjk').area(), new $giper_baza_link('').area(), new $giper_baza_link(''));
             },
             "Binary encoding"($) {
-                const node = new $giper_baza_link('qwertyui_asdfghjk_qazwsxed_zxcvbnm0').toBin();
+                const pawn = new $giper_baza_link('qwertyui_asdfghjk_qazwsxed_zxcvbnm0').toBin();
                 const land = new $giper_baza_link('qwertyui_asdfghjk_qazwsxed').toBin();
                 const lord = new $giper_baza_link('qwertyui_asdfghjk').toBin();
-                const rel_node = new $giper_baza_link('___zxcvbnm0').toBin();
+                const rel_pawn = new $giper_baza_link('___zxcvbnm0').toBin();
                 const rel_root = new $giper_baza_link('').toBin();
-                $mol_assert_equal(node.length, 24);
+                $mol_assert_equal(pawn.length, 24);
                 $mol_assert_equal(land.length, 18);
                 $mol_assert_equal(lord.length, 12);
-                $mol_assert_equal(rel_node.length, 24);
-                $mol_assert_equal(rel_root.length, 6);
-                $mol_assert_equal($giper_baza_link.from_bin(node), new $giper_baza_link('qwertyui_asdfghjk_qazwsxed_zxcvbnm0'));
+                $mol_assert_equal(rel_pawn.length, 6);
+                $mol_assert_equal(rel_root.length, 0);
+                $mol_assert_equal($giper_baza_link.from_bin(pawn), new $giper_baza_link('qwertyui_asdfghjk_qazwsxed_zxcvbnm0'));
                 $mol_assert_equal($giper_baza_link.from_bin(land), new $giper_baza_link('qwertyui_asdfghjk_qazwsxed'));
                 $mol_assert_equal($giper_baza_link.from_bin(lord), new $giper_baza_link('qwertyui_asdfghjk'));
-                $mol_assert_equal($giper_baza_link.from_bin(rel_node), new $giper_baza_link('___zxcvbnm0'));
+                $mol_assert_equal($giper_baza_link.from_bin(rel_pawn), new $giper_baza_link('zxcvbnm0'));
                 $mol_assert_equal($giper_baza_link.from_bin(rel_root), new $giper_baza_link(''));
             },
             "Relate to base"($) {
@@ -24572,15 +24754,15 @@ var $;
             both.Tine().items_vary([left.link(), right.link()]);
             $mol_assert_equal(both.Data($giper_baza_list_vary).items_vary(), ['foo', 'zzz']);
         }),
-        'Inner Links is relative to Land': $mol_wire_async(($) => {
+        'Inner Links are relative to forked Land': $mol_wire_async(($) => {
             const Alice = $.$giper_baza_glob.home().land();
             const Bella = Alice.fork();
-            const alice_val = Alice.Node($giper_baza_atom_text).Item(new $giper_baza_link('qwertyui'));
-            const bella_val = Bella.Node($giper_baza_atom_text).Item(new $giper_baza_link('qwertyui'));
+            const alice_val = Alice.Pawn($giper_baza_atom_text).Head(new $giper_baza_link('qwertyui'));
+            const bella_val = Bella.Pawn($giper_baza_atom_text).Head(new $giper_baza_link('qwertyui'));
             alice_val.val('Alice');
             bella_val.val('Bella');
-            const alice_link = Alice.Node($giper_baza_atom_link).Item(new $giper_baza_link('asdfghjk'));
-            const bella_link = Bella.Node($giper_baza_atom_link).Item(new $giper_baza_link('asdfghjk'));
+            const alice_link = Alice.Pawn($giper_baza_atom_link).Head(new $giper_baza_link('asdfghjk'));
+            const bella_link = Bella.Pawn($giper_baza_atom_link).Head(new $giper_baza_link('asdfghjk'));
             alice_link.val(alice_val.link());
             $mol_assert_equal(alice_link.val(), alice_val.link());
             $mol_assert_unique(alice_link.val(), bella_link.val());
@@ -24589,7 +24771,7 @@ var $;
         async 'Land Area inherits rights'($) {
             const area = await $mol_wire_async(() => {
                 const base = $.$giper_baza_glob.land_grab([[null, $giper_baza_rank_post('just')]]);
-                base.saving();
+                base.units_saving();
                 return base.area_make();
             })();
             $mol_assert_equal(area.pass_rank(area.auth().pass()), $giper_baza_rank_rule);
@@ -24971,7 +25153,7 @@ var $;
     $mol_test({
         'Basic list ops'($) {
             const land = $.$giper_baza_land.make({ $ });
-            const list = land.Node($giper_baza_list_vary).Data();
+            const list = land.Pawn($giper_baza_list_vary).Data();
             $mol_assert_equal(list.items_vary(), []);
             list.items_vary([2, 3]);
             $mol_assert_equal(list.items_vary(), [2, 3]);
@@ -24999,7 +25181,7 @@ var $;
         },
         'Different types'($) {
             const land = $.$giper_baza_land.make({ $ });
-            const list = land.Node($.$giper_baza_list_vary).Data();
+            const list = land.Pawn($.$giper_baza_list_vary).Data();
             list.items_vary([
                 null,
                 false,
@@ -25020,7 +25202,7 @@ var $;
             $mol_assert_equal(list.items_vary(), [
                 false,
                 true,
-                0n,
+                0,
                 4611686018427387904n,
                 0,
                 Math.PI,
@@ -25037,8 +25219,8 @@ var $;
         async 'List merge'($) {
             const land1 = $.$giper_baza_land.make({ $ });
             const land2 = $.$giper_baza_land.make({ $ });
-            const list1 = land1.Node($giper_baza_list_vary).Data();
-            const list2 = land2.Node($giper_baza_list_vary).Data();
+            const list1 = land1.Pawn($giper_baza_list_vary).Data();
+            const list2 = land2.Pawn($giper_baza_list_vary).Data();
             list1.items_vary(['foo', 'xxx']);
             land2.faces.tick();
             list2.items_vary(['foo', 'yyy']);
@@ -25047,7 +25229,7 @@ var $;
         },
         'Insert before removed before changed'($) {
             const land = $.$giper_baza_land.make({ $ });
-            const list = land.Node($giper_baza_list_vary).Data();
+            const list = land.Pawn($giper_baza_list_vary).Data();
             list.items_vary(['foo', 'bar']);
             list.items_vary(['xxx', 'foo', 'bar']);
             list.items_vary(['xxx', 'bars']);
@@ -25055,7 +25237,7 @@ var $;
         },
         'Many moves'($) {
             const land = $.$giper_baza_land.make({ $ });
-            const list = land.Node($giper_baza_list_vary).Data();
+            const list = land.Pawn($giper_baza_list_vary).Data();
             list.items_vary(['foo', 'bar', 'lol']);
             list.move(2, 1);
             list.move(2, 1);
@@ -25065,7 +25247,7 @@ var $;
         },
         'Reorder separated sublists'($) {
             const land = $.$giper_baza_land.make({ $ });
-            const list = land.Node($giper_baza_list_vary).Data();
+            const list = land.Pawn($giper_baza_list_vary).Data();
             list.items_vary([1, 2, 3, 4, 5, 6]);
             list.move(3, 5);
             list.move(3, 5);
@@ -25183,7 +25365,7 @@ var $;
             right.Data($giper_baza_list_vary).items_vary([1, 2, 7, 3, 4]);
             sync(left, right);
             $mol_assert_equal(left.Data($giper_baza_list_vary).items_vary(), right.Data($giper_baza_list_vary).items_vary(), [1, 7, 3, 4]);
-            $mol_assert_equal(left.Node($giper_baza_list_vary).Item(new $giper_baza_link('11111111')).items_vary(), right.Node($giper_baza_list_vary).Item(new $giper_baza_link('11111111')).items_vary(), [2]);
+            $mol_assert_equal(left.Pawn($giper_baza_list_vary).Head(new $giper_baza_link('11111111')).items_vary(), right.Pawn($giper_baza_list_vary).Head(new $giper_baza_link('11111111')).items_vary(), [2]);
         }),
         'Move out before inserted': $mol_wire_async(($) => {
             const base = $mol_wire_sync($.$giper_baza_land).make({ $ });
@@ -25195,7 +25377,7 @@ var $;
             right.sand_move(right.Data($giper_baza_list_vary).units()[1], new $giper_baza_link('11111111'), 0);
             sync(left, right);
             $mol_assert_equal(left.Data($giper_baza_list_vary).items_vary(), right.Data($giper_baza_list_vary).items_vary(), [1, 7, 3, 4]);
-            $mol_assert_equal(left.Node($giper_baza_list_vary).Item(new $giper_baza_link('11111111')).items_vary(), right.Node($giper_baza_list_vary).Item(new $giper_baza_link('11111111')).items_vary(), [2]);
+            $mol_assert_equal(left.Pawn($giper_baza_list_vary).Head(new $giper_baza_link('11111111')).items_vary(), right.Pawn($giper_baza_list_vary).Head(new $giper_baza_link('11111111')).items_vary(), [2]);
         }),
         'Insert before changed': $mol_wire_async(($) => {
             const base = $mol_wire_sync($.$giper_baza_land).make({ $ });
@@ -25255,7 +25437,7 @@ var $;
         $mol_test({
             async 'Dictionary invariants'($) {
                 const land = $giper_baza_land.make({ $ });
-                const dict = land.Node($giper_baza_dict).Data();
+                const dict = land.Pawn($giper_baza_dict).Data();
                 $mol_assert_equal(dict.keys(), []);
                 dict.dive(123, $giper_baza_atom_vary, null);
                 dict.dive('xxx', $giper_baza_atom_vary, null);
@@ -25275,8 +25457,8 @@ var $;
             async 'Dictionary merge'($) {
                 const land1 = $giper_baza_land.make({ $ });
                 const land2 = $giper_baza_land.make({ $ });
-                const dict1 = land1.Node($giper_baza_dict).Data();
-                const dict2 = land2.Node($giper_baza_dict).Data();
+                const dict1 = land1.Pawn($giper_baza_dict).Data();
+                const dict2 = land2.Pawn($giper_baza_dict).Data();
                 dict1.dive(123, $giper_baza_atom_vary, null).vary(666);
                 land2.faces.tick();
                 dict2.dive(123, $giper_baza_atom_vary, null).vary(777);
@@ -25306,7 +25488,7 @@ var $;
                 }) {
                 }
                 const land = $.$giper_baza_glob.home().land();
-                const user = land.Node(User).Item(new $giper_baza_link('11111111'));
+                const user = land.Pawn(User).Head(new $giper_baza_link('11111111'));
                 $mol_assert_equal(user.Title()?.val() ?? null, null);
                 $mol_assert_equal(user.Account()?.remote() ?? null, null);
                 $mol_assert_equal(user.Articles()?.remote_list() ?? [], []);
@@ -25437,18 +25619,18 @@ var $;
         $mol_test({
             "Empty representation"($) {
                 const land = $giper_baza_land.make({ $ });
-                const reg = land.Node($giper_baza_atom_time).Data();
+                const reg = land.Pawn($giper_baza_atom_time).Data();
                 $mol_assert_equal(reg.val(), null);
                 reg.vary(null);
                 $mol_assert_equal(reg.val(), null);
             },
             "Narrow registers"($) {
                 const land = $.$giper_baza_glob.home().land();
-                const bin = land.Node($giper_baza_atom_blob).Item(new $giper_baza_link('11111111'));
+                const bin = land.Pawn($giper_baza_atom_blob).Head(new $giper_baza_link('11111111'));
                 $mol_assert_equal(bin.val(), null);
                 bin.val(new Uint8Array([1, 2, 3]));
                 $mol_assert_equal(bin.val(), new Uint8Array([1, 2, 3]));
-                const str = land.Node($giper_baza_atom_text).Item(new $giper_baza_link('22222222'));
+                const str = land.Pawn($giper_baza_atom_text).Head(new $giper_baza_link('22222222'));
                 $mol_assert_equal(str.val(), null);
                 str.val('foo');
                 $mol_assert_equal(str.val(), 'foo');
@@ -25457,7 +25639,7 @@ var $;
                 class Email extends $giper_baza_atom($mol_data_email) {
                 }
                 const land = $giper_baza_land.make({ $ });
-                const reg = land.Node(Email).Data();
+                const reg = land.Pawn(Email).Data();
                 $mol_assert_equal(reg.val(), null);
                 reg.val('foo@exaple.org');
                 $mol_assert_equal(reg.val(), 'foo@exaple.org');
@@ -25468,16 +25650,16 @@ var $;
             },
             "Hyper link to another land"($) {
                 const land = $.$giper_baza_glob.home().land();
-                const reg = land.Node($giper_baza_atom_link_to(() => $giper_baza_atom_vary)).Item(new $giper_baza_link('11111111'));
+                const reg = land.Pawn($giper_baza_atom_link_to(() => $giper_baza_atom_vary)).Head(new $giper_baza_link('11111111'));
                 const remote = reg.ensure(land);
                 $mol_assert_unique(reg.land(), remote.land());
                 $mol_assert_equal(reg.vary(), remote.link());
                 $mol_assert_equal(reg.remote(), remote);
             },
-            "Register with linked nodes"($) {
+            "Register with linked Pawns"($) {
                 const land = $.$giper_baza_glob.home().land();
-                const str = land.Node($giper_baza_atom_text).Item(new $giper_baza_link('11111111'));
-                const link = land.Node($giper_baza_atom_link_to(() => $giper_baza_atom_text)).Item(new $giper_baza_link('11111111'));
+                const str = land.Pawn($giper_baza_atom_text).Head(new $giper_baza_link('11111111'));
+                const link = land.Pawn($giper_baza_atom_link_to(() => $giper_baza_atom_text)).Head(new $giper_baza_link('11111111'));
                 $mol_assert_equal(link.remote(), null);
                 link.remote(str);
                 $mol_assert_equal(link.vary(), link.remote().link(), str.link());
