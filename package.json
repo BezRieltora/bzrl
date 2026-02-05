@@ -259,6 +259,7 @@
     "$mol_memory_pool",
     "$mol_memory",
     "$giper_baza_log",
+    "$giper_baza_flex",
     "$mol_hash_string",
     "$giper_baza_fund",
     "$giper_baza_mine",

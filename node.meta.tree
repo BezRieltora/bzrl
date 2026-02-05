@@ -52,6 +52,8 @@
 	pack web git \https://github.com/giper-dev/web.git
 \/giper/baza/file
 	include \/mol/offline/install
+\/giper/baza/glob
+	deploy \giper/baza/glob/glob.baza
 \/bog/bzrl/app
 	include \/mol/offline/install
 	deploy \/bog/bzrl/assets
