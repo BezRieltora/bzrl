@@ -6836,6 +6836,8 @@ var $;
                 array = new Uint8Array(array);
             if (typeof array === 'string')
                 array = $mol_base64_ae_decode(array);
+            if (!ArrayBuffer.isView(array))
+                array = new Uint8Array(array);
             return new this(array.buffer, array.byteOffset, array.byteLength);
         }
         static toString() {
@@ -7482,6 +7484,9 @@ var $;
         }
         peer() {
             return this.hash().peer();
+        }
+        toJSON() {
+            return $mol_term_color.magenta('@' + this.lord().str);
         }
         [$mol_dev_format_head]() {
             return $mol_dev_format_span({}, $mol_dev_format_native(this), ' 👾', $mol_dev_format_auto(this.lord()), ' 🎫');
@@ -8516,8 +8521,11 @@ var $;
         return new $mol_time_moment(stamp);
     }
     $.$giper_baza_time_moment = $giper_baza_time_moment;
-    function $giper_baza_time_dump(time) {
-        return $giper_baza_time_moment(time).toString('YYYY-MM-DD hh:mm:ss');
+    function $giper_baza_time_dump(time, tick) {
+        let res = $giper_baza_time_moment(time).toString('YYYY-MM-DD hh:mm:ss Z');
+        if (tick !== undefined)
+            res += ' !' + tick.toString(16).toUpperCase().padStart(2, '0');
+        return res;
     }
     $.$giper_baza_time_dump = $giper_baza_time_dump;
     function $giper_baza_time_now() {
@@ -8578,8 +8586,13 @@ var $;
             if (this.summ < summ)
                 this.summ = summ;
         }
+        toJSON() {
+            const time = $giper_baza_time_dump(this.time, this.tick);
+            const summ = '%' + this.summ;
+            return $mol_term_color.gray(`${time} ${summ}`);
+        }
         [$mol_dev_format_head]() {
-            return $mol_dev_format_span({}, $mol_dev_format_native(this), $mol_dev_format_shade(' ', $giper_baza_time_dump(this.time), ' !', this.tick, ' %', this.summ));
+            return $mol_dev_format_span({}, $mol_dev_format_native(this), $mol_dev_format_shade(' ', $giper_baza_time_dump(this.time, this.tick), ' %', this.summ));
         }
     }
     $.$giper_baza_face = $giper_baza_face;
@@ -8633,6 +8646,9 @@ var $;
                     ++this.stat.time;
             }
             return this.stat;
+        }
+        toJSON() {
+            return Object.fromEntries(this.entries());
         }
         [$mol_dev_format_head]() {
             return $mol_dev_format_span({}, $mol_dev_format_native(this), ' ', $mol_dev_format_auto(this.stat));
@@ -8923,7 +8939,7 @@ var $;
                     default:
                         $$.$mol_log3_warn({
                             place: '$giper_baza_pack..parts',
-                            message: '💢 Unknown Kind',
+                            message: 'Unknown Kind',
                             kind,
                             offset,
                             hint: 'Try to update application',
@@ -9233,6 +9249,8 @@ var $;
             let code = read_code();
             if (code >= 0x80)
                 code = ascii_set[code - 0x80];
+            if (code === undefined)
+                $mol_fail(new Error('Wrong byte', { cause: { text, pos: pos - 1 } }));
             return code;
         };
         while (pos < buffer.length) {
@@ -9266,6 +9284,9 @@ var $;
                 mode = code;
                 page_offset = ((mode - wide_mode) << 14) + wide_offset;
             }
+        }
+        if (mode !== tiny_mode) {
+            return $mol_fail(new Error('Wrong ending', { cause: { text, mode } }));
         }
         return text;
     }
@@ -10584,9 +10605,6 @@ var $;
             }
             $mol_fail(new Error(`Too long self generation`));
         }
-        home() {
-            return this.Data($giper_baza_home);
-        }
         area_make(idea = Math.floor($mol_wire_sync(Math).random() * 2 ** 48)) {
             let id = '';
             while (true) {
@@ -10732,7 +10750,7 @@ var $;
                 if (this.$.$giper_baza_log())
                     $mol_wire_sync(this.$).$mol_log3_warn({
                         place: this,
-                        message: '💔 Fail Summ',
+                        message: 'Fail Summ',
                         hint: 'Relax and wait for full peer resync',
                         peer,
                         mass,
@@ -11096,11 +11114,12 @@ var $;
             }));
         }
         loading() {
+            $mol_wire_solid();
             let units = $mol_wire_sync(this.mine()).units_load();
             if (this.$.$giper_baza_log())
                 $mol_wire_sync(this.$).$mol_log3_rise({
                     place: this,
-                    message: '🌱 Load Unit',
+                    message: 'Load Unit',
                     units: units,
                 });
             $mol_wire_sync(this).diff_apply(units, 'skip_load');
@@ -11195,7 +11214,7 @@ var $;
             if (this.$.$giper_baza_log())
                 this.$.$mol_log3_done({
                     place: this,
-                    message: '💾 Save Unit',
+                    message: 'Save Unit',
                     ins: units,
                     del: reaping,
                 });
@@ -11890,7 +11909,7 @@ var $;
                 else {
                     this.$.$mol_log3_fail({
                         place: this,
-                        message: '💥 Wrong data',
+                        message: 'Wrong data',
                         data: event.data
                     });
                 }
@@ -11911,7 +11930,7 @@ var $;
                 socket.onopen = () => {
                     this.$.$mol_log3_come({
                         place: this,
-                        message: '🔗 Connected',
+                        message: 'Connected',
                         port: $mol_key(port),
                         server: link,
                     });
@@ -11998,7 +12017,7 @@ var $;
                     if (this.$.$giper_baza_log())
                         $mol_wire_sync(this.$).$mol_log3_done({
                             place: this,
-                            message: '➕ Take Free',
+                            message: 'Take Free',
                             port: $mol_key(port),
                             land: Land,
                         });
@@ -12009,7 +12028,7 @@ var $;
                     if (this.$.$giper_baza_log())
                         $mol_wire_sync(this.$).$mol_log3_rise({
                             place: this,
-                            message: '➕ Take Unit',
+                            message: 'Take Unit',
                             port: $mol_key(port),
                             land: Land,
                             units: part.units,
@@ -12020,7 +12039,7 @@ var $;
                     if (this.$.$giper_baza_log())
                         $mol_wire_sync(this.$).$mol_log3_rise({
                             place: this,
-                            message: '➕ Take Face',
+                            message: 'Take Face',
                             port: $mol_key(port),
                             land: Land,
                             faces: part.faces,
@@ -12069,7 +12088,7 @@ var $;
                 if (this.$.$giper_baza_log())
                     this.$.$mol_log3_done({
                         place: this,
-                        message: '🔱 Send Free',
+                        message: 'Send Free',
                         port: $mol_key(port),
                         land,
                     });
@@ -12090,7 +12109,7 @@ var $;
                 if (this.$.$giper_baza_log())
                     this.$.$mol_log3_rise({
                         place: this,
-                        message: '🔱 Send Unit',
+                        message: 'Send Unit',
                         port: $mol_key(port),
                         land: Land,
                         units,
@@ -12112,7 +12131,7 @@ var $;
             if (this.$.$giper_baza_log())
                 this.$.$mol_log3_come({
                     place: this,
-                    message: '🔱 Send Face',
+                    message: 'Send Face',
                     port: $mol_key(port),
                     land: Land,
                     faces: Land.faces,
@@ -12346,11 +12365,14 @@ var $;
         [Symbol.for('nodejs.util.inspect.custom')]() {
             return this.toString();
         }
+        toJSON() {
+            return this.toString();
+        }
         toString() {
-            const hash = '🔖' + $mol_term_color.magenta(this.hash().str);
-            const lord = '👾' + $mol_term_color.magenta(this.lord().str);
-            const time = $mol_term_color.gray(this.moment().toString('YYYY-MM-DD hh:mm:ss') + ' !' + this.tick());
-            return `${lord} ${time} ${hash}`;
+            const hash = $mol_term_color.cyan('#' + this.hash().str);
+            const lord = $mol_term_color.magenta('@' + this.lord().str);
+            const time = $mol_term_color.gray($giper_baza_time_dump(this.time(), this.tick()));
+            return `${lord} ${hash} ${time}`;
         }
     }
     $.$giper_baza_unit_base = $giper_baza_unit_base;
@@ -12425,13 +12447,13 @@ var $;
             return $giper_baza_rank_tier.rule;
         }
         toString() {
-            const mate = '👾' + $mol_term_color.magenta(this.mate().str || '______anyone_____');
-            const read = this.code().some(v => v) ? ' 🔐' : ' 👀';
-            const rank = $giper_baza_rank_tier[this.tier()] + ':' + this.rate().toString(16).toUpperCase();
-            return `${super.toString()} 🏅 ${mate} ${read} ${rank}`;
+            const mate = $mol_term_color.magenta('@' + (this.mate().str || '______anyone_____'));
+            const read = $mol_term_color.green(this.code().some(v => v) ? 'X' : 'O');
+            const rank = $mol_term_color.cyan($giper_baza_rank_tier[this.tier()] + ':' + this.rate().toString(16).toUpperCase());
+            return `${super.toString()} ${read} ${mate} ${rank}`;
         }
         [$mol_dev_format_head]() {
-            return $mol_dev_format_span({}, $mol_dev_format_native(this), ' 👾', $mol_dev_format_auto(this.lord()), ' 🏅', ' ', $mol_dev_format_shade(this.moment().toString('YYYY-MM-DD hh:mm:ss'), ' !', this.tick()), ' #', $mol_dev_format_auto(this.hash()), ' 👾', $mol_dev_format_accent(this.mate().str || '______anyone_____'), this.code().some(v => v) ? ' 🔐' : ' 👀', $giper_baza_rank_tier[this.tier()], ':', this.rate().toString(16).toUpperCase());
+            return $mol_dev_format_span({}, $mol_dev_format_native(this), ' 👾', $mol_dev_format_auto(this.lord()), ' 🏅', ' ', $mol_dev_format_shade(this.moment().toString('YYYY-MM-DD hh:mm:ss'), ' !', this.tick().toString(16).padStart(2, '0')), ' #', $mol_dev_format_auto(this.hash()), ' 👾', $mol_dev_format_accent(this.mate().str || '______anyone_____'), this.code().some(v => v) ? ' 🔐' : ' 👀', $giper_baza_rank_tier[this.tier()], ':', this.rate().toString(16).toUpperCase());
         }
     }
     __decorate([
@@ -12521,14 +12543,15 @@ var $;
             return this.tier_min() | this.rate_min();
         }
         path() {
-            return `seal:${this.lord()}/${$giper_baza_time_dump(this.time())} &${this.tick()}`;
+            return `seal:${this.lord()}/${$giper_baza_time_dump(this.time(), this.tick())}`;
         }
         toString() {
-            const items = this.hash_list().map(hash => $mol_term_color.magenta(hash.str)).join(',');
-            return `${super.toString()} ✍ ${items}`;
+            const items = this.hash_list().map(hash => $mol_term_color.cyan('#' + hash.str)).join(', ');
+            const kind = $mol_term_color.green('%');
+            return `${super.toString()} ${kind} ${items}`;
         }
         [$mol_dev_format_head]() {
-            return $mol_dev_format_span({}, $mol_dev_format_native(this), ' 👾', $mol_dev_format_auto(this.lord()), ' ✍ ', $mol_dev_format_shade(this.moment().toString('YYYY-MM-DD hh:mm:ss'), ' !', this.tick()), ' #', $mol_dev_format_auto(this.hash()), ' ', $mol_dev_format_auto(this.hash_list()));
+            return $mol_dev_format_span({}, $mol_dev_format_native(this), ' 👾', $mol_dev_format_auto(this.lord()), ' ✍ ', $mol_dev_format_shade(this.moment().toString('YYYY-MM-DD hh:mm:ss'), ' &', this.tick().toString(16).padStart(2, '0')), ' #', $mol_dev_format_auto(this.hash()), ' ', $mol_dev_format_auto(this.hash_list()));
         }
     }
     __decorate([
@@ -12678,18 +12701,18 @@ var $;
         toString() {
             const lead = $mol_term_color.blue(this.lead().str || '__knot__');
             const head = $mol_term_color.blue(this.head().str || '__root__');
-            const self = $mol_term_color.blue(this.self().str || '__spec__');
-            const tag = {
-                term: '💼',
-                solo: '1️⃣',
-                vals: '🎹',
-                keys: '🔑',
-            }[this.tag()];
-            const vary = $mol_term_color.yellow(String(this._vary));
-            return `${super.toString()} 📦 ${lead}\\${head}/${self} ${tag} ${vary}`;
+            const self = $mol_term_color.blue(this.self().str || '__meta__');
+            const tag = $mol_term_color.green({
+                term: 'T',
+                solo: 'S',
+                vals: 'V',
+                keys: 'K',
+            }[this.tag()]);
+            const vary = this._vary === undefined ? '' : $mol_term_color.yellow(String(this._vary));
+            return `${super.toString()} ${tag} ${lead}\\${head}/${self} ${vary}`;
         }
         [$mol_dev_format_head]() {
-            return $mol_dev_format_span({}, $mol_dev_format_native(this), ' 👾', $mol_dev_format_auto(this.lord()), ' 📦 ', $mol_dev_format_shade(this.moment().toString('YYYY-MM-DD hh:mm:ss'), ' !', this.tick()), ' #', $mol_dev_format_auto(this.hash()), ' ', this.lead().str || '__knot__', $mol_dev_format_shade('\\'), $mol_dev_format_accent(this.head().str || '__root__'), $mol_dev_format_shade('/'), this.self().str || '__spec__', ' ', {
+            return $mol_dev_format_span({}, $mol_dev_format_native(this), ' 👾', $mol_dev_format_auto(this.lord()), ' 📦 ', $mol_dev_format_shade(this.moment().toString('YYYY-MM-DD hh:mm:ss'), ' !', this.tick().toString(16).padStart(2, '0')), ' #', $mol_dev_format_auto(this.hash()), ' ', this.lead().str || '__knot__', $mol_dev_format_shade('\\'), $mol_dev_format_accent(this.head().str || '__root__'), $mol_dev_format_shade('/'), this.self().str || '__meta__', ' ', {
                 term: '💼',
                 solo: '1️⃣',
                 vals: '🎹',
@@ -13302,8 +13325,10 @@ var $;
             return unit ? this.land().Pawn(Pawn).Head(unit.self()) : null;
         }
         static schema = {};
-        static with(schema) {
+        static with(schema, path = '') {
+            const prefix = path ? path + ':' : '';
             const $giper_baza_dict_with = class $giper_baza_dict_with extends this {
+                static path = path;
                 static toString() {
                     if (this !== $giper_baza_dict_with)
                         return super.toString();
@@ -13314,7 +13339,7 @@ var $;
             for (const Field in schema) {
                 Object.defineProperty($giper_baza_dict_with.prototype, Field, {
                     value: function (auto) {
-                        return this.dive(Field, schema[Field], auto);
+                        return this.dive(prefix + Field, schema[Field], auto);
                     }
                 });
             }
@@ -13539,19 +13564,30 @@ var $;
                 return this.remote_of(peer);
             }
             ensure_here(peer) {
+                const Pawn = Value();
                 const idea = $mol_hash_string(this.link().str);
                 const head = this.land().self_make(idea);
-                const pawn = this.land().Pawn(Value()).Head(head);
+                const pawn = this.land().Pawn(Pawn).Head(head);
+                if (Pawn.meta)
+                    pawn.meta(Pawn.meta);
                 this.remote_of(peer, pawn);
             }
             ensure_area(peer, land) {
+                const Pawn = Value();
                 const idea = $mol_hash_string(this.link().str);
                 const area = land.area_make(idea);
-                this.val_of(peer, area.link());
+                const pawn = area.Data(Pawn);
+                if (Pawn.meta)
+                    pawn.meta(Pawn.meta);
+                this.val_of(peer, pawn.link());
             }
             ensure_lord(peer, preset) {
+                const Pawn = Value();
                 const land = this.$.$giper_baza_glob.land_grab(preset);
-                this.val_of(peer, land.link());
+                const pawn = land.Data(Pawn);
+                if (Pawn.meta)
+                    pawn.meta(Pawn.meta);
+                this.val_of(peer, pawn.link());
             }
             remote_ensure(preset) {
                 return this.ensure(preset);
@@ -13575,6 +13611,1265 @@ var $;
         return $giper_baza_atom_link_to;
     }
     $.$giper_baza_atom_link_to = $giper_baza_atom_link_to;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $giper_baza_stat_series extends $giper_baza_atom_list {
+        tick(key, val, count) {
+            let vals = this.values().slice();
+            while (vals.length < count)
+                vals.push(0);
+            vals[key] = val + this.initial();
+            vals = [...vals.slice(key + 1), ...vals.slice(0, key + 1)];
+            for (let i = 1; i < count; ++i)
+                if (vals[i] < vals[i - 1])
+                    vals[i] = vals[i - 1];
+            vals = [...vals.slice(-1 - key), ...vals.slice(0, -1 - key)];
+            this.values(vals);
+        }
+        _initial;
+        initial() {
+            return this._initial
+                ?? (this._initial = this.max());
+        }
+        max() {
+            let max = 0;
+            for (const val of this.values())
+                if (val > max)
+                    max = val;
+            return max;
+        }
+        values(next) {
+            if (next) {
+                let last = 0;
+                next = next.map(v => ([v, last] = [v - last, v])[0]);
+            }
+            let last = 0;
+            return (this.val(next) ?? []).map(v => last += v);
+        }
+    }
+    __decorate([
+        $mol_action
+    ], $giper_baza_stat_series.prototype, "tick", null);
+    __decorate([
+        $mol_action
+    ], $giper_baza_stat_series.prototype, "initial", null);
+    __decorate([
+        $mol_mem
+    ], $giper_baza_stat_series.prototype, "max", null);
+    __decorate([
+        $mol_mem
+    ], $giper_baza_stat_series.prototype, "values", null);
+    $.$giper_baza_stat_series = $giper_baza_stat_series;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $giper_baza_stat_ranges extends $giper_baza_dict.with({
+        Seconds: $giper_baza_stat_series,
+        Minutes: $giper_baza_stat_series,
+        Hours: $giper_baza_stat_series,
+        Days: $giper_baza_stat_series,
+        Months: $giper_baza_stat_series,
+    }) {
+        _last_instant = 0;
+        tick_instant(val) {
+            this.tick_integral(this._last_instant += val);
+        }
+        tick_integral(val) {
+            let now = new $mol_time_moment;
+            this.Seconds(null).tick(Math.floor(now.second), val, 60);
+            this.Minutes(null).tick(now.minute, val, 60);
+            this.Hours(null).tick(now.hour, val, 24);
+            this.Days(null).tick(now.day, val, 31);
+            this.Months(null).tick(now.month, val, 12);
+        }
+        series() {
+            function pick(Series, length, range) {
+                const values = Series?.values() ?? [0];
+                let series = Array.from({ length }, (_, i) => values[i]);
+                let start = 0;
+                let max = 0;
+                for (let i = 0; i < series.length; ++i) {
+                    if (series[i] < max)
+                        continue;
+                    max = series[i];
+                    start = i + 1;
+                }
+                if (start)
+                    series = [...series.slice(start), ...series.slice(0, start - 1)];
+                let last = series[0];
+                series = series.slice(1).map(val => {
+                    try {
+                        if (last === 0 || val < last)
+                            return 0;
+                        return (val - last) / range;
+                    }
+                    finally {
+                        last = Math.max(val, last);
+                    }
+                });
+                return series;
+            }
+            const months = pick(this.Days(), 12, 60 * 60 * 24 * 31);
+            const days = pick(this.Days(), 31, 60 * 60 * 24);
+            const hours = pick(this.Hours(), 24, 60 * 60);
+            const minutes = pick(this.Minutes(), 60, 60);
+            const seconds = pick(this.Seconds(), 60, 1);
+            return [...months, ...days, ...hours, ...minutes, ...seconds].reverse();
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $giper_baza_stat_ranges.prototype, "series", null);
+    $.$giper_baza_stat_ranges = $giper_baza_stat_ranges;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_report_handler_all = new Set();
+    function handler(event, url, line, col, error) {
+        for (const handler of $.$mol_report_handler_all) {
+            try {
+                handler(event, url, line, col, error);
+            }
+            catch (e) { }
+        }
+    }
+    const handler_promise = (event) => handler('Unhandled Rejection', '', 0, 0, event.reason);
+    if ('addEventListener' in globalThis) {
+        globalThis.addEventListener('error', handler);
+        globalThis.addEventListener('unhandledrejection', handler_promise);
+    }
+    if ('process' in globalThis) {
+        process.on('uncaughtExceptionMonitor', handler);
+        process.on('unhandledrejection', handler_promise);
+    }
+    const console_error = console.error;
+    console.error = function console_error_custom(...args) {
+        const format = (val) => typeof val === 'string'
+            ? val.replace(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, '')
+            : JSON.stringify(val);
+        const secondary = args.slice(1);
+        const first = typeof args[0] === 'string'
+            ? args[0].replaceAll(/%(?:\.\d+)?[disfcoO]/g, spec => spec === '%c' ? (secondary.shift(), '') : secondary.shift())
+            : args[0];
+        secondary.unshift(first);
+        const result = secondary.map(format).join(' ');
+        handler(result);
+        console_error.apply(console, args);
+    };
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $giper_baza_app_stat extends $giper_baza_dict.with({
+        Uptime: $giper_baza_atom_dura,
+        Cpu_user: $giper_baza_stat_ranges,
+        Cpu_system: $giper_baza_stat_ranges,
+        Mem_used: $giper_baza_stat_ranges,
+        Mem_free: $giper_baza_stat_ranges,
+        Fs_free: $giper_baza_stat_ranges,
+        Fs_reads: $giper_baza_stat_ranges,
+        Fs_writes: $giper_baza_stat_ranges,
+        Port_slaves: $giper_baza_stat_ranges,
+        Port_masters: $giper_baza_stat_ranges,
+        Land_active: $giper_baza_stat_ranges,
+        Errors: $giper_baza_stat_ranges,
+    }) {
+        freshness() {
+            const last = this.last_change();
+            if (!last)
+                return null;
+            const range = new $mol_time_interval({
+                start: last,
+                end: new $mol_time_moment(this.$.$mol_state_time.now(1000)),
+            });
+            return range.duration.count('PT1s');
+        }
+        uptime(next) {
+            return this.Uptime(next)?.val(next) ?? new $mol_time_duration(0);
+        }
+        init() {
+            let handler = () => this.Errors(null).tick_instant(1);
+            $mol_report_handler_all.add(handler);
+            return { destructor: () => $mol_report_handler_all.delete(handler) };
+        }
+        tick() {
+            this.init();
+            if (this.$.$giper_baza_log()) {
+                this.$.$mol_log3_warn({
+                    place: this,
+                    message: 'Stat disabled due logging',
+                    hint: 'Disable $giper_baza_log to start monitoring'
+                });
+                return;
+            }
+            this.$.$mol_state_time.now(1000);
+            this.uptime(new $mol_time_duration({ second: Math.floor(process.uptime()) }).normal);
+            const res = process.resourceUsage();
+            this.Cpu_user(null).tick_integral(Math.ceil(res.userCPUTime / 1e4));
+            this.Cpu_system(null).tick_integral(Math.ceil(res.systemCPUTime / 1e4));
+            this.Fs_reads(null).tick_integral(res.fsRead);
+            this.Fs_writes(null).tick_integral(res.fsWrite);
+            const mem_total = $node.os.totalmem();
+            this.Mem_used(null).tick_instant(Math.ceil((res.maxRSS - res.sharedMemorySize) * 1024 / mem_total * 100));
+            this.Mem_free(null).tick_instant(Math.floor($node.os.freemem() / mem_total * 100));
+            const fs = $node.fs.statfsSync('.');
+            this.Fs_free(null).tick_instant(Math.floor(Number(fs.bfree) / Number(fs.blocks) * 100));
+            const yard = $mol_wire_sync(this.$.$giper_baza_glob.yard());
+            const masters = yard.masters().length;
+            this.Port_masters(null).tick_instant(masters);
+            const ports = yard.ports();
+            this.Port_slaves(null).tick_instant(ports.length - masters);
+            const lands = ports.reduce((sum, port) => sum + yard.port_lands_active(port).size, 0);
+            this.Land_active(null).tick_instant(lands);
+            this.Errors(null).tick_instant(0);
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $giper_baza_app_stat.prototype, "freshness", null);
+    __decorate([
+        $mol_mem
+    ], $giper_baza_app_stat.prototype, "uptime", null);
+    __decorate([
+        $mol_mem
+    ], $giper_baza_app_stat.prototype, "init", null);
+    __decorate([
+        $mol_mem
+    ], $giper_baza_app_stat.prototype, "tick", null);
+    $.$giper_baza_app_stat = $giper_baza_app_stat;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $.$giper_baza_flex_deck_base = new $giper_baza_link('hSVSar1S_he4KVyXM_CftXZh1s');
+    class $giper_baza_flex_subj extends $giper_baza_dict.with({
+        Name: $giper_baza_atom_text,
+    }, 'Subj') {
+        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_pla3dXt3`);
+        name(next) {
+            return this.Name(next)?.val(next) ?? this.link().str;
+        }
+    }
+    $.$giper_baza_flex_subj = $giper_baza_flex_subj;
+    class $giper_baza_flex_subj_link extends $giper_baza_atom_link_to(() => $giper_baza_flex_subj) {
+    }
+    $.$giper_baza_flex_subj_link = $giper_baza_flex_subj_link;
+    class $giper_baza_flex_meta extends $giper_baza_flex_subj.with({
+        Props: $giper_baza_list_link_to(() => $giper_baza_flex_prop),
+        Pulls: $giper_baza_list_link_to(() => $giper_baza_flex_subj),
+    }, 'Meta') {
+        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_a1JLFBay`);
+        prop_new(key, type, kind, vars, base) {
+            const prop = this.Props(null).make($mol_hash_string(key));
+            prop.path(this.name() + ':' + key);
+            prop.name(key);
+            prop.type(type);
+            if (kind)
+                prop.kind(kind);
+            if (vars)
+                prop.enum(vars);
+            if (base !== undefined)
+                prop.base(base);
+            return prop;
+        }
+        prop_add(prop) {
+            this.Props(prop).add(prop.link());
+        }
+        prop_all() {
+            return [
+                ...this.pull_all().flatMap(meta => meta.prop_all()),
+                ...this.Props()?.remote_list() ?? [],
+            ];
+        }
+        pull_add(meta) {
+            this.Pulls(meta).add(meta.link());
+        }
+        pull_all() {
+            return (this.Pulls()?.remote_list() ?? []).map(subj => subj.cast($giper_baza_flex_meta));
+        }
+    }
+    __decorate([
+        $mol_action
+    ], $giper_baza_flex_meta.prototype, "prop_new", null);
+    __decorate([
+        $mol_action
+    ], $giper_baza_flex_meta.prototype, "prop_add", null);
+    __decorate([
+        $mol_mem
+    ], $giper_baza_flex_meta.prototype, "prop_all", null);
+    __decorate([
+        $mol_action
+    ], $giper_baza_flex_meta.prototype, "pull_add", null);
+    __decorate([
+        $mol_mem
+    ], $giper_baza_flex_meta.prototype, "pull_all", null);
+    $.$giper_baza_flex_meta = $giper_baza_flex_meta;
+    class $giper_baza_flex_prop extends $giper_baza_flex_subj.with({
+        Path: $giper_baza_atom_text,
+        Type: $giper_baza_atom_text,
+        Kind: $giper_baza_atom_link_to(() => $giper_baza_flex_meta),
+        Enum: $giper_baza_atom_link_to(() => $giper_baza_list_vary),
+        Base: $giper_baza_atom_vary,
+    }, 'Prop') {
+        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_7ovrwQ6t`);
+        path(next) {
+            return this.Path(next)?.val(next) ?? '';
+        }
+        type(next) {
+            return this.Type(next)?.val(next) ?? '';
+        }
+        base(next) {
+            return this.Base(next)?.vary(next) ?? null;
+        }
+        kind(next) {
+            return this.Kind(next)?.remote(next) ?? null;
+        }
+        enum(next) {
+            return this.Enum(next)?.remote(next) ?? null;
+        }
+    }
+    $.$giper_baza_flex_prop = $giper_baza_flex_prop;
+    class $giper_baza_flex_deck extends $giper_baza_flex_subj.with({
+        Metas: $giper_baza_list_link_to(() => $giper_baza_flex_meta),
+        Types: $giper_baza_list_str,
+    }, 'Deck') {
+        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_TAv7CAua`);
+        meta_new(key) {
+            const meta = this.Metas(null).make($mol_hash_string(key));
+            meta.name(key);
+            return meta;
+        }
+        meta_for(Meta) {
+            const meta = this.meta_new(Meta.path);
+            Meta.meta = meta.link();
+            return meta;
+        }
+    }
+    __decorate([
+        $mol_action
+    ], $giper_baza_flex_deck.prototype, "meta_new", null);
+    __decorate([
+        $mol_action
+    ], $giper_baza_flex_deck.prototype, "meta_for", null);
+    $.$giper_baza_flex_deck = $giper_baza_flex_deck;
+    class $giper_baza_flex_seed extends $giper_baza_flex_subj.with({
+        Deck: $giper_baza_atom_link_to(() => $giper_baza_flex_deck),
+        Peers: $giper_baza_list_str,
+    }, 'Seed') {
+        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_dELUKvvS`);
+        deck() {
+            return this.Deck(null).ensure(this.land());
+        }
+        peers() {
+            return (this.Peers()?.items() ?? []).filter($mol_guard_defined);
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $giper_baza_flex_seed.prototype, "deck", null);
+    __decorate([
+        $mol_mem
+    ], $giper_baza_flex_seed.prototype, "peers", null);
+    $.$giper_baza_flex_seed = $giper_baza_flex_seed;
+    class $giper_baza_flex_peer extends $giper_baza_flex_subj.with({
+        Urls: $giper_baza_list_str,
+        Stat: $giper_baza_atom_link_to(() => $giper_baza_app_stat),
+    }, 'Peer') {
+        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_xEibvNCP`);
+        stat(auto) {
+            return this.Stat(auto)?.ensure(this.land()) ?? null;
+        }
+        urls(next) {
+            return (this.Urls()?.items(next) ?? []).filter($mol_guard_defined);
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $giper_baza_flex_peer.prototype, "stat", null);
+    __decorate([
+        $mol_mem
+    ], $giper_baza_flex_peer.prototype, "urls", null);
+    $.$giper_baza_flex_peer = $giper_baza_flex_peer;
+    class $giper_baza_flex_user extends $giper_baza_flex_subj.with({
+        Caret: $giper_baza_atom_text,
+    }, 'User') {
+        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_csm0VtAK`);
+        caret(next) {
+            return this.Caret(next)?.val(next) ?? null;
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $giper_baza_flex_user.prototype, "caret", null);
+    $.$giper_baza_flex_user = $giper_baza_flex_user;
+    function $giper_baza_flex_init() {
+        const seed_land = this.$.$giper_baza_glob.land_grab();
+        const seed = seed_land.Data($giper_baza_flex_seed);
+        seed.name('Base Seed');
+        const deck = seed.deck();
+        deck.name('Base Deck');
+        deck.Types(null).items_vary(['vary', 'enum', 'bool', 'int', 'real', 'str', 'link', 'time', 'dict', 'text', 'list']);
+        const Meta = deck.meta_for($giper_baza_flex_meta);
+        Meta.meta(Meta.link());
+        const Subj = deck.meta_for($giper_baza_flex_subj);
+        const Seed = deck.meta_for($giper_baza_flex_seed);
+        const Prop = deck.meta_for($giper_baza_flex_prop);
+        const Deck = deck.meta_for($giper_baza_flex_deck);
+        const Peer = deck.meta_for($giper_baza_flex_peer);
+        const User = deck.meta_for($giper_baza_flex_user);
+        seed.meta(Seed.link());
+        deck.meta(Deck.link());
+        Meta.pull_add(Subj);
+        Seed.pull_add(Subj);
+        Prop.pull_add(Subj);
+        Deck.pull_add(Subj);
+        Peer.pull_add(Subj);
+        User.pull_add(Subj);
+        Subj.prop_new('Name', 'str', undefined, undefined, '');
+        Meta.prop_new('Props', 'list', Prop);
+        Meta.prop_new('Pulls', 'list', Meta, deck.Metas());
+        Seed.prop_new('Deck', 'link', Deck);
+        Seed.prop_new('Peers', 'list');
+        Prop.prop_new('Path', 'str');
+        Prop.prop_new('Type', 'enum', undefined, deck.Types(), 'vary');
+        Prop.prop_new('Kind', 'link', Meta, deck.Metas(), Subj.link());
+        Prop.prop_new('Enum', 'link', Subj);
+        Prop.prop_new('Base', 'vary', Subj);
+        Deck.prop_new('Metas', 'list', Meta);
+        Deck.prop_new('Types', 'list');
+        Peer.prop_new('Urls', 'list');
+        Peer.prop_new('Stat', 'link');
+        User.prop_new('Caret', 'vary');
+        return seed;
+    }
+    $.$giper_baza_flex_init = $giper_baza_flex_init;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $giper_baza_glob extends $mol_object {
+        static lands_touched = new $mol_wire_set();
+        static yard() {
+            return new this.$.$giper_baza_yard;
+        }
+        static home(Pawn) {
+            return this.Land(this.$.$giper_baza_auth.current().pass().lord()).Data(Pawn ?? this.$.$giper_baza_flex_subj);
+        }
+        static king_grab(preset = [[null, this.$.$giper_baza_rank_read]]) {
+            const mapping = new Map(preset);
+            const king = this.$.$giper_baza_auth.grab();
+            const colony = $mol_wire_sync(this.$.$giper_baza_land).make({ $: this.$ });
+            colony.auth = $mol_const(king);
+            colony.encrypted((mapping.get(null) ?? this.$.$giper_baza_rank_deny) === this.$.$giper_baza_rank_deny);
+            const self = this.$.$giper_baza_auth.current().pass();
+            colony.give(self, this.$.$giper_baza_rank_rule);
+            for (const [key, rank] of mapping)
+                colony.give(key, rank);
+            this.Land(colony.link()).units_steal(colony);
+            return king;
+        }
+        static land_grab(preset = [[null, this.$.$giper_baza_rank_read]]) {
+            return this.Land(this.king_grab(preset).pass().lord());
+        }
+        static Land(link) {
+            if (!link.str)
+                $mol_fail(new Error('Empty Land Link'));
+            this.lands_touched.add(link.str);
+            return this.$.$giper_baza_land.make({
+                link: $mol_const(link),
+            });
+        }
+        static Pawn(link, Pawn) {
+            const land = this.Land(link.land());
+            return land.Pawn(Pawn).Head(link.head());
+        }
+        static Seed() {
+            const link = $giper_baza_flex_deck_base.lord();
+            const seed = this.Pawn(link, $giper_baza_flex_seed);
+            if (!$mol_wire_sync(seed).meta())
+                this.boot();
+            return seed;
+        }
+        static boot() {
+            const file = $mol_file.relative('giper/baza/glob/glob.baza');
+            const pack = $mol_wire_sync($giper_baza_pack).from(file.buffer());
+            this.apply_pack(pack);
+        }
+        static apply_pack(pack) {
+            return this.apply_parts(pack.parts());
+        }
+        static apply_parts(parts) {
+            for (const [land_id, part] of parts) {
+                const land = this.Land(new this.$.$giper_baza_link(land_id));
+                land.diff_apply(part.units);
+            }
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $giper_baza_glob, "yard", null);
+    __decorate([
+        $mol_action
+    ], $giper_baza_glob, "king_grab", null);
+    __decorate([
+        $mol_action
+    ], $giper_baza_glob, "land_grab", null);
+    __decorate([
+        $mol_mem_key
+    ], $giper_baza_glob, "Land", null);
+    __decorate([
+        $mol_mem
+    ], $giper_baza_glob, "Seed", null);
+    __decorate([
+        $mol_action
+    ], $giper_baza_glob, "boot", null);
+    __decorate([
+        $mol_action
+    ], $giper_baza_glob, "apply_pack", null);
+    __decorate([
+        $mol_action
+    ], $giper_baza_glob, "apply_parts", null);
+    $.$giper_baza_glob = $giper_baza_glob;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_rest_message extends $mol_object {
+        port;
+        method() {
+            return 'POST';
+        }
+        uri() {
+            return new URL(`rest://localhost/`);
+        }
+        type() {
+            return 'application/octet-stream';
+        }
+        data() {
+            return null;
+        }
+        bin() {
+            let data = this.data();
+            if (data instanceof Uint8Array)
+                return data;
+            if (data instanceof $mol_dom_context.Element)
+                data = $mol_dom_serialize(data);
+            if (typeof data !== 'string')
+                data = JSON.stringify(data);
+            return $mol_charset_encode(data);
+        }
+        text() {
+            const data = this.data();
+            if (typeof data === 'string')
+                return data;
+            if (data instanceof Uint8Array)
+                return $mol_charset_decode(data);
+            if (data instanceof $mol_dom_context.Element)
+                return $mol_dom_serialize(data);
+            return JSON.stringify(data);
+        }
+        reply(data, meta) {
+            if (meta?.code)
+                this.port.send_code(meta.code);
+            if (meta?.type)
+                this.port.send_type(meta.type);
+            this.port.send_data(data);
+        }
+        route(uri) {
+            return $mol_rest_message.make({
+                port: this.port,
+                method: () => this.method(),
+                uri: $mol_const(uri),
+                type: () => this.type(),
+                data: () => this.data(),
+            });
+        }
+        derive(method, data) {
+            return $mol_rest_message.make({
+                port: this.port,
+                method: $mol_const(method),
+                uri: () => this.uri(),
+                data: $mol_const(data),
+            });
+        }
+        static make(config) {
+            return super.make(config);
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $mol_rest_message.prototype, "method", null);
+    __decorate([
+        $mol_mem
+    ], $mol_rest_message.prototype, "uri", null);
+    __decorate([
+        $mol_mem
+    ], $mol_rest_message.prototype, "type", null);
+    __decorate([
+        $mol_mem
+    ], $mol_rest_message.prototype, "data", null);
+    __decorate([
+        $mol_mem
+    ], $mol_rest_message.prototype, "bin", null);
+    __decorate([
+        $mol_mem
+    ], $mol_rest_message.prototype, "text", null);
+    __decorate([
+        $mol_action
+    ], $mol_rest_message.prototype, "route", null);
+    __decorate([
+        $mol_action
+    ], $mol_rest_message.prototype, "derive", null);
+    __decorate([
+        ($mol_action)
+    ], $mol_rest_message, "make", null);
+    $.$mol_rest_message = $mol_rest_message;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const makeURL = $mol_wire_sync((url, base) => new URL(url, base));
+    class $mol_rest_resource extends $mol_object {
+        REQUEST(msg) {
+            const [path, nest, tail] = /^\/([a-zA-Z][^/]*)(.*)$/.exec(msg.uri().pathname) ?? [];
+            const field = nest?.toLowerCase();
+            if (field && field in this && !(field in $mol_rest_resource.prototype)) {
+                const uri2 = makeURL(msg.uri().toString());
+                uri2.pathname = tail ?? msg.uri().pathname;
+                const msg2 = msg.route(uri2);
+                return this[field]().REQUEST(msg2);
+            }
+            return $mol_wire_sync(this)[msg.method()](msg);
+        }
+        OPEN(msg) { }
+        CLOSE(msg) { }
+        HEAD(msg) { }
+        GET(msg) { }
+        PUT(msg) { }
+        PATCH(msg) { }
+        POST(msg) { }
+        DELETE(msg) { }
+        _auto() { }
+        static port(port) {
+            const server = $mol_rest_server.make({
+                port: () => port,
+            });
+            server.root(this.make({}));
+            server.start();
+            new $mol_wire_atom(`${server.root()}._auto<>`, () => {
+                try {
+                    server.root()._auto();
+                }
+                catch (error) {
+                    $mol_fail_log(error);
+                }
+            }).fresh();
+            return server;
+        }
+        static serve() {
+            const port = Number(this.$.$mol_state_arg.value('port'));
+            return port ? this.port(port) : null;
+        }
+    }
+    __decorate([
+        $mol_action
+    ], $mol_rest_resource.prototype, "REQUEST", null);
+    __decorate([
+        $mol_mem_key
+    ], $mol_rest_resource, "port", null);
+    $.$mol_rest_resource = $mol_rest_resource;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_file_extensions = {
+        'css': 'text/css;charset=utf-8',
+        'csv': 'text/csv;charset=utf-8',
+        'htm': 'text/html;charset=utf-8',
+        'html': 'text/html;charset=utf-8',
+        'ics': 'text/calendar;charset=utf-8',
+        'js': 'text/javascript;charset=utf-8',
+        'jsx': 'text/javascript;charset=utf-8',
+        'md': 'text/plain;charset=utf-8',
+        'mjs': 'text/javascript;charset=utf-8',
+        'ts': 'text/typescript;charset=utf-8',
+        'tsx': 'text/typescript;charset=utf-8',
+        'txt': 'text/plain;charset=utf-8',
+        'aac': 'audio/aac',
+        'mid': 'audio/midi',
+        'midi': 'audio/midi',
+        'mp3': 'audio/mpeg',
+        'oga': 'audio/ogg',
+        'opus': 'audio/opus',
+        'wav': 'audio/wav',
+        'weba': 'audio/webm',
+        'apng': 'image/apng',
+        'avif': 'image/avif',
+        'bmp': 'image/bmp',
+        'gif': 'image/gif',
+        'ico': 'image/vnd.microsoft.icon',
+        'jpeg': 'image/jpeg',
+        'jpg': 'image/jpeg',
+        'png': 'image/png',
+        'svg': 'image/svg+xml',
+        'tiff': 'image/tiff',
+        'tif': 'image/tiff',
+        'webp': 'image/webp',
+        'avi': 'video/x-msvideo',
+        'mpeg': 'video/mpeg',
+        'mp4': 'video/mp4',
+        'ogv': 'video/ogg',
+        'webm': 'video/webm',
+        '3gp': 'video/3gpp',
+        '3g2': 'video/3gpp2',
+        'otf': 'font/otf',
+        'ttf': 'font/ttf',
+        'woff': 'font/woff',
+        'woff2': 'font/woff2',
+        'abw': 'application/x-abiword',
+        'arc': 'application/x-freearc',
+        'azw': 'application/vnd.amazon.ebook',
+        'bin': 'application/octet-stream',
+        'bz': 'application/x-bzip',
+        'bz2': 'application/x-bzip2',
+        'cda': 'application/x-cdf',
+        'crus': 'application/x-crus',
+        'csh': 'application/x-csh',
+        'doc': 'application/msword',
+        'docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'eot': 'application/vnd.ms-fontobject',
+        'epub': 'application/epub+zip',
+        'gz': 'application/gzip',
+        'jar': 'application/java-archive',
+        'json': 'application/json',
+        'jsonld': 'application/ld+json',
+        'map': 'application/json',
+        'mpkg': 'application/vnd.apple.installer+xml',
+        'odp': 'application/vnd.oasis.opendocument.presentation',
+        'ods': 'application/vnd.oasis.opendocument.spreadsheet',
+        'odt': 'application/vnd.oasis.opendocument.text',
+        'ogx': 'application/ogg',
+        'pdf': 'application/pdf',
+        'php': 'application/x-httpd-php',
+        'ppt': 'application/vnd.ms-powerpoint',
+        'pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+        'rar': 'application/vnd.rar',
+        'rtf': 'application/rtf',
+        'sh': 'application/x-sh',
+        'tar': 'application/x-tar',
+        'tree': 'application/x-tree',
+        'vsd': 'application/vnd.visio',
+        'xhtml': 'application/xhtml+xml',
+        'xls': 'application/vnd.ms-excel',
+        'xlsx': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'xml': 'application/xml',
+        'xul': 'application/vnd.mozilla.xul+xml',
+        'zip': 'application/zip',
+        '7z': 'application/x-7z-compressed',
+    };
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_rest_port_http extends $mol_rest_port {
+        output;
+        send_code(code) {
+            if (this.output.writableEnded)
+                return;
+            if (this.output.statusCode !== 400)
+                return;
+            this.output.statusCode = code;
+        }
+        send_type(mime) {
+            if (this.output.writableEnded)
+                return;
+            if (this.output.getHeader('content-type'))
+                return;
+            this.output.setHeader('content-type', mime);
+        }
+        send_bin(data) {
+            if (this.output.writableEnded)
+                return;
+            super.send_bin(data);
+            this.output.write(data);
+        }
+    }
+    __decorate([
+        $mol_action
+    ], $mol_rest_port_http.prototype, "send_code", null);
+    __decorate([
+        $mol_action
+    ], $mol_rest_port_http.prototype, "send_type", null);
+    __decorate([
+        $mol_action
+    ], $mol_rest_port_http.prototype, "send_bin", null);
+    $.$mol_rest_port_http = $mol_rest_port_http;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_rest_message_http extends $mol_rest_message {
+        input;
+        method() {
+            return this.input.method ?? super.method();
+        }
+        uri() {
+            const addr = this.input.socket?.localAddress ?? '::1';
+            const port = this.input.socket?.localPort ?? '80';
+            return new URL(this.input.url, `http://[${addr}]:${port}/`);
+        }
+        type() {
+            return (this.input.headers['content-type'] ?? 'application/octet-stream');
+        }
+        data() {
+            const consume = $mol_wire_sync($node['stream/consumers']);
+            if (this.type().startsWith('text/')) {
+                const text = consume.text(this.input);
+                if (this.type() === 'text/html') {
+                    return $mol_dom_parse(text, 'application/xhtml+xml').documentElement;
+                }
+                return text;
+            }
+            else {
+                if (this.type() === 'application/json') {
+                    return consume.json(this.input);
+                }
+                else {
+                    return new Uint8Array(consume.arrayBuffer(this.input));
+                }
+            }
+        }
+        route(uri) {
+            return $mol_rest_message_http.make({
+                port: this.port,
+                input: this.input,
+                uri: $mol_const(uri),
+                data: () => this.data(),
+            });
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $mol_rest_message_http.prototype, "method", null);
+    __decorate([
+        $mol_mem
+    ], $mol_rest_message_http.prototype, "uri", null);
+    __decorate([
+        $mol_mem
+    ], $mol_rest_message_http.prototype, "type", null);
+    __decorate([
+        $mol_mem
+    ], $mol_rest_message_http.prototype, "data", null);
+    __decorate([
+        $mol_action
+    ], $mol_rest_message_http.prototype, "route", null);
+    $.$mol_rest_message_http = $mol_rest_message_http;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_rest_server extends $mol_object {
+        log() {
+            return this.$.$mol_state_arg.value('mol_rest_server_log') !== null;
+        }
+        port() {
+            return 0;
+        }
+        start() {
+            this.http_server();
+        }
+        http_server() {
+            const server = $node.http.createServer((req, res) => {
+                res.statusCode = 400;
+                $mol_wire_async(this).http_income(req, res);
+            });
+            server.on('upgrade', (req, sock, head) => $mol_wire_async(this).ws_upgrade(req, sock, head));
+            server.listen(this.port(), () => {
+                const ifaces = Object.entries($node.os.networkInterfaces())
+                    .flatMap(([type, ifaces]) => ifaces?.map(iface => iface.family === 'IPv6' ? `[${iface.address}]` : iface.address) ?? []);
+                this.$.$mol_log3_done({
+                    place: this,
+                    message: 'HTTP Server Started',
+                    links: ifaces.map(iface => `http://${iface}:${this.port()}/`),
+                });
+            });
+            return server;
+        }
+        http_income(req, res) {
+            const port = $mol_rest_port_http.make({ output: res });
+            const msg = $mol_rest_message_http.make({ port, input: req });
+            if (this.log())
+                $mol_wire_sync(this.$).$mol_log3_rise({
+                    place: this,
+                    message: msg.method(),
+                    url: msg.uri(),
+                    remote: req.socket.remoteAddress + ':' + req.socket.remotePort
+                });
+            $mol_wire_sync(res).setHeader('Access-Control-Allow-Origin', '*');
+            $mol_wire_sync(res).setHeader('Access-Control-Allow-Methods', '*');
+            $mol_wire_sync(res).setHeader('Access-Control-Allow-Headers', '*');
+            try {
+                $mol_wire_sync(this.root()).REQUEST(msg);
+            }
+            catch (error) {
+                if ($mol_promise_like(error))
+                    $mol_fail_hidden(error);
+                $mol_wire_sync($$).$mol_log3_fail({
+                    place: this,
+                    message: error.message ?? '',
+                    stack: error.stack,
+                });
+                $mol_wire_sync(res).writeHead(500, error.name || 'Server Error');
+            }
+            res.end();
+        }
+        ws_upgrade(req, socket, head) {
+            const port = $mol_rest_port_ws_node.make({ socket });
+            const upgrade = $mol_rest_message_http.make({ port, input: req });
+            try {
+                $mol_wire_sync(this.root()).REQUEST(upgrade.derive('OPEN', null));
+            }
+            catch (error) {
+                if ($mol_promise_like(error))
+                    $mol_fail_hidden(error);
+                $mol_wire_sync($$).$mol_log3_fail({
+                    place: this,
+                    message: error.message ?? '',
+                    stack: error.stack,
+                });
+                socket.end();
+                return;
+            }
+            const onclose = $mol_wire_async(() => {
+                if (this.log())
+                    $mol_wire_sync(this.$).$mol_log3_done({
+                        place: this,
+                        message: 'CLOSE',
+                        url: upgrade.uri(),
+                        port: $mol_key(port),
+                    });
+                try {
+                    $mol_wire_sync(this.root()).REQUEST(upgrade.derive('CLOSE', null));
+                }
+                catch (error) {
+                    if ($mol_promise_like(error))
+                        $mol_fail_hidden(error);
+                    $mol_wire_sync($$).$mol_log3_fail({
+                        place: this,
+                        message: error.message ?? '',
+                        stack: error.stack,
+                    });
+                    return;
+                }
+            });
+            socket.on('end', onclose);
+            socket.on('error', onclose);
+            socket.on('data', (chunk) => this.ws_income(chunk, upgrade, socket));
+            const key_in = req.headers["sec-websocket-key"];
+            const magic = '258EAFA5-E914-47DA-95CA-C5AB0DC85B11';
+            const key_out = $mol_base64_encode($mol_crypto_hash($mol_charset_encode(key_in + magic)));
+            socket.write('HTTP/1.1 101 WS Handshaked\r\n' +
+                'Upgrade: WebSocket\r\n' +
+                'Connection: Upgrade\r\n' +
+                `Sec-WebSocket-Accept: ${key_out}\r\n` +
+                '\r\n');
+            if (this.log())
+                $mol_wire_sync(this.$).$mol_log3_come({
+                    place: this,
+                    message: 'OPEN',
+                    url: upgrade.uri(),
+                    port: $mol_key(port),
+                });
+        }
+        _ws_income_chunks = new WeakMap;
+        _ws_income_frames = new WeakMap;
+        async ws_income(chunk, upgrade, sock) {
+            sock.pause();
+            try {
+                let chunks = this._ws_income_chunks.get(sock);
+                if (!chunks)
+                    this._ws_income_chunks.set(sock, chunks = []);
+                chunks.push(chunk);
+                const patial_size = chunks.reduce((sum, buf) => sum + buf.byteLength, 0);
+                let frame = $mol_websocket_frame.from(chunks[0]);
+                const msg_size = frame.size() + frame.data().size;
+                if (msg_size > patial_size) {
+                    setTimeout(() => sock.resume());
+                    return;
+                }
+                chunk = Buffer.alloc(patial_size);
+                let offset = 0;
+                for (const buf of chunks.splice(0)) {
+                    chunk.set(buf, offset);
+                    offset += buf.byteLength;
+                }
+                frame = $mol_websocket_frame.from(chunk);
+                if (msg_size < chunk.byteLength) {
+                    const tail = new Uint8Array(chunk.buffer, chunk.byteOffset + msg_size);
+                    sock.unshift(tail);
+                }
+                let data = new Uint8Array(chunk.buffer, chunk.byteOffset + frame.size(), frame.data().size);
+                if (frame.data().mask) {
+                    const mask = frame.mask();
+                    for (let i = 0; i < data.length; ++i) {
+                        data[i] ^= mask[i % 4];
+                    }
+                }
+                const op = frame.kind().op;
+                if (op === 'txt')
+                    data = $mol_charset_decode(data);
+                let frames = this._ws_income_frames.get(sock);
+                if (!frames)
+                    this._ws_income_frames.set(sock, frames = []);
+                if (!frame.kind().fin) {
+                    frames.push(data);
+                    setTimeout(() => sock.resume());
+                    return;
+                }
+                if (frames.length) {
+                    frames.push(data);
+                    if (typeof frames[0] === 'string') {
+                        data = frames.join('');
+                    }
+                    else {
+                        const size = frames.reduce((s, f) => s + f.byteLength, 0);
+                        data = new Uint8Array(size);
+                        let offset = 0;
+                        for (const frame of frames) {
+                            data.set(frame, offset);
+                            offset += frame.byteLength;
+                        }
+                    }
+                    frames.length = 0;
+                }
+                if (op !== 'txt' && op !== 'bin' && op !== 'con') {
+                    setTimeout(() => sock.resume());
+                    return;
+                }
+                const message = upgrade.derive('POST', data);
+                if (data.length !== 0) {
+                    if (this.log())
+                        this.$.$mol_log3_rise({
+                            place: this,
+                            message: message.method(),
+                            port: $mol_key(message.port),
+                            url: message.uri(),
+                            frame: frame.toString(),
+                        });
+                    await $mol_wire_async(this.root()).REQUEST(message);
+                }
+                setTimeout(() => sock.resume());
+            }
+            catch (error) {
+                if ($mol_promise_like(error))
+                    $mol_fail_hidden(error);
+                $$.$mol_log3_fail({
+                    place: this,
+                    message: error.message ?? '',
+                    stack: error.stack,
+                });
+                sock.end();
+            }
+        }
+        root(resource) {
+            $mol_wire_solid();
+            return resource ?? $mol_rest_resource.make({});
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $mol_rest_server.prototype, "port", null);
+    __decorate([
+        $mol_mem
+    ], $mol_rest_server.prototype, "start", null);
+    __decorate([
+        $mol_mem
+    ], $mol_rest_server.prototype, "http_server", null);
+    __decorate([
+        $mol_action
+    ], $mol_rest_server.prototype, "http_income", null);
+    __decorate([
+        $mol_action
+    ], $mol_rest_server.prototype, "ws_upgrade", null);
+    __decorate([
+        $mol_mem
+    ], $mol_rest_server.prototype, "root", null);
+    $.$mol_rest_server = $mol_rest_server;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_rest_resource_fs extends $mol_rest_resource {
+        _root() { return $mol_file.relative(__dirname); }
+        GET(msg) {
+            const root = this._root();
+            const file = root.resolve(msg.uri().pathname);
+            if (!file.exists())
+                return msg.reply(null, { code: 404 });
+            switch (file.type()) {
+                case 'file': {
+                    return msg.reply(file.buffer(), {
+                        type: $mol_file_extensions[file.ext().replace(/^.*\./, '')],
+                    });
+                }
+                case 'dir': {
+                    const index = file.resolve('./index.html');
+                    if (index.exists())
+                        return msg.reply(index.buffer(), { type: 'text/html' });
+                    const resources = Object.getOwnPropertyNames(Object.getPrototypeOf(this));
+                    return msg.reply($mol_jsx("body", null,
+                        $mol_jsx("style", null, `
+							body { background: black; font: 1rem/1.5rem monospace }
+							a { color: royalblue; text-decoration: none }
+							a:hover { color: skyblue }
+						`),
+                        resources.map(res => {
+                            if (res === 'constructor')
+                                return null;
+                            if (!/^[a-z][a-z_-]*$/.test(res))
+                                return null;
+                            const uri = root.resolve(res);
+                            return $mol_jsx("a", { href: uri.relate(file) + '/' },
+                                "/",
+                                res,
+                                "/",
+                                $mol_jsx("br", null));
+                        }),
+                        $mol_jsx("a", { href: "../" },
+                            "../",
+                            $mol_jsx("br", null)),
+                        file.sub().map(kid => {
+                            const uri = kid.name() + (kid.type() === 'dir' ? '/' : '');
+                            return $mol_jsx("a", { href: uri },
+                                uri,
+                                $mol_jsx("br", null));
+                        })));
+                }
+            }
+        }
+    }
+    __decorate([
+        $mol_memo.method
+    ], $mol_rest_resource_fs.prototype, "_root", null);
+    $.$mol_rest_resource_fs = $mol_rest_resource_fs;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $giper_baza_app_home extends $giper_baza_flex_peer {
+        init() {
+            this.meta($giper_baza_flex_peer.meta);
+        }
+        tick() {
+            this.init();
+            this.stat(null).tick();
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $giper_baza_app_home.prototype, "init", null);
+    $.$giper_baza_app_home = $giper_baza_app_home;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $giper_baza_app_home_node extends $giper_baza_app_home {
+        init() {
+            super.init();
+            if (process.env.ADMIN) {
+                const pass = $giper_baza_auth_pass.from(process.env.ADMIN);
+                this.land().give(pass, $giper_baza_rank_rule);
+            }
+            const host = process.env.DOMAIN || $node.os.hostname();
+            this.name(host);
+            this.urls([`https://${host}/`]);
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $giper_baza_app_home_node.prototype, "init", null);
+    $.$giper_baza_app_home_node = $giper_baza_app_home_node;
+    $.$giper_baza_app_home = $giper_baza_app_home_node;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $giper_baza_app_node extends $mol_rest_resource_fs {
+        link() {
+            return new $giper_baza_app_node_link;
+        }
+        OPEN(msg) {
+            this.$.$giper_baza_glob.yard().slaves.add(msg.port);
+        }
+        POST(msg) {
+            this.$.$giper_baza_glob.yard().port_income(msg.port, msg.bin());
+        }
+        CLOSE(msg) {
+            this.$.$giper_baza_glob.yard().slaves.delete(msg.port);
+        }
+        _auto() {
+            this._stat_update();
+            this.$.$giper_baza_glob.yard().sync();
+        }
+        _home() {
+            return this.$.$giper_baza_glob.home($giper_baza_app_home);
+        }
+        _stat_update() {
+            this._home().tick();
+        }
+    }
+    __decorate([
+        $mol_memo.method
+    ], $giper_baza_app_node.prototype, "link", null);
+    __decorate([
+        $mol_mem
+    ], $giper_baza_app_node.prototype, "_home", null);
+    __decorate([
+        $mol_mem
+    ], $giper_baza_app_node.prototype, "_stat_update", null);
+    $.$giper_baza_app_node = $giper_baza_app_node;
+    class $giper_baza_app_node_link extends $mol_rest_resource {
+        GET(msg) {
+            msg.reply(this.$.$giper_baza_auth.current().pass().lord().str);
+        }
+    }
+    $.$giper_baza_app_node_link = $giper_baza_app_node_link;
 })($ || ($ = {}));
 
 ;
@@ -13692,271 +14987,6 @@ var $;
         }
     }
     $.$giper_baza_file = $giper_baza_file;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    class $giper_baza_home extends $giper_baza_entity.with({
-        Selection: $giper_baza_atom_text,
-        Hall: $giper_baza_atom_link_to(() => $giper_baza_dict),
-    }) {
-        hall_by(Pawn, auto) {
-            return this.Hall(auto)?.ensure(auto === null ? this.land() : undefined)?.cast(Pawn) ?? null;
-        }
-    }
-    $.$giper_baza_home = $giper_baza_home;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    class $giper_baza_glob extends $mol_object {
-        static lands_touched = new $mol_wire_set();
-        static yard() {
-            return new this.$.$giper_baza_yard;
-        }
-        static home(Pawn) {
-            return this.Land(this.$.$giper_baza_auth.current().pass().lord()).Data(Pawn ?? this.$.$giper_baza_home);
-        }
-        static king_grab(preset = [[null, this.$.$giper_baza_rank_read]]) {
-            const mapping = new Map(preset);
-            const king = this.$.$giper_baza_auth.grab();
-            const colony = $mol_wire_sync(this.$.$giper_baza_land).make({ $: this.$ });
-            colony.auth = $mol_const(king);
-            colony.encrypted((mapping.get(null) ?? this.$.$giper_baza_rank_deny) === this.$.$giper_baza_rank_deny);
-            const self = this.$.$giper_baza_auth.current().pass();
-            colony.give(self, this.$.$giper_baza_rank_rule);
-            for (const [key, rank] of mapping)
-                colony.give(key, rank);
-            this.Land(colony.link()).units_steal(colony);
-            return king;
-        }
-        static land_grab(preset = [[null, this.$.$giper_baza_rank_read]]) {
-            return this.Land(this.king_grab(preset).pass().lord());
-        }
-        static Land(link) {
-            if (!link.str)
-                $mol_fail(new Error('Empty Land Link'));
-            this.lands_touched.add(link.str);
-            return this.$.$giper_baza_land.make({
-                link: $mol_const(link),
-            });
-        }
-        static Pawn(link, Pawn) {
-            const land = this.Land(link.land());
-            return land.Pawn(Pawn).Head(link.head());
-        }
-        static Seed() {
-            const link = new $giper_baza_link('H62jgoWJ_p8AvJ1Gl');
-            const seed = this.Pawn(link, $giper_baza_flex_seed);
-            if (seed.meta())
-                return seed;
-            const file = $mol_file.relative('giper/baza/glob/glob.baza');
-            const pack = $giper_baza_pack.from(file.buffer());
-            this.apply_pack(pack);
-            return seed;
-        }
-        static apply_pack(pack) {
-            return this.apply_parts(pack.parts());
-        }
-        static apply_parts(parts) {
-            for (const [land_id, part] of parts) {
-                const land = this.Land(new this.$.$giper_baza_link(land_id));
-                land.diff_apply(part.units);
-            }
-        }
-    }
-    __decorate([
-        $mol_mem
-    ], $giper_baza_glob, "yard", null);
-    __decorate([
-        $mol_action
-    ], $giper_baza_glob, "king_grab", null);
-    __decorate([
-        $mol_action
-    ], $giper_baza_glob, "land_grab", null);
-    __decorate([
-        $mol_mem_key
-    ], $giper_baza_glob, "Land", null);
-    __decorate([
-        $mol_mem
-    ], $giper_baza_glob, "Seed", null);
-    __decorate([
-        $mol_action
-    ], $giper_baza_glob, "apply_pack", null);
-    __decorate([
-        $mol_action
-    ], $giper_baza_glob, "apply_parts", null);
-    $.$giper_baza_glob = $giper_baza_glob;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    const deck = 'H62jgoWJ_p8AvJ1Gl_CRW0Ujn6';
-    class $giper_baza_flex_subj extends $giper_baza_dict.with({
-        Name: $giper_baza_atom_text,
-    }) {
-        static meta = new $giper_baza_link(`${deck}_pla3dXt3`);
-        name(next) {
-            return this.Name(next)?.val(next) ?? this.link().str;
-        }
-    }
-    $.$giper_baza_flex_subj = $giper_baza_flex_subj;
-    class $giper_baza_flex_subj_link extends $giper_baza_atom_link_to(() => $giper_baza_flex_subj) {
-    }
-    $.$giper_baza_flex_subj_link = $giper_baza_flex_subj_link;
-    class $giper_baza_flex_meta extends $giper_baza_flex_subj.with({
-        Props: $giper_baza_list_link_to(() => $giper_baza_flex_prop),
-        Pulls: $giper_baza_list_link_to(() => $giper_baza_flex_subj),
-    }) {
-        static meta = new $giper_baza_link(`${deck}_a1JLFBay`);
-        prop_new(key, type, kind, vars, base) {
-            const prop = this.Props(null).make($mol_hash_string(key));
-            prop.path(key);
-            prop.name(key);
-            prop.type(type);
-            if (kind)
-                prop.kind(kind);
-            if (vars)
-                prop.enum(vars);
-            if (base !== undefined)
-                prop.base(base);
-            return prop;
-        }
-        prop_add(prop) {
-            this.Props(prop).add(prop.link());
-        }
-        prop_all() {
-            return [
-                ...this.pull_all().flatMap(meta => meta.prop_all()),
-                ...this.Props()?.remote_list() ?? [],
-            ];
-        }
-        pull_add(meta) {
-            this.Pulls(meta).add(meta.link());
-        }
-        pull_all() {
-            return (this.Pulls()?.remote_list() ?? []).map(subj => subj.cast($giper_baza_flex_meta));
-        }
-    }
-    __decorate([
-        $mol_action
-    ], $giper_baza_flex_meta.prototype, "prop_new", null);
-    __decorate([
-        $mol_action
-    ], $giper_baza_flex_meta.prototype, "prop_add", null);
-    __decorate([
-        $mol_mem
-    ], $giper_baza_flex_meta.prototype, "prop_all", null);
-    __decorate([
-        $mol_action
-    ], $giper_baza_flex_meta.prototype, "pull_add", null);
-    __decorate([
-        $mol_mem
-    ], $giper_baza_flex_meta.prototype, "pull_all", null);
-    $.$giper_baza_flex_meta = $giper_baza_flex_meta;
-    class $giper_baza_flex_prop extends $giper_baza_flex_subj.with({
-        Path: $giper_baza_atom_text,
-        Type: $giper_baza_atom_text,
-        Kind: $giper_baza_atom_link_to(() => $giper_baza_flex_meta),
-        Enum: $giper_baza_atom_link_to(() => $giper_baza_list_vary),
-        Base: $giper_baza_atom_vary,
-    }) {
-        static meta = new $giper_baza_link(`${deck}_7ovrwQ6t`);
-        path(next) {
-            return this.Path(next)?.val(next) ?? '';
-        }
-        type(next) {
-            return this.Type(next)?.val(next) ?? '';
-        }
-        base(next) {
-            return this.Base(next)?.vary(next) ?? null;
-        }
-        kind(next) {
-            return this.Kind(next)?.remote(next) ?? null;
-        }
-        enum(next) {
-            return this.Enum(next)?.remote(next) ?? null;
-        }
-    }
-    $.$giper_baza_flex_prop = $giper_baza_flex_prop;
-    class $giper_baza_flex_deck extends $giper_baza_flex_subj.with({
-        Metas: $giper_baza_list_link_to(() => $giper_baza_flex_meta),
-        Types: $giper_baza_list_str,
-    }) {
-        static meta = new $giper_baza_link(`${deck}_TAv7CAua`);
-        meta_new(key) {
-            const meta = this.Metas(null).make($mol_hash_string(key));
-            meta.name(key);
-            return meta;
-        }
-    }
-    __decorate([
-        $mol_action
-    ], $giper_baza_flex_deck.prototype, "meta_new", null);
-    $.$giper_baza_flex_deck = $giper_baza_flex_deck;
-    class $giper_baza_flex_seed extends $giper_baza_flex_subj.with({
-        Deck: $giper_baza_atom_link_to(() => $giper_baza_flex_deck),
-        Peers: $giper_baza_list_str,
-    }) {
-        static meta = new $giper_baza_link(`${deck}_dELUKvvS`);
-        deck() {
-            return this.Deck(null).ensure(this.land());
-        }
-        peers() {
-            return (this.Peers()?.items() ?? []).filter($mol_guard_defined);
-        }
-    }
-    __decorate([
-        $mol_mem
-    ], $giper_baza_flex_seed.prototype, "deck", null);
-    __decorate([
-        $mol_mem
-    ], $giper_baza_flex_seed.prototype, "peers", null);
-    $.$giper_baza_flex_seed = $giper_baza_flex_seed;
-    function $giper_baza_flex_init() {
-        const seed_land = this.$.$giper_baza_glob.land_grab();
-        const seed = seed_land.Data($giper_baza_flex_seed);
-        seed.name('Base Seed');
-        const deck = seed.deck();
-        deck.name('Base Deck');
-        deck.Types(null).items_vary(['vary', 'enum', 'bool', 'int', 'real', 'str', 'link', 'time', 'dict', 'text', 'list']);
-        const Meta = deck.meta_new('Meta');
-        Meta.meta($giper_baza_flex_meta.meta = Meta.link());
-        const Subj = deck.meta_new('Subj');
-        const Seed = deck.meta_new('Seed');
-        const Prop = deck.meta_new('Prop');
-        const Deck = deck.meta_new('Deck');
-        $giper_baza_flex_subj.meta = Subj.link();
-        $giper_baza_flex_seed.meta = Seed.link();
-        $giper_baza_flex_prop.meta = Prop.link();
-        $giper_baza_flex_deck.meta = Deck.link();
-        seed.meta(Seed.link());
-        deck.meta(Deck.link());
-        Meta.pull_add(Subj);
-        Seed.pull_add(Subj);
-        Prop.pull_add(Subj);
-        Deck.pull_add(Subj);
-        Subj.prop_new('Name', 'str', undefined, undefined, '');
-        Meta.prop_new('Props', 'list', Prop);
-        Meta.prop_new('Pulls', 'list', Meta);
-        Seed.prop_new('Deck', 'link', Deck);
-        Seed.prop_new('Peers', 'list');
-        Prop.prop_new('Path', 'str');
-        Prop.prop_new('Type', 'enum', undefined, deck.Types(), 'vary');
-        Prop.prop_new('Kind', 'link', Meta, deck.Metas(), Subj.link());
-        Prop.prop_new('Enum', 'link', Subj);
-        Prop.prop_new('Base', 'vary', Subj);
-        Deck.prop_new('Metas', 'list', Meta);
-        Deck.prop_new('Types', 'list');
-        return seed;
-    }
-    $.$giper_baza_flex_init = $giper_baza_flex_init;
 })($ || ($ = {}));
 
 ;
