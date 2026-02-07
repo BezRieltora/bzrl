@@ -11186,7 +11186,9 @@ var $;
             return new $mol_wire_atom('', () => this.units_saving()).fresh();
         }
         sync_yard() {
-            return new $mol_wire_atom('', () => this.$.$giper_baza_glob.yard().sync_land(this.link())).fresh();
+            const root = new $mol_wire_atom('sync_yard', () => this.$.$giper_baza_glob.yard().sync_land(this.link()));
+            setTimeout(() => root.fresh());
+            return root;
         }
         bus() {
             return new this.$.$mol_bus(`$giper_baza_land:${this.link()}`, $mol_wire_async(buf => {
@@ -11781,15 +11783,22 @@ var $;
             return null;
         }
         lands_news = new $mol_wire_set();
-        static masters = [];
+        static masters_default = [];
+        static masters() {
+            const all = this.$.$giper_baza_glob.Seed().peers();
+            const self = this.$.$giper_baza_auth.current().pass().lord();
+            const pos = all.findLastIndex(peer => peer.link().str === self.str);
+            const links = all.slice(pos + 1).flatMap(peer => peer.urls());
+            return [...this.masters_default, ...links];
+        }
         master_cursor(next = 0) {
             return next;
         }
         master_current() {
-            return this.$.$giper_baza_yard.masters[this.master_cursor()];
+            return this.$.$giper_baza_yard.masters()[this.master_cursor()];
         }
         master_next() {
-            this.master_cursor((this.master_cursor() + 1) % this.$.$giper_baza_yard.masters.length);
+            this.master_cursor((this.master_cursor() + 1) % this.$.$giper_baza_yard.masters().length);
         }
         reconnects(reset) {
             return ($mol_wire_probe(() => this.reconnects()) ?? 0) + 1;
@@ -12105,6 +12114,9 @@ var $;
     __decorate([
         $mol_mem_key
     ], $giper_baza_yard.prototype, "face_port_land", null);
+    __decorate([
+        $mol_mem
+    ], $giper_baza_yard, "masters", null);
     $.$giper_baza_yard = $giper_baza_yard;
 })($ || ($ = {}));
 
@@ -12112,9 +12124,8 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $.$giper_baza_yard.masters = [
-        'https://baza.91-219-148-98.ip.giper.dev/',
-    ];
+    if ($mol_dom.document)
+        $giper_baza_yard.masters_default.push($mol_dom.document.location.origin + '/');
 })($ || ($ = {}));
 
 ;
@@ -12358,13 +12369,13 @@ var $;
             return $giper_baza_rank_tier.rule;
         }
         toString() {
-            const mate = $mol_term_color.magenta('@' + (this.mate().str || '______anyone_____'));
+            const mate = $mol_term_color.magenta('@' + (this.mate().str || '____every_one____'));
             const read = $mol_term_color.green(this.code().some(v => v) ? 'X' : 'O');
             const rank = $mol_term_color.cyan($giper_baza_rank_tier[this.tier()] + ':' + this.rate().toString(16).toUpperCase());
             return `${super.toString()} ${read} ${mate} ${rank}`;
         }
         [$mol_dev_format_head]() {
-            return $mol_dev_format_span({}, $mol_dev_format_native(this), ' 👾', $mol_dev_format_auto(this.lord()), ' 🏅', ' ', $mol_dev_format_shade(this.moment().toString('YYYY-MM-DD hh:mm:ss'), ' !', this.tick().toString(16).padStart(2, '0')), ' #', $mol_dev_format_auto(this.hash()), ' 👾', $mol_dev_format_accent(this.mate().str || '______anyone_____'), this.code().some(v => v) ? ' 🔐' : ' 👀', $giper_baza_rank_tier[this.tier()], ':', this.rate().toString(16).toUpperCase());
+            return $mol_dev_format_span({}, $mol_dev_format_native(this), ' 👾', $mol_dev_format_auto(this.lord()), ' 🏅', ' ', $mol_dev_format_shade(this.moment().toString('YYYY-MM-DD hh:mm:ss'), ' !', this.tick().toString(16).padStart(2, '0')), ' #', $mol_dev_format_auto(this.hash()), ' 👾', $mol_dev_format_accent(this.mate().str || '____every_one____'), this.code().some(v => v) ? ' 🔐' : ' 👀', $giper_baza_rank_tier[this.tier()], ':', this.rate().toString(16).toUpperCase());
         }
     }
     __decorate([
@@ -14009,14 +14020,14 @@ var $;
     $.$giper_baza_flex_deck = $giper_baza_flex_deck;
     class $giper_baza_flex_seed extends $giper_baza_flex_subj.with({
         Deck: $giper_baza_atom_link_to(() => $giper_baza_flex_deck),
-        Peers: $giper_baza_list_str,
+        Peers: $giper_baza_list_link_to(() => $giper_baza_flex_peer),
     }, 'Seed') {
         static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_dELUKvvS`);
         deck() {
             return this.Deck(null).ensure(this.land());
         }
-        peers() {
-            return (this.Peers()?.items() ?? []).filter($mol_guard_defined);
+        peers(next) {
+            return this.Peers(next)?.remote_list(next) ?? [];
         }
     }
     __decorate([
@@ -14035,7 +14046,7 @@ var $;
             return this.Stat(auto)?.ensure(this.land()) ?? null;
         }
         urls(next) {
-            return (this.Urls()?.items(next) ?? []).filter($mol_guard_defined);
+            return (this.Urls(next)?.items(next) ?? []).filter($mol_guard_defined);
         }
     }
     __decorate([
@@ -14084,7 +14095,7 @@ var $;
         Meta.prop_new('Props', 'list', Prop);
         Meta.prop_new('Pulls', 'list', Meta, deck.Metas());
         Seed.prop_new('Deck', 'link', Deck);
-        Seed.prop_new('Peers', 'list');
+        Seed.prop_new('Peers', 'list', Peer);
         Prop.prop_new('Path', 'str');
         Prop.prop_new('Type', 'enum', undefined, deck.Types(), 'vary');
         Prop.prop_new('Kind', 'link', Meta, deck.Metas(), Subj.link());
@@ -14143,8 +14154,7 @@ var $;
         static Seed() {
             const link = $giper_baza_flex_deck_base.lord();
             const seed = this.Pawn(link, $giper_baza_flex_seed);
-            if (!$mol_wire_sync(seed).meta())
-                this.boot();
+            this.boot();
             return seed;
         }
         static boot() {
@@ -17620,19 +17630,20 @@ var $;
                 }
             }
             options() {
-                return this.$.$giper_baza_yard.masters;
+                return this.$.$giper_baza_yard.masters();
             }
             master_link() {
-                return this.$.$giper_baza_glob.yard().master_current();
+                return this.$.$giper_baza_glob.yard().master_current() ?? 'javascript: return false';
             }
             master_id(uri) {
                 return uri.replace(/^\w+:\/\//, '').replace(/\/$/, '');
             }
             option_label(uri) {
-                return uri.replace(/^\w+:\/\//, '').replace(/\/$/, '');
+                return this.master_id(uri);
             }
             value(next) {
-                return this.$.$giper_baza_yard.masters[this.$.$giper_baza_glob.yard().master_cursor(next == undefined ? undefined : this.$.$giper_baza_yard.masters.indexOf(next))];
+                const peers = this.$.$giper_baza_yard.masters();
+                return peers[this.$.$giper_baza_glob.yard().master_cursor(next == undefined ? undefined : peers.indexOf(next))] ?? '';
             }
         }
         __decorate([
@@ -17692,7 +17703,7 @@ var $;
             title() {
                 const link = this.link();
                 if (!link.str)
-                    return '__hole__';
+                    return '____every_one____';
                 return this.$.$giper_baza_glob.Pawn(link, $giper_baza_flex_subj).name() || link.str;
             }
             arg() {
@@ -26031,14 +26042,17 @@ var $;
     (function ($$) {
         class $giper_baza_app_stat_page extends $.$giper_baza_app_stat_page {
             home() {
-                const link = new $giper_baza_link(this.$.$mol_fetch.text(this.$.$giper_baza_glob.yard().master_current() + 'link'));
+                const url = this.$.$giper_baza_glob.yard().master_current();
+                if (!url)
+                    return null;
+                const link = new $giper_baza_link(this.$.$mol_fetch.text(url + 'link'));
                 return this.$.$giper_baza_glob.Pawn(link, $giper_baza_app_home);
             }
             stat() {
-                return this.home().stat();
+                return this.home()?.stat() ?? null;
             }
             domain() {
-                return this.home().name() ?? super.domain();
+                return this.home()?.name() ?? super.domain();
             }
             uptime() {
                 const status = (this.stat()?.freshness() ?? Number.POSITIVE_INFINITY) < 5 ? '🟢' : '🔴';
@@ -26485,13 +26499,6 @@ var $;
 	($mol_mem(($.$giper_baza_app.prototype), "Stat"));
 	($mol_mem(($.$giper_baza_app.prototype), "Slot"));
 
-
-;
-"use strict";
-var $;
-(function ($) {
-    $giper_baza_yard.masters = [...new Set([$mol_dom_context.location.origin + '/', ...$giper_baza_yard.masters])];
-})($ || ($ = {}));
 
 ;
 "use strict";
