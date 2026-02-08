@@ -12459,13 +12459,13 @@ var $;
             return $giper_baza_rank_tier.rule;
         }
         toString() {
-            const mate = $mol_term_color.magenta('@' + (this.mate().str || '____every_one____'));
+            const mate = $mol_term_color.magenta('@' + (this.mate().str || '______every______'));
             const read = $mol_term_color.green(this.code().some(v => v) ? 'X' : 'O');
             const rank = $mol_term_color.cyan($giper_baza_rank_tier[this.tier()] + ':' + this.rate().toString(16).toUpperCase());
             return `${super.toString()} ${read} ${mate} ${rank}`;
         }
         [$mol_dev_format_head]() {
-            return $mol_dev_format_span({}, $mol_dev_format_native(this), ' 👾', $mol_dev_format_auto(this.lord()), ' 🏅', ' ', $mol_dev_format_shade(this.moment().toString('YYYY-MM-DD hh:mm:ss'), ' !', this.tick().toString(16).padStart(2, '0')), ' #', $mol_dev_format_auto(this.hash()), ' 👾', $mol_dev_format_accent(this.mate().str || '____every_one____'), this.code().some(v => v) ? ' 🔐' : ' 👀', $giper_baza_rank_tier[this.tier()], ':', this.rate().toString(16).toUpperCase());
+            return $mol_dev_format_span({}, $mol_dev_format_native(this), ' 👾', $mol_dev_format_auto(this.lord()), ' 🏅', ' ', $mol_dev_format_shade(this.moment().toString('YYYY-MM-DD hh:mm:ss'), ' !', this.tick().toString(16).padStart(2, '0')), ' #', $mol_dev_format_auto(this.hash()), ' 👾', $mol_dev_format_accent(this.mate().str || '______every______'), this.code().some(v => v) ? ' 🔐' : ' 👀', $giper_baza_rank_tier[this.tier()], ':', this.rate().toString(16).toUpperCase());
         }
     }
     __decorate([
@@ -13516,7 +13516,21 @@ var $;
     }
     $.$giper_baza_atom_link = $giper_baza_atom_link;
     class $giper_baza_atom_text extends $giper_baza_atom($giper_baza_vary_cast_text) {
+        selection(lord, next) {
+            const user = this.$.$giper_baza_glob.Land(lord).Data($giper_baza_flex_user);
+            if (next) {
+                user.caret(next.join('|'));
+                return next;
+            }
+            else {
+                this.val();
+                return user.caret()?.split('|').map(chunk => Number(chunk)) ?? [0, 0];
+            }
+        }
     }
+    __decorate([
+        $mol_mem_key
+    ], $giper_baza_atom_text.prototype, "selection", null);
     $.$giper_baza_atom_text = $giper_baza_atom_text;
     class $giper_baza_atom_time extends $giper_baza_atom($giper_baza_vary_cast_time) {
     }
@@ -13812,6 +13826,7 @@ var $;
             return this.Uptime(next)?.val(next) ?? new $mol_time_duration(0);
         }
         init() {
+            this.Errors(null).tick_instant(1);
             let handler = () => this.Errors(null).tick_instant(1);
             $mol_report_handler_all.add(handler);
             return { destructor: () => $mol_report_handler_all.delete(handler) };
@@ -13871,7 +13886,7 @@ var $;
     class $giper_baza_flex_subj extends $giper_baza_dict.with({
         Name: $giper_baza_atom_text,
     }, 'Subj') {
-        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_pla3dXt3`);
+        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_U2e5XejQ`);
         name(next) {
             return this.Name(next)?.val(next) ?? this.link().str;
         }
@@ -13884,7 +13899,7 @@ var $;
         Props: $giper_baza_list_link_to(() => $giper_baza_flex_prop),
         Pulls: $giper_baza_list_link_to(() => $giper_baza_flex_subj),
     }, 'Meta') {
-        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_a1JLFBay`);
+        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_Atd6Ty7F`);
         prop_new(key, type, kind, vars, base) {
             const prop = this.Props(null).make($mol_hash_string(key));
             prop.path(this.name() + ':' + key);
@@ -13937,7 +13952,7 @@ var $;
         Enum: $giper_baza_atom_link_to(() => $giper_baza_list_vary),
         Base: $giper_baza_atom_vary,
     }, 'Prop') {
-        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_7ovrwQ6t`);
+        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_DOnW7Ah9`);
         path(next) {
             return this.Path(next)?.val(next) ?? '';
         }
@@ -13959,7 +13974,7 @@ var $;
         Metas: $giper_baza_list_link_to(() => $giper_baza_flex_meta),
         Types: $giper_baza_list_str,
     }, 'Deck') {
-        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_TAv7CAua`);
+        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_3AvnmQ4q`);
         meta_new(key) {
             const meta = this.Metas(null).make($mol_hash_string(key));
             meta.name(key);
@@ -13982,7 +13997,7 @@ var $;
         Deck: $giper_baza_atom_link_to(() => $giper_baza_flex_deck),
         Peers: $giper_baza_list_link_to(() => $giper_baza_flex_peer),
     }, 'Seed') {
-        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_dELUKvvS`);
+        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_nrUK4ZIW`);
         deck() {
             return this.Deck(null).ensure(this.land());
         }
@@ -14080,8 +14095,11 @@ var $;
         static yard() {
             return new this.$.$giper_baza_yard;
         }
-        static home(Pawn) {
-            return this.Land(this.$.$giper_baza_auth.current().pass().lord()).Data(Pawn ?? this.$.$giper_baza_flex_subj);
+        static home(Home) {
+            const home = this.Land(this.$.$giper_baza_auth.current().pass().lord()).Data(Home ?? this.$.$giper_baza_flex_subj);
+            if (Home?.meta && !home.meta())
+                home.meta(Home.meta);
+            return home;
         }
         static king_grab(preset = [[null, this.$.$giper_baza_rank_read]]) {
             const mapping = new Map(preset);
@@ -14821,11 +14839,11 @@ var $;
     class $giper_baza_app_home_node extends $giper_baza_app_home {
         init() {
             super.init();
-            if (process.env.ADMIN) {
-                const pass = $giper_baza_auth_pass.from(process.env.ADMIN);
+            if (process.env.GIPER_BAZA_ADMIN) {
+                const pass = $giper_baza_auth_pass.from(process.env.GIPER_BAZA_ADMIN);
                 this.land().give(pass, $giper_baza_rank_rule);
             }
-            const host = process.env.DOMAIN || $node.os.hostname();
+            const host = process.env.GIPER_BAZA_DOMAIN || $node.os.hostname();
             this.name(host);
             this.urls([`https://${host}/`]);
         }

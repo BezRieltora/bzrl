@@ -4551,6 +4551,7 @@ declare namespace $ {
         [Symbol.toPrimitive](): any;
     };
     export class $giper_baza_atom_text extends $giper_baza_atom_text_base {
+        selection(lord: $giper_baza_link, next?: readonly [begin: number, end: number]): number[] | readonly [begin: number, end: number];
     }
     const $giper_baza_atom_time_base: (abstract new () => {
         val(next?: $mol_time_moment | null | undefined): $mol_time_moment | null;
@@ -5923,7 +5924,7 @@ declare namespace $ {
     class $giper_baza_glob extends $mol_object {
         static lands_touched: $mol_wire_set<string>;
         static yard(): $giper_baza_yard;
-        static home<Pawn extends typeof $giper_baza_flex_subj = typeof $giper_baza_flex_subj>(Pawn?: Pawn): InstanceType<Pawn>;
+        static home<Home extends typeof $giper_baza_flex_subj = typeof $giper_baza_flex_subj>(Home?: Home): InstanceType<Home>;
         static king_grab(preset?: $giper_baza_rank_preset): $giper_baza_auth;
         static land_grab(preset?: $giper_baza_rank_preset): $giper_baza_land;
         static Land(link: $giper_baza_link): $giper_baza_land;
@@ -9145,6 +9146,15 @@ declare namespace $ {
 //# sourceMappingURL=status.view.tree.d.ts.map
 declare namespace $ {
 
+	export class $mol_icon_account extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=account.view.tree.d.ts.map
+declare namespace $ {
+
 	export class $mol_icon_security extends $mol_icon {
 		path( ): string
 	}
@@ -10722,6 +10732,7 @@ declare namespace $.$$ {
         int(next?: number): number;
         real(next?: number): number;
         str(next?: string): string;
+        str_selection(next?: readonly [begin: number, end: number]): number[] | readonly [begin: number, end: number];
         time(next?: $mol_time_moment): $mol_time_moment;
         link(next?: $giper_baza_link): null;
         link_content(): ($.$mol_select | $.$giper_baza_unit_sand_dump)[];
@@ -10733,6 +10744,7 @@ declare namespace $.$$ {
         link_remote(): $giper_baza_dict;
         link_new(rights?: string): null;
         text(next?: string): string;
+        text_selection(next?: readonly [begin: number, end: number]): number[] | readonly [begin: number, end: number];
         dict_title(): string;
         list_items(): ($mol_button_minor | $.$mol_select | $.$mol_drop)[];
         list_pick(next?: $giper_baza_link): null;
@@ -10988,35 +11000,45 @@ declare namespace $ {
 		,
 		ReturnType< $mol_textarea['value'] >
 	>
-	type $mol_date__enabled_giper_baza_flex_field_47 = $mol_type_enforce<
+	type $mol_textarea__selection_giper_baza_flex_field_47 = $mol_type_enforce<
+		ReturnType< $giper_baza_flex_field['str_selection'] >
+		,
+		ReturnType< $mol_textarea['selection'] >
+	>
+	type $mol_date__enabled_giper_baza_flex_field_48 = $mol_type_enforce<
 		ReturnType< $giper_baza_flex_field['enabled'] >
 		,
 		ReturnType< $mol_date['enabled'] >
 	>
-	type $mol_date__value_moment_giper_baza_flex_field_48 = $mol_type_enforce<
+	type $mol_date__value_moment_giper_baza_flex_field_49 = $mol_type_enforce<
 		ReturnType< $giper_baza_flex_field['time'] >
 		,
 		ReturnType< $mol_date['value_moment'] >
 	>
-	type $mol_expander__title_giper_baza_flex_field_49 = $mol_type_enforce<
+	type $mol_expander__title_giper_baza_flex_field_50 = $mol_type_enforce<
 		ReturnType< $giper_baza_flex_field['dict_title'] >
 		,
 		ReturnType< $mol_expander['title'] >
 	>
-	type $mol_expander__content_giper_baza_flex_field_50 = $mol_type_enforce<
+	type $mol_expander__content_giper_baza_flex_field_51 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_expander['content'] >
 	>
-	type $mol_textarea__enabled_giper_baza_flex_field_51 = $mol_type_enforce<
+	type $mol_textarea__enabled_giper_baza_flex_field_52 = $mol_type_enforce<
 		ReturnType< $giper_baza_flex_field['enabled'] >
 		,
 		ReturnType< $mol_textarea['enabled'] >
 	>
-	type $mol_textarea__value_giper_baza_flex_field_52 = $mol_type_enforce<
+	type $mol_textarea__value_giper_baza_flex_field_53 = $mol_type_enforce<
 		ReturnType< $giper_baza_flex_field['text'] >
 		,
 		ReturnType< $mol_textarea['value'] >
+	>
+	type $mol_textarea__selection_giper_baza_flex_field_54 = $mol_type_enforce<
+		ReturnType< $giper_baza_flex_field['text_selection'] >
+		,
+		ReturnType< $mol_textarea['selection'] >
 	>
 	export class $giper_baza_flex_field extends $mol_view {
 		Sub( ): $mol_view
@@ -11038,11 +11060,13 @@ declare namespace $ {
 		Link_new( ): $mol_select
 		link_content( ): readonly(any)[]
 		str( next?: string ): string
+		str_selection( next?: readonly(any)[] ): readonly(any)[]
 		time( next?: $mol_time_moment ): $mol_time_moment
 		dict_title( ): string
 		dict_pawn( ): $giper_baza_dict
 		Dict_form( ): $giper_baza_flex_form
 		text( next?: string ): string
+		text_selection( next?: readonly(any)[] ): readonly(any)[]
 		list_item_adopt( next?: any ): any
 		list_receive( next?: any ): any
 		list_item_receive( id: any, next?: any ): any
@@ -12024,6 +12048,7 @@ declare namespace $.$$ {
         spread_ids(): string[];
         pages(): any[];
         side(): string;
+        home_link(): string;
         land_current(): $giper_baza_land;
         land(id: string): $giper_baza_land;
         pawn(id: string): $giper_baza_dict;
@@ -12042,156 +12067,176 @@ declare namespace $.$$ {
 
 declare namespace $ {
 
-	type $mol_link__arg_giper_baza_glob_book_1 = $mol_type_enforce<
+	type $mol_link__hint_giper_baza_glob_book_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['hint'] >
+	>
+	type $mol_link__arg_giper_baza_glob_book_2 = $mol_type_enforce<
+		({ 
+			'link': ReturnType< $giper_baza_glob_book['home_link'] >,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__sub_giper_baza_glob_book_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_link__arg_giper_baza_glob_book_4 = $mol_type_enforce<
 		({ 
 			'side': string,
 		}) 
 		,
 		ReturnType< $mol_link['arg'] >
 	>
-	type $mol_link__sub_giper_baza_glob_book_2 = $mol_type_enforce<
+	type $mol_link__sub_giper_baza_glob_book_5 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_link['sub'] >
 	>
-	type $giper_baza_land_page__land_giper_baza_glob_book_3 = $mol_type_enforce<
+	type $giper_baza_land_page__land_giper_baza_glob_book_6 = $mol_type_enforce<
 		ReturnType< $giper_baza_glob_book['land'] >
 		,
 		ReturnType< $giper_baza_land_page['land'] >
 	>
-	type $giper_baza_land_page__pawn_giper_baza_glob_book_4 = $mol_type_enforce<
+	type $giper_baza_land_page__pawn_giper_baza_glob_book_7 = $mol_type_enforce<
 		ReturnType< $giper_baza_glob_book['pawn'] >
 		,
 		ReturnType< $giper_baza_land_page['pawn'] >
 	>
-	type $giper_baza_land_page__tools_giper_baza_glob_book_5 = $mol_type_enforce<
+	type $giper_baza_land_page__tools_giper_baza_glob_book_8 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $giper_baza_land_page['tools'] >
 	>
-	type $mol_check_box__checked_giper_baza_glob_book_6 = $mol_type_enforce<
+	type $mol_check_box__checked_giper_baza_glob_book_9 = $mol_type_enforce<
 		ReturnType< $giper_baza_glob_book['land_checked'] >
 		,
 		ReturnType< $mol_check_box['checked'] >
 	>
-	type $mol_pick__hint_giper_baza_glob_book_7 = $mol_type_enforce<
+	type $mol_pick__hint_giper_baza_glob_book_10 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_pick['hint'] >
 	>
-	type $mol_pick__clicks_giper_baza_glob_book_8 = $mol_type_enforce<
+	type $mol_pick__clicks_giper_baza_glob_book_11 = $mol_type_enforce<
 		ReturnType< $giper_baza_glob_book['wipe'] >
 		,
 		ReturnType< $mol_pick['clicks'] >
 	>
-	type $mol_pick__align_hor_giper_baza_glob_book_9 = $mol_type_enforce<
+	type $mol_pick__align_hor_giper_baza_glob_book_12 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_pick['align_hor'] >
 	>
-	type $mol_pick__trigger_content_giper_baza_glob_book_10 = $mol_type_enforce<
+	type $mol_pick__trigger_content_giper_baza_glob_book_13 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_pick['trigger_content'] >
 	>
-	type $mol_pick__bubble_content_giper_baza_glob_book_11 = $mol_type_enforce<
+	type $mol_pick__bubble_content_giper_baza_glob_book_14 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_pick['bubble_content'] >
 	>
-	type $mol_button_minor__hint_giper_baza_glob_book_12 = $mol_type_enforce<
+	type $mol_button_minor__hint_giper_baza_glob_book_15 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_button_minor['hint'] >
 	>
-	type $mol_button_minor__click_giper_baza_glob_book_13 = $mol_type_enforce<
+	type $mol_button_minor__click_giper_baza_glob_book_16 = $mol_type_enforce<
 		ReturnType< $giper_baza_glob_book['seed_make'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__sub_giper_baza_glob_book_14 = $mol_type_enforce<
+	type $mol_button_minor__sub_giper_baza_glob_book_17 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $giper_baza_land_grab__hint_giper_baza_glob_book_15 = $mol_type_enforce<
+	type $giper_baza_land_grab__hint_giper_baza_glob_book_18 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $giper_baza_land_grab['hint'] >
 	>
-	type $giper_baza_land_grab__align_hor_giper_baza_glob_book_16 = $mol_type_enforce<
+	type $giper_baza_land_grab__align_hor_giper_baza_glob_book_19 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $giper_baza_land_grab['align_hor'] >
 	>
-	type $giper_baza_land_grab__grab_giper_baza_glob_book_17 = $mol_type_enforce<
+	type $giper_baza_land_grab__grab_giper_baza_glob_book_20 = $mol_type_enforce<
 		ReturnType< $giper_baza_glob_book['land_add'] >
 		,
 		ReturnType< $giper_baza_land_grab['grab'] >
 	>
-	type $mol_button_open__hint_giper_baza_glob_book_18 = $mol_type_enforce<
+	type $mol_button_open__hint_giper_baza_glob_book_21 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_button_open['hint'] >
 	>
-	type $mol_button_open__files_giper_baza_glob_book_19 = $mol_type_enforce<
+	type $mol_button_open__files_giper_baza_glob_book_22 = $mol_type_enforce<
 		ReturnType< $giper_baza_glob_book['update'] >
 		,
 		ReturnType< $mol_button_open['files'] >
 	>
-	type $mol_button_download__hint_giper_baza_glob_book_20 = $mol_type_enforce<
+	type $mol_button_download__hint_giper_baza_glob_book_23 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_button_download['hint'] >
 	>
-	type $mol_button_download__enabled_giper_baza_glob_book_21 = $mol_type_enforce<
+	type $mol_button_download__enabled_giper_baza_glob_book_24 = $mol_type_enforce<
 		ReturnType< $giper_baza_glob_book['dump_enabled'] >
 		,
 		ReturnType< $mol_button_download['enabled'] >
 	>
-	type $mol_button_download__blob_giper_baza_glob_book_22 = $mol_type_enforce<
+	type $mol_button_download__blob_giper_baza_glob_book_25 = $mol_type_enforce<
 		ReturnType< $giper_baza_glob_book['dump'] >
 		,
 		ReturnType< $mol_button_download['blob'] >
 	>
-	type $mol_button_download__file_name_giper_baza_glob_book_23 = $mol_type_enforce<
+	type $mol_button_download__file_name_giper_baza_glob_book_26 = $mol_type_enforce<
 		ReturnType< $giper_baza_glob_book['dump_name'] >
 		,
 		ReturnType< $mol_button_download['file_name'] >
 	>
-	type $mol_link__arg_giper_baza_glob_book_24 = $mol_type_enforce<
+	type $mol_link__arg_giper_baza_glob_book_27 = $mol_type_enforce<
 		({ 
 			'side': any,
 		}) 
 		,
 		ReturnType< $mol_link['arg'] >
 	>
-	type $mol_link__sub_giper_baza_glob_book_25 = $mol_type_enforce<
+	type $mol_link__sub_giper_baza_glob_book_28 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_link['sub'] >
 	>
-	type $giper_baza_land_rights__land_giper_baza_glob_book_26 = $mol_type_enforce<
+	type $giper_baza_land_rights__land_giper_baza_glob_book_29 = $mol_type_enforce<
 		ReturnType< $giper_baza_glob_book['land_current'] >
 		,
 		ReturnType< $giper_baza_land_rights['land'] >
 	>
-	type $mol_page__title_giper_baza_glob_book_27 = $mol_type_enforce<
+	type $mol_page__title_giper_baza_glob_book_30 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_page['title'] >
 	>
-	type $mol_page__tools_giper_baza_glob_book_28 = $mol_type_enforce<
+	type $mol_page__tools_giper_baza_glob_book_31 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_page['tools'] >
 	>
-	type $mol_page__body_giper_baza_glob_book_29 = $mol_type_enforce<
+	type $mol_page__body_giper_baza_glob_book_32 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_page['body'] >
 	>
 	export class $giper_baza_glob_book extends $mol_book2_catalog {
+		home_link( ): string
+		Home_link_icon( ): $mol_icon_account
+		Home_link( ): $mol_link
 		land( id: any): $giper_baza_land
 		pawn( id: any): $giper_baza_dict
 		Rights_open_icon( ): $mol_icon_security
@@ -12218,6 +12263,7 @@ declare namespace $ {
 		land_current( ): $giper_baza_land
 		Rights_form( ): $giper_baza_land_rights
 		menu_title( ): string
+		menu_tools( ): readonly(any)[]
 		param( ): string
 		Spread( id: any): ReturnType< $giper_baza_glob_book['Land'] >
 		menu_item_content( id: any): readonly($mol_view)[]

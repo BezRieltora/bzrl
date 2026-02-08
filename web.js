@@ -12369,13 +12369,13 @@ var $;
             return $giper_baza_rank_tier.rule;
         }
         toString() {
-            const mate = $mol_term_color.magenta('@' + (this.mate().str || '____every_one____'));
+            const mate = $mol_term_color.magenta('@' + (this.mate().str || '______every______'));
             const read = $mol_term_color.green(this.code().some(v => v) ? 'X' : 'O');
             const rank = $mol_term_color.cyan($giper_baza_rank_tier[this.tier()] + ':' + this.rate().toString(16).toUpperCase());
             return `${super.toString()} ${read} ${mate} ${rank}`;
         }
         [$mol_dev_format_head]() {
-            return $mol_dev_format_span({}, $mol_dev_format_native(this), ' 👾', $mol_dev_format_auto(this.lord()), ' 🏅', ' ', $mol_dev_format_shade(this.moment().toString('YYYY-MM-DD hh:mm:ss'), ' !', this.tick().toString(16).padStart(2, '0')), ' #', $mol_dev_format_auto(this.hash()), ' 👾', $mol_dev_format_accent(this.mate().str || '____every_one____'), this.code().some(v => v) ? ' 🔐' : ' 👀', $giper_baza_rank_tier[this.tier()], ':', this.rate().toString(16).toUpperCase());
+            return $mol_dev_format_span({}, $mol_dev_format_native(this), ' 👾', $mol_dev_format_auto(this.lord()), ' 🏅', ' ', $mol_dev_format_shade(this.moment().toString('YYYY-MM-DD hh:mm:ss'), ' !', this.tick().toString(16).padStart(2, '0')), ' #', $mol_dev_format_auto(this.hash()), ' 👾', $mol_dev_format_accent(this.mate().str || '______every______'), this.code().some(v => v) ? ' 🔐' : ' 👀', $giper_baza_rank_tier[this.tier()], ':', this.rate().toString(16).toUpperCase());
         }
     }
     __decorate([
@@ -13549,7 +13549,21 @@ var $;
     }
     $.$giper_baza_atom_link = $giper_baza_atom_link;
     class $giper_baza_atom_text extends $giper_baza_atom($giper_baza_vary_cast_text) {
+        selection(lord, next) {
+            const user = this.$.$giper_baza_glob.Land(lord).Data($giper_baza_flex_user);
+            if (next) {
+                user.caret(next.join('|'));
+                return next;
+            }
+            else {
+                this.val();
+                return user.caret()?.split('|').map(chunk => Number(chunk)) ?? [0, 0];
+            }
+        }
     }
+    __decorate([
+        $mol_mem_key
+    ], $giper_baza_atom_text.prototype, "selection", null);
     $.$giper_baza_atom_text = $giper_baza_atom_text;
     class $giper_baza_atom_time extends $giper_baza_atom($giper_baza_vary_cast_time) {
     }
@@ -13852,6 +13866,7 @@ var $;
             return this.Uptime(next)?.val(next) ?? new $mol_time_duration(0);
         }
         init() {
+            this.Errors(null).tick_instant(1);
             let handler = () => this.Errors(null).tick_instant(1);
             $mol_report_handler_all.add(handler);
             return { destructor: () => $mol_report_handler_all.delete(handler) };
@@ -13911,7 +13926,7 @@ var $;
     class $giper_baza_flex_subj extends $giper_baza_dict.with({
         Name: $giper_baza_atom_text,
     }, 'Subj') {
-        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_pla3dXt3`);
+        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_U2e5XejQ`);
         name(next) {
             return this.Name(next)?.val(next) ?? this.link().str;
         }
@@ -13924,7 +13939,7 @@ var $;
         Props: $giper_baza_list_link_to(() => $giper_baza_flex_prop),
         Pulls: $giper_baza_list_link_to(() => $giper_baza_flex_subj),
     }, 'Meta') {
-        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_a1JLFBay`);
+        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_Atd6Ty7F`);
         prop_new(key, type, kind, vars, base) {
             const prop = this.Props(null).make($mol_hash_string(key));
             prop.path(this.name() + ':' + key);
@@ -13977,7 +13992,7 @@ var $;
         Enum: $giper_baza_atom_link_to(() => $giper_baza_list_vary),
         Base: $giper_baza_atom_vary,
     }, 'Prop') {
-        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_7ovrwQ6t`);
+        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_DOnW7Ah9`);
         path(next) {
             return this.Path(next)?.val(next) ?? '';
         }
@@ -13999,7 +14014,7 @@ var $;
         Metas: $giper_baza_list_link_to(() => $giper_baza_flex_meta),
         Types: $giper_baza_list_str,
     }, 'Deck') {
-        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_TAv7CAua`);
+        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_3AvnmQ4q`);
         meta_new(key) {
             const meta = this.Metas(null).make($mol_hash_string(key));
             meta.name(key);
@@ -14022,7 +14037,7 @@ var $;
         Deck: $giper_baza_atom_link_to(() => $giper_baza_flex_deck),
         Peers: $giper_baza_list_link_to(() => $giper_baza_flex_peer),
     }, 'Seed') {
-        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_dELUKvvS`);
+        static meta = new $giper_baza_link(`${$.$giper_baza_flex_deck_base.str}_nrUK4ZIW`);
         deck() {
             return this.Deck(null).ensure(this.land());
         }
@@ -14120,8 +14135,11 @@ var $;
         static yard() {
             return new this.$.$giper_baza_yard;
         }
-        static home(Pawn) {
-            return this.Land(this.$.$giper_baza_auth.current().pass().lord()).Data(Pawn ?? this.$.$giper_baza_flex_subj);
+        static home(Home) {
+            const home = this.Land(this.$.$giper_baza_auth.current().pass().lord()).Data(Home ?? this.$.$giper_baza_flex_subj);
+            if (Home?.meta && !home.meta())
+                home.meta(Home.meta);
+            return home;
         }
         static king_grab(preset = [[null, this.$.$giper_baza_rank_read]]) {
             const mapping = new Map(preset);
@@ -17636,10 +17654,10 @@ var $;
                 return this.$.$giper_baza_glob.yard().master_current() ?? 'javascript: return false';
             }
             master_id(uri) {
-                return uri.replace(/^\w+:\/\//, '').replace(/\/$/, '');
+                return uri;
             }
             option_label(uri) {
-                return this.master_id(uri);
+                return uri.replace(/^\w+:\/\//, '').replace(/\/$/, '');
             }
             value(next) {
                 const peers = this.$.$giper_baza_yard.masters();
@@ -17665,6 +17683,17 @@ var $;
 (function ($) {
     $mol_style_attach("giper/baza/status/status.view.css", "[giper_baza_status_option_row] {\n\tpadding: var(--mol_gap_text);\n}\n\n[giper_baza_status_well] {\n\tcolor: var(--mol_theme_current);\n}\n\n[giper_baza_status_fail] {\n\tcolor: var(--mol_theme_focus);\n}\n\n[giper_baza_status][mol_view_error=\"Promise\"] {\n\tanimation: giper_baza_status_wait 1s linear infinite;\n}\n\n@keyframes giper_baza_status_wait {\n\tfrom {\n\t\topacity: 1;\n\t}\n\tto {\n\t\topacity: .5;\n\t}\n}\n");
 })($ || ($ = {}));
+
+;
+"use strict";
+
+;
+	($.$mol_icon_account) = class $mol_icon_account extends ($.$mol_icon) {
+		path(){
+			return "M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z";
+		}
+	};
+
 
 ;
 "use strict";
@@ -17703,7 +17732,7 @@ var $;
             title() {
                 const link = this.link();
                 if (!link.str)
-                    return '____every_one____';
+                    return '______every______';
                 return this.$.$giper_baza_glob.Pawn(link, $giper_baza_flex_subj).name() || link.str;
             }
             arg() {
@@ -20656,6 +20685,10 @@ var $;
 			if(next !== undefined) return next;
 			return "";
 		}
+		str_selection(next){
+			if(next !== undefined) return next;
+			return [];
+		}
 		time(next){
 			if(next !== undefined) return next;
 			const obj = new this.$.$mol_time_moment();
@@ -20677,6 +20710,10 @@ var $;
 		text(next){
 			if(next !== undefined) return next;
 			return "";
+		}
+		text_selection(next){
+			if(next !== undefined) return next;
+			return [];
 		}
 		list_item_adopt(next){
 			if(next !== undefined) return next;
@@ -20828,6 +20865,7 @@ var $;
 			const obj = new this.$.$mol_textarea();
 			(obj.enabled) = () => ((this.enabled()));
 			(obj.value) = (next) => ((this.str(next)));
+			(obj.selection) = (next) => ((this.str_selection(next)));
 			return obj;
 		}
 		Time(){
@@ -20846,6 +20884,7 @@ var $;
 			const obj = new this.$.$mol_textarea();
 			(obj.enabled) = () => ((this.enabled()));
 			(obj.value) = (next) => ((this.text(next)));
+			(obj.selection) = (next) => ((this.text_selection(next)));
 			return obj;
 		}
 		List(){
@@ -20864,10 +20903,12 @@ var $;
 	($mol_mem(($.$giper_baza_flex_field.prototype), "link_new"));
 	($mol_mem(($.$giper_baza_flex_field.prototype), "Link_new"));
 	($mol_mem(($.$giper_baza_flex_field.prototype), "str"));
+	($mol_mem(($.$giper_baza_flex_field.prototype), "str_selection"));
 	($mol_mem(($.$giper_baza_flex_field.prototype), "time"));
 	($mol_mem(($.$giper_baza_flex_field.prototype), "dict_pawn"));
 	($mol_mem(($.$giper_baza_flex_field.prototype), "Dict_form"));
 	($mol_mem(($.$giper_baza_flex_field.prototype), "text"));
+	($mol_mem(($.$giper_baza_flex_field.prototype), "text_selection"));
 	($mol_mem(($.$giper_baza_flex_field.prototype), "list_item_adopt"));
 	($mol_mem(($.$giper_baza_flex_field.prototype), "list_receive"));
 	($mol_mem_key(($.$giper_baza_flex_field.prototype), "list_item_receive"));
@@ -21173,6 +21214,9 @@ var $;
             str(next) {
                 return this.pawn(next)?.cast($giper_baza_atom_text).val(next) ?? '';
             }
+            str_selection(next) {
+                return this.pawn(next)?.cast($giper_baza_atom_text).selection(this.land().auth().pass().lord(), next);
+            }
             time(next) {
                 return this.pawn(next)?.cast($giper_baza_atom_time).val(next) ?? null;
             }
@@ -21228,6 +21272,9 @@ var $;
             }
             text(next) {
                 return this.pawn(next)?.cast($giper_baza_text).value(next) ?? '';
+            }
+            text_selection(next) {
+                return this.pawn(next)?.cast($giper_baza_text).selection(this.land().auth().pass().lord(), next);
             }
             dict_title() {
                 return this.pawn().cast($giper_baza_entity).Title()?.val() || this.pawn().link().str;
@@ -22941,6 +22988,20 @@ var $;
 
 ;
 	($.$giper_baza_glob_book) = class $giper_baza_glob_book extends ($.$mol_book2_catalog) {
+		home_link(){
+			return "";
+		}
+		Home_link_icon(){
+			const obj = new this.$.$mol_icon_account();
+			return obj;
+		}
+		Home_link(){
+			const obj = new this.$.$mol_link();
+			(obj.hint) = () => ("Your Home");
+			(obj.arg) = () => ({"link": (this.home_link())});
+			(obj.sub) = () => ([(this.Home_link_icon())]);
+			return obj;
+		}
 		land(id){
 			const obj = new this.$.$giper_baza_land();
 			return obj;
@@ -23072,6 +23133,9 @@ var $;
 		menu_title(){
 			return "🌐 Glob";
 		}
+		menu_tools(){
+			return [(this.Home_link())];
+		}
 		param(){
 			return "link";
 		}
@@ -23098,6 +23162,8 @@ var $;
 			return obj;
 		}
 	};
+	($mol_mem(($.$giper_baza_glob_book.prototype), "Home_link_icon"));
+	($mol_mem(($.$giper_baza_glob_book.prototype), "Home_link"));
 	($mol_mem_key(($.$giper_baza_glob_book.prototype), "land"));
 	($mol_mem_key(($.$giper_baza_glob_book.prototype), "pawn"));
 	($mol_mem(($.$giper_baza_glob_book.prototype), "Rights_open_icon"));
@@ -23200,6 +23266,9 @@ var $;
             }
             side() {
                 return this.$.$mol_state_arg.value('side') ?? '';
+            }
+            home_link() {
+                return this.$.$giper_baza_glob.home($giper_baza_flex_user).link().str;
             }
             land_current() {
                 return this.land(this.spread());
