@@ -387,14 +387,23 @@ $mol_card $mol_list
 			sub /
 				<= status_text <= status \
 
+$mol_pop_over $mol_pop
+	showed <= hovered? false
+	attr *
+		^
+		tabindex 0
+	event *
+		^
+		mouseenter?event <=> event_show?event null
+		mouseleave?event <=> event_hide?event null
+
 $bog_bzrl_app_profile $mol_view
 	opened? false
 	toggle? null
 	theme_auto $bog_theme_auto
 	profile_entity null
 	sub /
-		<= Panel $mol_pop
-			showed? <=> opened?
+		<= Panel $mol_pop_over
 			Anchor <= Button $mol_button_minor
 				click? <=> toggle?
 				sub /

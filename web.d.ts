@@ -2111,6 +2111,7 @@ declare namespace $ {
         native(): Promise<CryptoKey>;
         native_derive(): Promise<CryptoKey>;
         verify(data: BufferSource, sign: BufferSource): Promise<boolean>;
+        toJSON(): string;
     }
     class $mol_crypto_key_private extends $mol_crypto_key {
         static size_str: number;
@@ -2121,6 +2122,7 @@ declare namespace $ {
         native_derive(): Promise<CryptoKey>;
         public(): $mol_crypto_key_public;
         sign(data: BufferSource): Promise<Uint8Array<ArrayBuffer>>;
+        toJSON(): string;
     }
 }
 
@@ -14376,6 +14378,36 @@ declare namespace $ {
 
 declare namespace $ {
 
+	export class $mol_pop_over extends $mol_pop {
+		hovered( next?: boolean ): boolean
+		event_show( next?: any ): any
+		event_hide( next?: any ): any
+		showed( ): ReturnType< $mol_pop_over['hovered'] >
+		attr( ): ({ 
+			'tabindex': number,
+		})  & ReturnType< $mol_pop['attr'] >
+		event( ): ({ 
+			mouseenter( next?: ReturnType< $mol_pop_over['event_show'] > ): ReturnType< $mol_pop_over['event_show'] >,
+			mouseleave( next?: ReturnType< $mol_pop_over['event_hide'] > ): ReturnType< $mol_pop_over['event_hide'] >,
+		})  & ReturnType< $mol_pop['event'] >
+	}
+	
+}
+
+//# sourceMappingURL=over.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_pop_over extends $.$mol_pop_over {
+        event_show(event?: MouseEvent): void;
+        event_hide(event?: MouseEvent): void;
+        showed(): boolean;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
 	type $mol_image__uri_bog_bzrl_app_profile_1 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_profile['avatar_uri'] >
 		,
@@ -14436,20 +14468,15 @@ declare namespace $ {
 		,
 		ReturnType< $mol_card['Content'] >
 	>
-	type $mol_pop__showed_bog_bzrl_app_profile_13 = $mol_type_enforce<
-		ReturnType< $bog_bzrl_app_profile['opened'] >
-		,
-		ReturnType< $mol_pop['showed'] >
-	>
-	type $mol_pop__Anchor_bog_bzrl_app_profile_14 = $mol_type_enforce<
+	type $mol_pop_over__Anchor_bog_bzrl_app_profile_13 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_profile['Button'] >
 		,
-		ReturnType< $mol_pop['Anchor'] >
+		ReturnType< $mol_pop_over['Anchor'] >
 	>
-	type $mol_pop__bubble_content_bog_bzrl_app_profile_15 = $mol_type_enforce<
+	type $mol_pop_over__bubble_content_bog_bzrl_app_profile_14 = $mol_type_enforce<
 		readonly(any)[]
 		,
-		ReturnType< $mol_pop['bubble_content'] >
+		ReturnType< $mol_pop_over['bubble_content'] >
 	>
 	export class $bog_bzrl_app_profile extends $mol_view {
 		avatar_uri( ): string
@@ -14465,7 +14492,7 @@ declare namespace $ {
 		Header( ): $mol_view
 		Menu( ): $mol_list
 		Card( ): $mol_card
-		Panel( ): $mol_pop
+		Panel( ): $mol_pop_over
 		opened( next?: boolean ): boolean
 		toggle( next?: any ): any
 		theme_auto( ): $bog_theme_auto

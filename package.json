@@ -306,6 +306,7 @@
     "$mol_type_intersect",
     "$mol_unicode",
     "$mol_card",
+    "$mol_pop_over",
     "$bog_bzrl_app_rent",
     "$bog_bzrl_app_filter",
     "$mol_select",

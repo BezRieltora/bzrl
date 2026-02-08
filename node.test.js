@@ -7055,6 +7055,12 @@ var $;
         async verify(data, sign) {
             return await $mol_crypto_native.subtle.verify(ecdsa, await this.native(), sign, data).catch($mol_crypto_restack);
         }
+        [Symbol.for('nodejs.util.inspect.custom')]() {
+            return this.toJSON();
+        }
+        toJSON() {
+            return this.toString();
+        }
     }
     __decorate([
         $mol_memo.method
@@ -7099,6 +7105,12 @@ var $;
         }
         async sign(data) {
             return new Uint8Array(await $mol_crypto_native.subtle.sign(ecdsa, await this.native(), data).catch($mol_crypto_restack));
+        }
+        [Symbol.for('nodejs.util.inspect.custom')]() {
+            return this.toJSON();
+        }
+        toJSON() {
+            return '$mol_crypto_key_private:' + this.public().toJSON();
         }
     }
     __decorate([
@@ -17095,6 +17107,70 @@ var $;
 })($ || ($ = {}));
 
 ;
+	($.$mol_pop_over) = class $mol_pop_over extends ($.$mol_pop) {
+		hovered(next){
+			if(next !== undefined) return next;
+			return false;
+		}
+		event_show(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		event_hide(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		showed(){
+			return (this.hovered());
+		}
+		attr(){
+			return {...(super.attr()), "tabindex": 0};
+		}
+		event(){
+			return {
+				...(super.event()), 
+				"mouseenter": (next) => (this.event_show(next)), 
+				"mouseleave": (next) => (this.event_hide(next))
+			};
+		}
+	};
+	($mol_mem(($.$mol_pop_over.prototype), "hovered"));
+	($mol_mem(($.$mol_pop_over.prototype), "event_show"));
+	($mol_mem(($.$mol_pop_over.prototype), "event_hide"));
+
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_pop_over extends $.$mol_pop_over {
+            event_show(event) {
+                this.hovered(true);
+            }
+            event_hide(event) {
+                this.hovered(false);
+            }
+            showed() {
+                return this.focused() || this.hovered();
+            }
+        }
+        $$.$mol_pop_over = $mol_pop_over;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/pop/over/over.view.css", "[mol_pop_over]:focus {\r\n\toutline: none;\r\n}");
+})($ || ($ = {}));
+
+;
 	($.$bog_bzrl_app_profile) = class $bog_bzrl_app_profile extends ($.$mol_view) {
 		avatar_uri(){
 			return "";
@@ -17163,8 +17239,7 @@ var $;
 			return obj;
 		}
 		Panel(){
-			const obj = new this.$.$mol_pop();
-			(obj.showed) = (next) => ((this.opened(next)));
+			const obj = new this.$.$mol_pop_over();
 			(obj.Anchor) = () => ((this.Button()));
 			(obj.bubble_content) = () => ([(this.Card())]);
 			return obj;
