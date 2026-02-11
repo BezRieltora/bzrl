@@ -6923,52 +6923,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $mol_term_color {
-        static reset = this.ansi(0, 0);
-        static bold = this.ansi(1, 22);
-        static italic = this.ansi(3, 23);
-        static underline = this.ansi(4, 24);
-        static inverse = this.ansi(7, 27);
-        static hidden = this.ansi(8, 28);
-        static strike = this.ansi(9, 29);
-        static gray = this.ansi(90, 39);
-        static red = this.ansi(91, 39);
-        static green = this.ansi(92, 39);
-        static yellow = this.ansi(93, 39);
-        static blue = this.ansi(94, 39);
-        static magenta = this.ansi(95, 39);
-        static cyan = this.ansi(96, 39);
-        static Gray = (str) => this.inverse(this.gray(str));
-        static Red = (str) => this.inverse(this.red(str));
-        static Green = (str) => this.inverse(this.green(str));
-        static Yellow = (str) => this.inverse(this.yellow(str));
-        static Blue = (str) => this.inverse(this.blue(str));
-        static Magenta = (str) => this.inverse(this.magenta(str));
-        static Cyan = (str) => this.inverse(this.cyan(str));
-        static ansi(open, close) {
-            if (typeof process === 'undefined')
-                return String;
-            if (!process.stdout.isTTY)
-                return String;
-            const prefix = `\x1b[${open}m`;
-            const postfix = `\x1b[${close}m`;
-            const suffix_regexp = new RegExp(postfix.replace('[', '\\['), 'g');
-            return function colorer(str) {
-                str = String(str);
-                if (str === '')
-                    return str;
-                const suffix = str.replace(suffix_regexp, prefix);
-                return prefix + suffix + postfix;
-            };
-        }
-    }
-    $.$mol_term_color = $mol_term_color;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
     function $mol_crypto_salt() {
         return $mol_crypto_native.getRandomValues(new Uint8Array(16));
     }
@@ -7097,7 +7051,7 @@ var $;
             return this.hash().peer();
         }
         toJSON() {
-            return $mol_term_color.magenta('@' + this.lord().str);
+            return '@' + this.lord().str;
         }
         [$mol_dev_format_head]() {
             return $mol_dev_format_span({}, $mol_dev_format_native(this), ' 👾', $mol_dev_format_auto(this.lord()), ' 🎫');
@@ -8211,6 +8165,52 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_term_color {
+        static reset = this.ansi(0, 0);
+        static bold = this.ansi(1, 22);
+        static italic = this.ansi(3, 23);
+        static underline = this.ansi(4, 24);
+        static inverse = this.ansi(7, 27);
+        static hidden = this.ansi(8, 28);
+        static strike = this.ansi(9, 29);
+        static gray = this.ansi(90, 39);
+        static red = this.ansi(91, 39);
+        static green = this.ansi(92, 39);
+        static yellow = this.ansi(93, 39);
+        static blue = this.ansi(94, 39);
+        static magenta = this.ansi(95, 39);
+        static cyan = this.ansi(96, 39);
+        static Gray = (str) => this.inverse(this.gray(str));
+        static Red = (str) => this.inverse(this.red(str));
+        static Green = (str) => this.inverse(this.green(str));
+        static Yellow = (str) => this.inverse(this.yellow(str));
+        static Blue = (str) => this.inverse(this.blue(str));
+        static Magenta = (str) => this.inverse(this.magenta(str));
+        static Cyan = (str) => this.inverse(this.cyan(str));
+        static ansi(open, close) {
+            if (typeof process === 'undefined')
+                return String;
+            if (!process.stdout.isTTY)
+                return String;
+            const prefix = `\x1b[${open}m`;
+            const postfix = `\x1b[${close}m`;
+            const suffix_regexp = new RegExp(postfix.replace('[', '\\['), 'g');
+            return function colorer(str) {
+                str = String(str);
+                if (str === '')
+                    return str;
+                const suffix = str.replace(suffix_regexp, prefix);
+                return prefix + suffix + postfix;
+            };
+        }
+    }
+    $.$mol_term_color = $mol_term_color;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
     class $giper_baza_face extends Object {
         time;
         tick;
@@ -8249,7 +8249,13 @@ var $;
         toJSON() {
             const time = $giper_baza_time_dump(this.time, this.tick);
             const summ = '%' + this.summ;
-            return $mol_term_color.gray(`${time} ${summ}`);
+            return `${time} ${summ}`;
+        }
+        ;
+        [Symbol.for('nodejs.util.inspect.custom')]() {
+            return $mol_term_color.blue('$giper_baza_face ')
+                + $mol_term_color.gray($giper_baza_time_dump(this.time, this.tick)
+                    + ' %' + this.summ);
         }
         [$mol_dev_format_head]() {
             return $mol_dev_format_span({}, $mol_dev_format_native(this), $mol_dev_format_shade(' ', $giper_baza_time_dump(this.time, this.tick), ' %', this.summ));
@@ -8309,6 +8315,11 @@ var $;
         }
         toJSON() {
             return Object.fromEntries(this.entries());
+        }
+        ;
+        [Symbol.for('nodejs.util.inspect.custom')]() {
+            return $mol_term_color.blue('$giper_baza_face_map ')
+                + $mol_term_color.gray(this.stat.toJSON());
         }
         [$mol_dev_format_head]() {
             return $mol_dev_format_span({}, $mol_dev_format_native(this), ' ', $mol_dev_format_auto(this.stat));
@@ -8494,7 +8505,7 @@ var $;
 (function ($) {
     $.$giper_baza_pack_four_code = $mol_charset_encode('LAND');
     $.$giper_baza_pack_head_size = 4 + 12 + 6 + 2;
-    class $giper_baza_pack_part extends Object {
+    class $giper_baza_pack_part extends $mol_object {
         units;
         faces;
         constructor(units = [], faces = new $giper_baza_face_map) {
@@ -10820,8 +10831,11 @@ var $;
                 else
                     skipped.set(peer, new Set([unit]));
             }
-            for (const seal of this._seal_item.values())
+            for (const seal of this._seal_item.values()) {
+                if (!seal.alive_items.size)
+                    continue;
                 collect(seal);
+            }
             for (const gift of this._gift.values()) {
                 collect(gift);
                 if (gift.mate().str) {
@@ -11264,19 +11278,19 @@ var $;
         }
         units_unsaved() {
             const mine = this.mine();
-            const persisting = [];
+            const persisting = new Set();
             const check_lord = (lord) => {
                 const pass = this.lord_pass(lord);
                 if (!pass)
                     return;
                 if (mine.units_persisted.has(pass))
                     return;
-                persisting.push(pass);
+                persisting.add(pass);
             };
             for (const gift of this._gift.values()) {
                 if (mine.units_persisted.has(gift))
                     continue;
-                persisting.push(gift);
+                persisting.add(gift);
                 check_lord(gift.lord());
                 check_lord(gift.mate());
             }
@@ -11285,7 +11299,7 @@ var $;
                     for (const sand of units.values()) {
                         if ($mol_wire_sync(mine.units_persisted).has(sand))
                             continue;
-                        persisting.push(sand);
+                        persisting.add(sand);
                         check_lord(sand.lord());
                     }
                 }
@@ -11295,9 +11309,9 @@ var $;
                     continue;
                 if (mine.units_persisted.has(seal))
                     continue;
-                persisting.push(seal);
+                persisting.add(seal);
             }
-            return persisting;
+            return [...persisting];
         }
         units_saving() {
             this.units_signing();
@@ -11491,10 +11505,18 @@ var $;
             };
         }
         ;
+        [Symbol.for('nodejs.util.inspect.custom')]() {
+            return $mol_term_color.blue('$giper_baza_land')
+                + $mol_term_color.magenta(` @` + this.link());
+        }
+        ;
         [$mol_dev_format_head]() {
             return $mol_dev_format_span({}, $mol_dev_format_native(this), ' ', $mol_dev_format_auto(this.faces.stat));
         }
     }
+    __decorate([
+        $mol_mem_key
+    ], $giper_baza_land.prototype, "lord_pass", null);
     __decorate([
         $mol_action
     ], $giper_baza_land.prototype, "self_make", null);
@@ -12065,6 +12087,10 @@ var $;
             $mol_wire_solid();
             return next;
         }
+        ;
+        [Symbol.for('nodejs.util.inspect.custom')]() {
+            return $mol_term_color.blue(`$giper_baza_yard`);
+        }
     }
     __decorate([
         $mol_mem
@@ -12297,15 +12323,21 @@ var $;
             return {};
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
-            return this.toString();
+            return this.inspect();
+        }
+        inspect() {
+            const hash = $mol_term_color.cyan('#' + this.hash().str);
+            const lord = $mol_term_color.magenta('@' + this.lord().str);
+            const time = $mol_term_color.gray($giper_baza_time_dump(this.time(), this.tick()));
+            return `${lord} ${hash} ${time}`;
         }
         toJSON() {
             return this.toString();
         }
         toString() {
-            const hash = $mol_term_color.cyan('#' + this.hash().str);
-            const lord = $mol_term_color.magenta('@' + this.lord().str);
-            const time = $mol_term_color.gray($giper_baza_time_dump(this.time(), this.tick()));
+            const hash = '#' + this.hash().str;
+            const lord = '@' + this.lord().str;
+            const time = $giper_baza_time_dump(this.time(), this.tick());
             return `${lord} ${hash} ${time}`;
         }
     }
@@ -12380,10 +12412,16 @@ var $;
         tier_min() {
             return $giper_baza_rank_tier.rule;
         }
-        toString() {
+        inspect() {
             const mate = $mol_term_color.magenta('@' + (this.mate().str || '______every______'));
             const read = $mol_term_color.green(this.code().some(v => v) ? 'X' : 'O');
             const rank = $mol_term_color.cyan($giper_baza_rank_tier[this.tier()] + ':' + this.rate().toString(16).toUpperCase());
+            return `${super.inspect()} ${read} ${mate} ${rank}`;
+        }
+        toString() {
+            const mate = '@' + (this.mate().str || '______every______');
+            const read = this.code().some(v => v) ? 'X' : 'O';
+            const rank = $giper_baza_rank_tier[this.tier()] + ':' + this.rate().toString(16).toUpperCase();
             return `${super.toString()} ${read} ${mate} ${rank}`;
         }
         [$mol_dev_format_head]() {
@@ -12479,15 +12517,22 @@ var $;
         path() {
             return `seal:${this.lord()}/${$giper_baza_time_dump(this.time(), this.tick())}`;
         }
-        toString() {
+        inspect() {
             const items = this.hash_list().map(hash => $mol_term_color.cyan('#' + hash.str)).join(', ');
             const kind = $mol_term_color.green('%');
-            return `${super.toString()} ${kind} ${items}`;
+            return `${super.inspect()} ${kind} ${items}`;
+        }
+        toString() {
+            const items = this.hash_list().map(hash => '#' + hash.str).join(', ');
+            return `${super.toString()} % ${items}`;
         }
         [$mol_dev_format_head]() {
             return $mol_dev_format_span({}, $mol_dev_format_native(this), ' 👾', $mol_dev_format_auto(this.lord()), ' ✍ ', $mol_dev_format_shade(this.moment().toString('YYYY-MM-DD hh:mm:ss'), ' &', this.tick().toString(16).padStart(2, '0')), ' #', $mol_dev_format_auto(this.hash()), ' ', $mol_dev_format_auto(this.hash_list()));
         }
     }
+    __decorate([
+        $mol_mem
+    ], $giper_baza_unit_seal.prototype, "sign", null);
     __decorate([
         $mol_action
     ], $giper_baza_unit_seal, "make", null);
@@ -12632,7 +12677,7 @@ var $;
                 ? $giper_baza_rank_tier.pull
                 : $giper_baza_rank_tier.post;
         }
-        toString() {
+        inspect() {
             const lead = $mol_term_color.blue(this.lead().str || '__knot__');
             const head = $mol_term_color.blue(this.head().str || '__root__');
             const self = $mol_term_color.blue(this.self().str || '__meta__');
@@ -12643,6 +12688,19 @@ var $;
                 keys: 'K',
             }[this.tag()]);
             const vary = this._vary === undefined ? '' : $mol_term_color.yellow(String(this._vary));
+            return `${super.inspect()} ${tag} ${lead}\\${head}/${self} ${vary}`;
+        }
+        toString() {
+            const lead = this.lead().str || '__knot__';
+            const head = this.head().str || '__root__';
+            const self = this.self().str || '__meta__';
+            const tag = {
+                term: 'T',
+                solo: 'S',
+                vals: 'V',
+                keys: 'K',
+            }[this.tag()];
+            const vary = this._vary === undefined ? '' : String(this._vary);
             return `${super.toString()} ${tag} ${lead}\\${head}/${self} ${vary}`;
         }
         [$mol_dev_format_head]() {
@@ -12664,7 +12722,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $giper_baza_mine extends $mol_object {
+    class $giper_baza_mine_temp extends $mol_object {
         static land(land) {
             return this.make({
                 land: $mol_const(land)
@@ -12688,8 +12746,9 @@ var $;
     }
     __decorate([
         $mol_mem_key
-    ], $giper_baza_mine, "land", null);
-    $.$giper_baza_mine = $giper_baza_mine;
+    ], $giper_baza_mine_temp, "land", null);
+    $.$giper_baza_mine_temp = $giper_baza_mine_temp;
+    $.$giper_baza_mine = $giper_baza_mine_temp;
 })($ || ($ = {}));
 
 ;
@@ -12923,7 +12982,7 @@ var $;
     function Sync(task) {
         return task();
     }
-    class $giper_baza_mine_idb extends $giper_baza_mine {
+    class $giper_baza_mine_idb extends $giper_baza_mine_temp {
         units_save(diff) {
             return Sync(async () => {
                 const db = await this.$.$giper_baza_mine_idb.db();

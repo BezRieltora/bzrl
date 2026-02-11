@@ -2160,33 +2160,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $mol_term_color {
-        static reset: (str: string) => string;
-        static bold: (str: string) => string;
-        static italic: (str: string) => string;
-        static underline: (str: string) => string;
-        static inverse: (str: string) => string;
-        static hidden: (str: string) => string;
-        static strike: (str: string) => string;
-        static gray: (str: string) => string;
-        static red: (str: string) => string;
-        static green: (str: string) => string;
-        static yellow: (str: string) => string;
-        static blue: (str: string) => string;
-        static magenta: (str: string) => string;
-        static cyan: (str: string) => string;
-        static Gray: (str: string) => string;
-        static Red: (str: string) => string;
-        static Green: (str: string) => string;
-        static Yellow: (str: string) => string;
-        static Blue: (str: string) => string;
-        static Magenta: (str: string) => string;
-        static Cyan: (str: string) => string;
-        static ansi(open: number, close: number): (str: string) => string;
-    }
-}
-
-declare namespace $ {
     function $mol_crypto_salt(): Uint8Array<ArrayBuffer>;
     const $mol_crypto_salt_once: Uint8Array<ArrayBuffer>;
 }
@@ -2521,6 +2494,33 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_term_color {
+        static reset: (str: string) => string;
+        static bold: (str: string) => string;
+        static italic: (str: string) => string;
+        static underline: (str: string) => string;
+        static inverse: (str: string) => string;
+        static hidden: (str: string) => string;
+        static strike: (str: string) => string;
+        static gray: (str: string) => string;
+        static red: (str: string) => string;
+        static green: (str: string) => string;
+        static yellow: (str: string) => string;
+        static blue: (str: string) => string;
+        static magenta: (str: string) => string;
+        static cyan: (str: string) => string;
+        static Gray: (str: string) => string;
+        static Red: (str: string) => string;
+        static Green: (str: string) => string;
+        static Yellow: (str: string) => string;
+        static Blue: (str: string) => string;
+        static Magenta: (str: string) => string;
+        static Cyan: (str: string) => string;
+        static ansi(open: number, close: number): (str: string) => string;
+    }
+}
+
+declare namespace $ {
     type $giper_baza_face_data = Iterable<readonly [peer: string, face: $giper_baza_face]>;
     class $giper_baza_face extends Object {
         time: number;
@@ -2594,7 +2594,7 @@ declare namespace $ {
     const $giper_baza_pack_four_code: Uint8Array<ArrayBuffer>;
     const $giper_baza_pack_head_size: number;
     type $giper_baza_pack_parts = [string, $giper_baza_pack_part][];
-    class $giper_baza_pack_part extends Object {
+    class $giper_baza_pack_part extends $mol_object {
         units: readonly $giper_baza_unit[];
         faces: $giper_baza_face_map;
         constructor(units?: readonly $giper_baza_unit[], faces?: $giper_baza_face_map);
@@ -2941,7 +2941,7 @@ declare namespace $ {
         broadcast(): void;
         sync(): this;
         destructor(): void;
-        mine(): $giper_baza_mine;
+        mine(): $giper_baza_mine_temp;
         sync_mine(): $mol_wire_atom<unknown, [], void> | undefined;
         sync_yard(): $mol_wire_atom<unknown, [], void>;
         bus(): $mol_bus<ArrayBuffer>;
@@ -3084,6 +3084,7 @@ declare namespace $ {
         tier_min(): $giper_baza_rank_tier;
         _land: null | $giper_baza_land;
         dump(): {};
+        inspect(): string;
         toJSON(): string;
         toString(): string;
     }
@@ -3113,6 +3114,7 @@ declare namespace $ {
             time: string;
         };
         tier_min(): $giper_baza_rank_tier;
+        inspect(): string;
         toString(): string;
         [$mol_dev_format_head](): any[];
     }
@@ -3143,6 +3145,7 @@ declare namespace $ {
         tier_min(): $giper_baza_rank_tier;
         rank_min(): number;
         path(): string;
+        inspect(): string;
         toString(): string;
         [$mol_dev_format_head](): any[];
     }
@@ -3192,6 +3195,7 @@ declare namespace $ {
             time: string;
         };
         tier_min(): $giper_baza_rank_tier.post | $giper_baza_rank_tier.pull;
+        inspect(): string;
         toString(): string;
         [$mol_dev_format_head](): any[];
     }
@@ -3202,8 +3206,8 @@ declare namespace $ {
         ins: readonly $giper_baza_unit[];
         del: readonly $giper_baza_unit[];
     };
-    class $giper_baza_mine extends $mol_object {
-        static land(land: $giper_baza_link): $giper_baza_mine;
+    class $giper_baza_mine_temp extends $mol_object {
+        static land(land: $giper_baza_link): $giper_baza_mine_temp;
         land(): $giper_baza_link;
         unit_deletes: number;
         unit_inserts: number;
@@ -3214,6 +3218,7 @@ declare namespace $ {
         units_load(): readonly $giper_baza_unit[];
         ball_load(sand: $giper_baza_unit_sand): Uint8Array<ArrayBuffer>;
     }
+    let $giper_baza_mine: typeof $giper_baza_mine_temp;
 }
 
 declare namespace $ {
@@ -3315,7 +3320,7 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $giper_baza_mine_idb extends $giper_baza_mine {
+    class $giper_baza_mine_idb extends $giper_baza_mine_temp {
         units_save(diff: $giper_baza_mine_diff): void;
         units_load(): readonly $giper_baza_unit[];
         ball_load(sand: $giper_baza_unit_sand): Uint8Array<ArrayBuffer>;

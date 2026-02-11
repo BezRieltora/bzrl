@@ -4871,14 +4871,7 @@ var $;
 var $;
 (function ($_1) {
     $mol_test_mocks.push($ => {
-        class $giper_baza_mine_mock extends $.$giper_baza_mine {
-            units_save(diff) { }
-            units_load() {
-                return [];
-            }
-            ball_load(sand) {
-                return null;
-            }
+        class $giper_baza_mine_mock extends $.$giper_baza_mine_temp {
         }
         $.$giper_baza_mine = $giper_baza_mine_mock;
     });
