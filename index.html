@@ -344,10 +344,26 @@
 				background: radial-gradient(circle, rgba(45, 107, 74, 0.06) 0%, transparent 70%);
 				border-radius: 50%;
 			}
+			.hero-inner {
+				display: flex;
+				align-items: center;
+				gap: 48px;
+			}
 			.hero-content {
 				position: relative;
 				z-index: 1;
 				max-width: 720px;
+				flex: 1;
+			}
+			.hero-image {
+				flex-shrink: 0;
+				width: 380px;
+				position: relative;
+				z-index: 1;
+			}
+			.hero-image img {
+				width: 100%;
+				height: auto;
 			}
 			.hero-badge {
 				display: inline-flex;
@@ -1346,6 +1362,9 @@
 				}
 			}
 			@media (max-width: 768px) {
+				.hero-image {
+					display: none;
+				}
 				.nav {
 					display: none;
 				}
@@ -1457,143 +1476,51 @@
 		<div class="page active" id="page-home">
 			<section class="hero">
 				<div class="container">
-					<div class="hero-content">
-						<div class="hero-badge fade-in">
-							<div class="hero-badge-dot"></div>
-							Казань · Долгосрочная аренда
-						</div>
-						<h1 class="fade-in stagger-1">Находим жильё <em>честно</em> и ведём сделку до ключей</h1>
-						<p class="hero-sub fade-in stagger-2">
-							Мы — сервис-посредник по аренде квартир и домов. Проверяем объекты, отбираем арендаторов,
-							сопровождаем сделку. Прозрачные условия для обеих сторон.
-						</p>
-						<div class="hero-commission fade-in stagger-3">
-							💰 Фиксированная комиссия — <strong style="margin-left: 4px">20% от месячной аренды</strong>
-						</div>
-						<div class="hero-actions fade-in stagger-3">
-							<a class="btn-primary" href="#catalog" onclick="navigate('catalog')">
-								Смотреть объекты
-								<svg
-									width="18"
-									height="18"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2.5"
-									stroke-linecap="round"
+					<div class="hero-inner">
+						<div class="hero-content">
+							<div class="hero-badge fade-in">
+								<div class="hero-badge-dot"></div>
+								Казань · Долгосрочная аренда
+							</div>
+							<h1 class="fade-in stagger-1">Находим жильё <em>честно</em> и ведём сделку до ключей</h1>
+							<p class="hero-sub fade-in stagger-2">
+								Мы — сервис-посредник по аренде квартир и домов. Проверяем объекты, отбираем
+								арендаторов, сопровождаем сделку. Прозрачные условия для обеих сторон.
+							</p>
+							<div class="hero-commission fade-in stagger-3">
+								💰 Фиксированная комиссия —
+								<strong style="margin-left: 4px">20% от месячной аренды</strong>
+							</div>
+							<div class="hero-actions fade-in stagger-3">
+								<a class="btn-primary" href="#catalog" onclick="navigate('catalog')">
+									Смотреть объекты
+									<svg
+										width="18"
+										height="18"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2.5"
+										stroke-linecap="round"
+									>
+										<path d="M5 12h14M12 5l7 7-7 7" />
+									</svg>
+								</a>
+								<a class="btn-telegram" href="https://t.me/yusdanil" target="_blank" rel="noopener"
+									><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+										<path
+											fill-rule="evenodd"
+											clip-rule="evenodd"
+											d="M14.8327 3.32247C15.0181 3.24447 15.2209 3.21756 15.4202 3.24456C15.6195 3.27156 15.8079 3.35148 15.9658 3.47599C16.1237 3.6005 16.2453 3.76506 16.318 3.95254C16.3907 4.14001 16.4119 4.34355 16.3792 4.54197L14.6782 14.8597C14.5132 15.855 13.4212 16.4257 12.5085 15.93C11.745 15.5152 10.611 14.8762 9.59098 14.2095C9.08098 13.8757 7.51873 12.807 7.71073 12.0465C7.87573 11.3962 10.5007 8.95272 12.0007 7.49997C12.5895 6.92922 12.321 6.59997 11.6257 7.12497C9.89923 8.42847 7.12723 10.4107 6.21073 10.9687C5.40223 11.4607 4.98073 11.5447 4.47673 11.4607C3.55723 11.3077 2.70448 11.0707 2.00848 10.782C1.06798 10.392 1.11373 9.09897 2.00773 8.72247L14.8327 3.32247Z"
+											fill="white"
+										/>
+									</svg>
+									Написать в Telegram</a
 								>
-									<path d="M5 12h14M12 5l7 7-7 7" />
-								</svg>
-							</a>
-							<a class="btn-telegram" href="https://t.me/yusdanil" target="_blank" rel="noopener"
-								><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-									<path
-										fill-rule="evenodd"
-										clip-rule="evenodd"
-										d="M14.8327 3.32247C15.0181 3.24447 15.2209 3.21756 15.4202 3.24456C15.6195 3.27156 15.8079 3.35148 15.9658 3.47599C16.1237 3.6005 16.2453 3.76506 16.318 3.95254C16.3907 4.14001 16.4119 4.34355 16.3792 4.54197L14.6782 14.8597C14.5132 15.855 13.4212 16.4257 12.5085 15.93C11.745 15.5152 10.611 14.8762 9.59098 14.2095C9.08098 13.8757 7.51873 12.807 7.71073 12.0465C7.87573 11.3962 10.5007 8.95272 12.0007 7.49997C12.5895 6.92922 12.321 6.59997 11.6257 7.12497C9.89923 8.42847 7.12723 10.4107 6.21073 10.9687C5.40223 11.4607 4.98073 11.5447 4.47673 11.4607C3.55723 11.3077 2.70448 11.0707 2.00848 10.782C1.06798 10.392 1.11373 9.09897 2.00773 8.72247L14.8327 3.32247Z"
-										fill="white"
-									/>
-								</svg>
-								Написать в Telegram</a
-							>
+							</div>
 						</div>
-					</div>
-					<div class="stats fade-in stagger-4">
-						<div class="stat-item">
-							<div class="stat-number">20%</div>
-							<div class="stat-label">Фиксированная комиссия</div>
-						</div>
-						<div class="stat-item">
-							<div class="stat-number">150+</div>
-							<div class="stat-label">Объектов в базе</div>
-						</div>
-						<div class="stat-item">
-							<div class="stat-number">800+</div>
-							<div class="stat-label">Успешных сделок</div>
-						</div>
-						<div class="stat-item">
-							<div class="stat-number">1 день</div>
-							<div class="stat-label">Среднее время подбора</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<section class="how-it-works section-padding">
-				<div class="container">
-					<div class="section-header center">
-						<h2>Как мы работаем</h2>
-						<p>Пять шагов от первого звонка до ключей</p>
-					</div>
-					<div class="steps-grid">
-						<div class="step-card fade-in stagger-1">
-							<div class="step-num">01</div>
-							<div class="step-icon">🔍</div>
-							<h3>Анализ объекта</h3>
-							<p>Проверяем документы, собственника, состояние жилья</p>
-						</div>
-						<div class="step-card fade-in stagger-2">
-							<div class="step-num">02</div>
-							<div class="step-icon">📸</div>
-							<h3>Подготовка</h3>
-							<p>Реальные фото, описание, размещение в каталоге</p>
-						</div>
-						<div class="step-card fade-in stagger-3">
-							<div class="step-num">03</div>
-							<div class="step-icon">👥</div>
-							<h3>Отбор арендаторов</h3>
-							<p>Фильтрация по платёжеспособности и документам</p>
-						</div>
-						<div class="step-card fade-in stagger-4">
-							<div class="step-num">04</div>
-							<div class="step-icon">📋</div>
-							<h3>Договор</h3>
-							<p>Подписываем договор до передачи денег</p>
-						</div>
-						<div class="step-card fade-in stagger-5">
-							<div class="step-num">05</div>
-							<div class="step-icon">🔑</div>
-							<h3>Передача ключей</h3>
-							<p>Фиксируем состояние, передаём ключи</p>
-						</div>
-					</div>
-				</div>
-			</section>
-			<section class="advantages section-padding">
-				<div class="container">
-					<div class="section-header center">
-						<h2>Почему работают с нами</h2>
-						<p>Самая низкая и прозрачная комиссия на рынке Казани</p>
-					</div>
-					<div class="advantages-grid">
-						<div class="adv-card fade-in stagger-1">
-							<div class="adv-icon warm">💰</div>
-							<h3>Комиссия 20% — и точка</h3>
-							<p>Фиксированная ставка без скрытых платежей. У большинства агентств — от 50% до 100%.</p>
-						</div>
-						<div class="adv-card fade-in stagger-2">
-							<div class="adv-icon green">🛡️</div>
-							<h3>Проверенные объекты</h3>
-							<p>Документы собственника, реальные фото, актуальная цена. Никаких фейков и субаренд.</p>
-						</div>
-						<div class="adv-card fade-in stagger-3">
-							<div class="adv-icon muted">📋</div>
-							<h3>Договор до денег</h3>
-							<p>Сначала подписываем договор — потом передаём деньги. Защита для обеих сторон.</p>
-						</div>
-						<div class="adv-card fade-in stagger-4">
-							<div class="adv-icon green">🏠</div>
-							<h3>Квартиры и дома</h3>
-							<p>В каталоге не только квартиры — есть частные дома для долгосрочной аренды.</p>
-						</div>
-						<div class="adv-card fade-in stagger-5">
-							<div class="adv-icon warm">⚡</div>
-							<h3>Быстрая связь</h3>
-							<p>Никаких форм. Пишете в Telegram или звоните — отвечаем в течение часа.</p>
-						</div>
-						<div class="adv-card fade-in stagger-1">
-							<div class="adv-icon muted">🤝</div>
-							<h3>Баланс интересов</h3>
-							<p>Мы посредник, который держит баланс и отвечает за процесс — не за одну сторону.</p>
+						<div class="hero-image fade-in stagger-4">
+							<img src="./images/keys.png" alt="Ключи от квартиры" />
 						</div>
 					</div>
 				</div>
